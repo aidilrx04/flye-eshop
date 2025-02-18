@@ -1,0 +1,38 @@
+<div class="carousel max-w-full relative">
+	<button
+		(click)="prevPage()"
+		class="absolute top-[50%] -translate-y-[50%] -left-16 border border-black size-12  text-lg hover:bg-gray-100 transition-colors"
+	>
+		<i class="ph-bold ph-caret-left"></i>
+	</button>
+	<button
+		(click)="nextPage()"
+		class="absolute top-[50%] -translate-y-[50%] -right-16 border border-black size-12  text-lg hover:bg-gray-100 transition-colors"
+	>
+		<i class="ph ph-caret-right"></i>
+	</button>
+
+	<div class="items flex overflow-x-auto gap-8 mb-4">
+
+		@for (item of pageData(); track $index) {
+		<div class="w-full">
+			@if (typeof item !== "undefined") {
+
+			<ng-container
+				[ngTemplateOutlet]="template || null"
+				[ngTemplateOutletContext]="{$implicit: item}"
+			></ng-container>
+			}
+		</div>
+		}
+	</div>
+	<div class="indicators flex mx-auto w-fit gap-2">
+		@for (item of totalPageData(); track $index) {
+		<button
+			(click)="setPage($index)"
+			class="indicator size-3 rounded-full bg-gray-400"
+			[ngClass]="{'bg-gray-600': $index == page()}"
+		></button>
+		}
+	</div>
+</div>

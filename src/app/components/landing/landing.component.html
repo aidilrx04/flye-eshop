@@ -1,17 +1,432 @@
-<header>
-	<a href="#">Flye</a>
-	<nav>
-		<ul>
-			<li>Home</li>
-			<li>Explore</li>
-			<li>Service</li>
-			<li>Products</li>
-			<li>About</li>
-			<li>Contact</li>
-		</ul>
-	</nav>
-</header>
+<div class="container mx-auto max-w-5xl">
+	<header class="flex justify-between items-center mx-auto py-4">
+		<a
+			href="#"
+			class="text-4xl font-bold"
+		>Flye Shop</a>
+		<nav class="flex list-none gap-5">
+			<li class="font-semibold ">Explore</li>
+			<li class="font-semibold ">Services</li>
+			<li class="font-semibold ">Contact</li>
+			<li class="font-semibold ">About</li>
+		</nav>
+	</header>
+</div>
 
 <main>
-	
+
+	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+		<h1 class="text-4xl font-bold text-gray-900 text-center mb-4 mt-6">We are Flye Shop</h1>
+		<p class="text-center text-gray-600 text-xl mb-4">Awesome shop</p>
+		<div class="flex w-7xl max-w-full aspect-[2/1] px-6 mx-auto gap-6 justify-center overflow-hidden">
+			<div class="h-full aspect-square  overflow-hidden relative">
+				<img
+					src="https://loremflickr.com/640/640/dog"
+					alt=""
+					class="brightness-50"
+				>
+				<div class="absolute text-white w-[60%] aspect-square top-[50%] left-[50%] -translate-[50%]">
+					<h2 class="font-bold text-5xl mb-4">Services</h2>
+					<p class="text-lg mb-4 text-gray-100">Find your best services</p>
+					<button
+						class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+					>Get Now!</button>
+				</div>
+			</div>
+			<div class="h-full aspect-square overflow-hidden relative">
+				<img
+					src="https://loremflickr.com/640/640/paris"
+					alt=""
+					class="brightness-50"
+				>
+				<div class="absolute top-[50%] left-[50%] -translate-[50%] w-[60%] text-white aspect-square">
+					<h2 class="text-5xl font-bold mb-4">Find Jobs</h2>
+					<p class="text-lg mb-4 text-gray-100">Get money from your skills</p>
+					<button
+						class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+					>Find Now!</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+		<div class="w-5xl max-w-full mx-auto">
+			<h2 class="text-4xl font-bold  mb-1">Men's Latest</h2>
+			<p class="mb-8 text-lg text-gray-500">New cool men clothings.
+			</p>
+
+			<app-carousel [values]="menData">
+				<ng-template
+					#itemTemplate
+					let-item
+				>
+					<div class="relative group overflow-hidden mb-4">
+						<img
+							[src]="item.imageUrl"
+							alt=""
+							class="w-full aspect-square  object-cover"
+						>
+						<div class="absolute -bottom-16 w-full h-16 group-hover:bottom-0 transition-all duration-300">
+							<div class="flex w-fit gap-3 mx-auto">
+								<button class="size-12 bg-white ">
+									<i class="ph ph-eye"></i>
+								</button>
+								<button class="size-12 bg-white">
+									<i class="ph ph-star"></i>
+								</button>
+								<button class="size-12 bg-white">
+									<i class="ph ph-shopping-cart"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="flex justify-between mb-2 items-center">
+						<span class="text-2xl font-bold">{{item.title}}</span>
+						<span class=" text-gray-600">{{item.rating}} <i class="ph-fill ph-star"></i></span>
+					</div>
+					<span class="text-gray-400 font-semibold text-xl">$ {{item.price}}</span>
+				</ng-template>
+			</app-carousel>
+		</div>
+	</section>
+	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+		<div class="w-5xl max-w-full mx-auto">
+			<h2 class="text-4xl font-bold  mb-1">Women's Latest</h2>
+			<p class="mb-8 text-lg text-gray-500">New beautiful and eye-catching women clothings.
+			</p>
+
+			<app-carousel [values]="womenData">
+				<ng-template
+					#itemTemplate
+					let-item
+				>
+					<div class="relative group overflow-hidden mb-4">
+						<img
+							[src]="item.imageUrl"
+							alt=""
+							class="w-full aspect-square  object-cover"
+						>
+						<div class="absolute -bottom-16 w-full h-16 group-hover:bottom-0 transition-all duration-300">
+							<div class="flex w-fit gap-3 mx-auto">
+								<button class="size-12 bg-white ">
+									<i class="ph ph-eye"></i>
+								</button>
+								<button class="size-12 bg-white">
+									<i class="ph ph-star"></i>
+								</button>
+								<button class="size-12 bg-white">
+									<i class="ph ph-shopping-cart"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="flex justify-between mb-2 items-center">
+						<span class="text-2xl font-bold">{{item.title}}</span>
+						<span class=" text-gray-600">{{item.rating}} <i class="ph-fill ph-star"></i></span>
+					</div>
+					<span class="text-gray-400 font-semibold text-xl">$ {{item.price}}</span>
+				</ng-template>
+			</app-carousel>
+		</div>
+	</section>
+	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+		<div class="w-5xl max-w-full mx-auto">
+			<h2 class="text-4xl font-bold  mb-1">Kid's Latest</h2>
+			<p class="mb-8 text-lg text-gray-500">New comfortable and cute kid's clothing.
+			</p>
+
+			<app-carousel [values]="kidsData">
+				<ng-template
+					#itemTemplate
+					let-item
+				>
+					<div class="relative group overflow-hidden mb-4">
+						<img
+							[src]="item.imageUrl"
+							alt=""
+							class="w-full aspect-square  object-cover"
+						>
+						<div class="absolute -bottom-16 w-full h-16 group-hover:bottom-0 transition-all duration-300">
+							<div class="flex w-fit gap-3 mx-auto">
+								<button class="size-12 bg-white ">
+									<i class="ph ph-eye"></i>
+								</button>
+								<button class="size-12 bg-white">
+									<i class="ph ph-star"></i>
+								</button>
+								<button class="size-12 bg-white">
+									<i class="ph ph-shopping-cart"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="flex justify-between mb-2 items-center">
+						<span class="text-2xl font-bold">{{item.title}}</span>
+						<span class=" text-gray-600">{{item.rating}} <i class="ph-fill ph-star"></i></span>
+					</div>
+					<span class="text-gray-400 font-semibold text-xl">$ {{item.price}}</span>
+				</ng-template>
+			</app-carousel>
+		</div>
+	</section>
+
+	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+		<div class="w-5xl max-w-full mx-auto">
+			<div class="flex gap-8">
+				<div class="w-full">
+					<h2 class="text-4xl font-bold mb-8">Explore Our Products</h2>
+					<p class="mb-8 text-gray-600">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum voluptas
+						assumenda
+						ipsum laudantium
+						corrupti? Tempore, aspernatur nostrum, tenetur perferendis esse sequi obcaecati possimus, eum
+						nesciunt odio suscipit omnis culpa corporis?</p>
+					<div class="flex items-start justify-start gap-6 mb-8">
+						<i class="ph-fill ph-quotes text-6xl text-gray-600"></i>
+						<p class="italic font-semibold">Lorem, ipsum dolor sit amet consectetur
+							adipisicing elit. Nihil
+							voluptas culpa sapiente,
+							beatae distinctio illo laborum </p>
+					</div>
+					<p class="mb-8 text-gray-600">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat ea,
+						soluta ullam
+						qui ad
+						repellat nemo adipisci deserunt aperiam omnis voluptas sapiente placeat illum, tempore, ab
+						molestiae itaque officiis corporis?
+					</p>
+					<button
+						class="px-3.5 py-2.5 border hover:text-white hover:bg-gray-900 transition duration-200 ease-in"
+					>Discover
+						More</button>
+				</div>
+				<div class="w-full">
+					<div class="grid grid-cols-2 grid-rows-2 gap-8">
+						<img
+							src="https://loremflickr.com/640/640?1"
+							alt=""
+							class="size-full"
+						>
+						<img
+							src="https://loremflickr.com/640/640?2"
+							alt=""
+							class="size-full"
+						>
+						<img
+							src="https://loremflickr.com/640/640?3"
+							alt=""
+							class="size-full"
+						>
+						<img
+							src="https://loremflickr.com/640/640?4"
+							alt=""
+							class="size-full"
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+		<div class="w-5xl max-w-full mx-auto">
+			<h2 class="text-4xl font-bold mb-2">Social Media</h2>
+			<p class="text-gray-500 mb-8">Connect to us directly via our social medias!</p>
+			<div class="flex overflow-hidden">
+				<div class="w-full aspect-square overflow-hidden bg-red-500">
+					<img
+						class="w-full max-w-full max-h-full"
+						src="https://loremflickr.com/640/640?0"
+						alt=""
+					>
+				</div>
+				<div class="w-full aspect-square overflow-hidden bg-red-500">
+					<img
+						class="w-full max-w-full max-h-full"
+						src="https://loremflickr.com/640/640?1"
+						alt=""
+					>
+				</div>
+				<div class="w-full aspect-square overflow-hidden bg-red-500">
+					<img
+						class="w-full max-w-full max-h-full"
+						src="https://loremflickr.com/640/640?2"
+						alt=""
+					>
+				</div>
+				<div class="w-full aspect-square overflow-hidden bg-red-500">
+					<img
+						class="w-full max-w-full max-h-full"
+						src="https://loremflickr.com/640/640?3"
+						alt=""
+					>
+				</div>
+				<div class="w-full aspect-square overflow-hidden bg-red-500">
+					<img
+						class="w-full max-w-full max-h-full"
+						src="https://loremflickr.com/640/640?4"
+						alt=""
+					>
+				</div>
+				<div class="w-full aspect-square overflow-hidden bg-red-500">
+					<img
+						class="w-full max-w-full max-h-full"
+						src="https://loremflickr.com/640/640?5"
+						alt=""
+					>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+		<div class="w-5xl max-w-full mx-auto">
+			<div class="flex gap-8">
+				<div class="w-full">
+					<h2 class="text-4xl mb-2 font-bold">By Subscribing To Our Newsletter You Can Get 30% Off</h2>
+					<p class="text-gray-500 mb-8">Subscribe now</p>
+
+					<form class="flex gap-8">
+						<input
+							type="text"
+							class="block w-full px-3.5 py-2.5 border placeholder:italic"
+							placeholder="Your Name"
+						>
+						<input
+							type="text"
+							class="block w-full px-3.5 py-2.5 border placeholder:italic"
+							placeholder="Your Email"
+						>
+						<button
+							type="submit"
+							class="bg-gray-900 text-white  size-12 aspect-square"
+						>
+							<i class="ph-fill ph-paper-plane-tilt text-xl"></i>
+						</button>
+					</form>
+				</div>
+				<div class="w-[60%]">
+					<div class="grid grid-cols-2 grid-rows-3 gap-8">
+						<div>
+							<h4 class="font-bold text-xl mb-2">Store Location</h4>
+							<p class="text-gray-400">{{footerData.address}}</p>
+						</div>
+						<div>
+							<h4 class="font-bold text-xl mb-2">Work Hours</h4>
+							<p class="text-gray-400">08.00 AM - 9.30 PM</p>
+							<p class="text-gray-400">Mon - Fri</p>
+						</div>
+						<div>
+							<h4 class="font-bold text-xl mb-2">Phone</h4>
+							<p class="text-gray-400">555-12 123 123</p>
+						</div>
+						<div>
+							<h4 class="font-bold text-xl mb-2">Email</h4>
+							<p class="text-gray-400">contact&comma;aidil.dev</p>
+						</div>
+						<div>
+							<h4 class="font-bold text-xl mb-2">Office Location</h4>
+							<p class="text-gray-400">Kuala Lumpur</p>
+						</div>
+						<div>
+							<h4 class="font-bold text-xl mb-2">Social Media</h4>
+							<ul class="flex gap-4 text-3xl text-gray-500">
+								<li>
+									<a href="https://github.com/aidilrx04">
+										<i class="ph ph-github-logo"></i>
+									</a>
+								</li>
+								<li>
+									<a href="https://linkedin.com/in/aidilrx04">
+										<i class="ph ph-linkedin-logo"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </main>
+
+<footer class="bg-gray-800 text-white pt-12 pb-8">
+	<div class="container mx-auto max-w-5xl">
+		<div class="flex gap-4 mb-6">
+			<div class="w-full">
+				<h2 class="text-4xl font-bold text-center mb-4">Flye Shop</h2>
+				<p class="mb-3">{{footerData.address}}</p>
+				<p class="mb-3">contact&commat;aidil.dev</p>
+				<p class="mb-3">555-12 312 3123</p>
+			</div>
+			<div class="w-full">
+				<h3 class="font-bold text-xl mb-4">Shopping & Categories</h3>
+				<ul>
+					<li class="mb-3">
+						<a href="#">Men's Shopping</a>
+					</li>
+					<li class="mb-3">
+						<a href="#">Women's Shopping</a>
+					</li>
+					<li class="mb-3">
+						<a href="#">Kid's Shopping</a>
+					</li>
+				</ul>
+			</div>
+			<div class="w-full">
+				<h3 class="mb-4 font-bold text-xl">Useful Links</h3>
+				<ul>
+					<li class="mb-3">
+						<a href="/">Homepage</a>
+					</li>
+					<li class="mb-3">
+						<a href="/">About Us</a>
+					</li>
+					<li class="mb-3">
+						<a href="/">Help</a>
+					</li>
+					<li class="mb-3">
+						<a href="/">Contact Us</a>
+					</li>
+				</ul>
+			</div>
+			<div class="w-full">
+				<h3 class="mb-4 text-xl font-bold">Help & Information</h3>
+				<ul>
+					<li class="mb-3">
+						<a href="#">Help</a>
+					</li>
+					<li class="mb-3">
+						<a href="#">FAQ's</a>
+					</li>
+					<li class="mb-3">
+						<a href="#">Shipping</a>
+					</li>
+					<li class="mb-3">
+						<a href="#">Tracking ID</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<hr class="mb-6 border-gray-600">
+		<div class="text-center">
+			<p class="mb-4">Copyright &copy; 2025 Flye Shop. All rights reserved</p>
+			<ul class="flex gap-4 justify-center">
+				<li>
+					<a
+						href="https://github.com/aidilrx04"
+						target="_blank"
+					>
+						<i class="ph ph-github-logo text-2xl"></i>
+					</a>
+				</li>
+
+				<li>
+					<a
+						href="https://linkedin/in/aidilrx04"
+						target="_blank"
+					>
+						<i class="ph ph-linkedin-logo text-2xl"></i>
+					</a>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</footer>
