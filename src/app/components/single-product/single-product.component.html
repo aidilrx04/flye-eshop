@@ -1,77 +1,72 @@
-<app-navbar></app-navbar>
-<main>
-	<app-section>
-		<div class="hero relative">
-			<img
-				src="https://loremflickr.com/4000/4000?a"
-				alt=""
-				class="w-full h-96 object-cover brightness-50"
-			>
-			<div class="absolute top-[50%] left-[50%] -translate-[50%] text-white text-center">
-				<h2 class="text-6xl mb-4">Category</h2>
-				<h4 class="text-lg">Breadcrumbs/to/this/page</h4>
-			</div>
+<app-section>
+	<div class="hero relative">
+		<img
+			src="https://loremflickr.com/4000/4000?a"
+			alt=""
+			class="w-full h-96 object-cover brightness-50"
+		>
+		<div class="absolute top-[50%] left-[50%] -translate-[50%] text-white text-center">
+			<h2 class="text-6xl mb-4">Category</h2>
+			<h4 class="text-lg">Breadcrumbs/to/this/page</h4>
 		</div>
-	</app-section>
+	</div>
+</app-section>
 
-	<div class="w-5xl max-w-full mx-auto mb-20">
-		<div class="grid grid-cols-[2fr_1fr] gap-8">
-			<div class="flex flex-col gap-8">
-				<img
-					src="https://loremflickr.com/1902/1080?a"
-					alt=""
-					class="w-full aspect-video"
-				>
-				<img
-					src="https://loremflickr.com/1902/1080?b"
-					alt=""
-					class="w-full aspect-video"
-				>
+<div class="w-5xl max-w-full mx-auto mb-20">
+	<div class="grid grid-cols-[2fr_1fr] gap-8">
+		<div class="flex flex-col gap-8">
+			<img
+				src="https://loremflickr.com/1902/1080?a"
+				alt=""
+				class="w-full aspect-video"
+			>
+			<img
+				src="https://loremflickr.com/1902/1080?b"
+				alt=""
+				class="w-full aspect-video"
+			>
+		</div>
+		<div>
+			<div class="flex justify-between items-center mb-2">
+				<h1 class="text-xl font-semibold">Product Name</h1>
+				<span>4.5 <i class="ph-fill ph-star"></i></span>
 			</div>
-			<div>
-				<div class="flex justify-between items-center mb-2">
-					<h1 class="text-xl font-semibold">Product Name</h1>
-					<span>4.5 <i class="ph-fill ph-star"></i></span>
-				</div>
-				<p class="text-lg text-gray-500 mb-4">$ 75.00</p>
-				<hr class="mb-4 border-gray-300">
-				<p class="text-gray-600 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro atque
-					dignissimos repellendus animi
-					illum quia vitae sed nisi libero, aliquid impedit doloribus facilis, alias illo unde vero qui!
-					Exercitationem, molestiae.</p>
+			<p class="text-lg text-gray-500 mb-4">$ 75.00</p>
+			<hr class="mb-4 border-gray-300">
+			<p class="text-gray-600 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro atque
+				dignissimos repellendus animi
+				illum quia vitae sed nisi libero, aliquid impedit doloribus facilis, alias illo unde vero qui!
+				Exercitationem, molestiae.</p>
 
-				<div class="flex items-start justify-start gap-6 mb-4">
-					<i class="ph-fill ph-quotes text-4xl text-gray-600"></i>
-					<p class="italic font-semibold">Lorem, ipsum dolor sit amet consectetur
-						adipisicing elit. Nihil
-						voluptas culpa sapiente,
-						beatae distinctio illo laborum </p>
+			<div class="flex items-start justify-start gap-6 mb-4">
+				<i class="ph-fill ph-quotes text-4xl text-gray-600"></i>
+				<p class="italic font-semibold">Lorem, ipsum dolor sit amet consectetur
+					adipisicing elit. Nihil
+					voluptas culpa sapiente,
+					beatae distinctio illo laborum </p>
+			</div>
+			<hr class="mb-4 border-gray-300">
+			<div class="flex items-center justify-between w-full mb-4">
+				<span class="text-gray-500 text-2xl block">No. of Orders</span>
+				<div class="counter  flex items-center justify-center h-7 aspect-[3/1]">
+					<button class="size-full aspect-square border border-gray-300">
+						<i class="ph ph-minus text-sm"></i>
+					</button>
+					<input
+						type="text"
+						value="0"
+						class="size-full text-center border border-gray-300 border-l-0"
+					>
+					<button class="size-full border border-gray-300 border-l-0">
+						<i class="ph ph-plus text-sm"></i>
+					</button>
 				</div>
-				<hr class="mb-4 border-gray-300">
-				<div class="flex items-center justify-between w-full mb-4">
-					<span class="text-gray-500 text-2xl block">No. of Orders</span>
-					<div class="counter  flex items-center justify-center h-7 aspect-[3/1]">
-						<button class="size-full aspect-square border border-gray-300">
-							<i class="ph ph-minus text-sm"></i>
-						</button>
-						<input
-							type="text"
-							value="0"
-							class="size-full text-center border border-gray-300 border-l-0"
-						>
-						<button class="size-full border border-gray-300 border-l-0">
-							<i class="ph ph-plus text-sm"></i>
-						</button>
-					</div>
-				</div>
-				<hr class="mb-4 border-gray-300">
-				<div class="flex justify-between items-center">
-					<span class="text-gray-400 font-semibold text-2xl">Total: $210.00</span>
-					<button class="border px-3.5 py-2.5">Add To Cart</button>
-				</div>
+			</div>
+			<hr class="mb-4 border-gray-300">
+			<div class="flex justify-between items-center">
+				<span class="text-gray-400 font-semibold text-2xl">Total: $210.00</span>
+				<button class="border px-3.5 py-2.5">Add To Cart</button>
 			</div>
 		</div>
 	</div>
-</main>
-
-<app-footer />
+</div>
