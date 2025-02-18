@@ -5,15 +5,15 @@ import { ProductsComponent } from './components/products/products.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    component: LandingComponent,
-  },
-  {
     path: 'single-product',
     component: SingleProductComponent,
   },
   {
     path: 'products',
     component: ProductsComponent,
+  },
+  {
+    path: '',
+    component: LandingComponent,
   },
 ];

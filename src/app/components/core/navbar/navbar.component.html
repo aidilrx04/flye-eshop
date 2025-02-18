@@ -5,11 +5,32 @@
 				href="#"
 				class="text-4xl font-bold"
 			>Flye Shop</a>
-			<nav class="flex list-none gap-5">
-				<li class="font-semibold ">Explore</li>
-				<li class="font-semibold ">Services</li>
-				<li class="font-semibold ">Contact</li>
-				<li class="font-semibold ">About</li>
+			<nav class="flex list-none gap-8">
+				<li class="font-semibold ">
+					<a
+						routerLink="/"
+						routerLinkActive="active"
+						class="[.active]:text-gray-400"
+						[routerLinkActiveOptions]="{exact: true}"
+					>Home</a>
+				</li>
+				<li class="font-semibold ">
+					<a
+						routerLink="/products"
+						routerLinkActive="active"
+						class="[.active]:text-gray-400"
+					>Explore</a>
+				</li>
+				<li>|</li>
+				<li>
+					<a
+						routerLink="/signup"
+						routerLinkActive="active"
+						class="[.active]:text-gray-400 font-semibold"
+					>
+						Sign Up
+					</a>
+				</li>
 			</nav>
 		</header>
 	</div>
