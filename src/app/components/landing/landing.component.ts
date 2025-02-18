@@ -1,14 +1,21 @@
 import { Component } from '@angular/core';
 import { CarouselComponent } from '../core/carousel/carousel.component';
 import { faker } from '@faker-js/faker';
-import { CarouselData } from '../../classes/carousel-data';
-import { SectionComponent } from "../core/section/section.component";
-import { FooterComponent } from "../core/footer/footer.component";
-import { NavbarComponent } from "../core/navbar/navbar.component";
+import { Product } from '../../classes/product/product';
+import { SectionComponent } from '../core/section/section.component';
+import { FooterComponent } from '../core/footer/footer.component';
+import { NavbarComponent } from '../core/navbar/navbar.component';
+import { ProductCardComponent } from '../core/product-card/product-card.component';
 
 @Component({
   selector: 'app-landing',
-  imports: [CarouselComponent, SectionComponent, FooterComponent, NavbarComponent],
+  imports: [
+    CarouselComponent,
+    SectionComponent,
+    FooterComponent,
+    NavbarComponent,
+    ProductCardComponent,
+  ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css',
 })
@@ -25,7 +32,7 @@ export class LandingComponent {
     // console.log(this.firstCarousel);
   }
 
-  generateCarouselData(): CarouselData[] {
+  generateCarouselData(): Product[] {
     const amount = 10;
 
     const result = [];
@@ -35,7 +42,7 @@ export class LandingComponent {
       const rating = faker.number.float({ min: 1, max: 2, fractionDigits: 1 });
       const imageUrl = faker.image.urlLoremFlickr();
 
-      result.push(new CarouselData(imageUrl, title, rating, price));
+      result.push(new Product(imageUrl, title, rating, price));
     }
 
     return result;

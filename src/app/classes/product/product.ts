@@ -1,7 +1,7 @@
-export class CarouselData {
+export class Product {
   constructor(
     public imageUrl: string,
-    public title: string,
+    public name: string,
     public rating: number,
     public price: number,
   ) {}

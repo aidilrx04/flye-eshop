@@ -172,31 +172,7 @@
 				#itemTemplate
 				let-item
 			>
-				<div class="relative group overflow-hidden mb-4">
-					<img
-						[src]="item.imageUrl"
-						alt=""
-						class="w-full aspect-square  object-cover"
-					>
-					<div class="absolute -bottom-16 w-full h-16 group-hover:bottom-0 transition-all duration-300">
-						<div class="flex w-fit gap-3 mx-auto">
-							<button class="size-12 bg-white ">
-								<i class="ph ph-eye"></i>
-							</button>
-							<button class="size-12 bg-white">
-								<i class="ph ph-star"></i>
-							</button>
-							<button class="size-12 bg-white">
-								<i class="ph ph-shopping-cart"></i>
-							</button>
-						</div>
-					</div>
-				</div>
-				<div class="flex justify-between mb-2 items-center">
-					<span class="text-2xl font-bold">{{item.title}}</span>
-					<span class=" text-gray-600">{{item.rating}} <i class="ph-fill ph-star"></i></span>
-				</div>
-				<span class="text-gray-400 font-semibold text-xl">$ {{item.price}}</span>
+				<app-product-card [product]="item" />
 			</ng-template>
 		</app-carousel>
 	</div>
