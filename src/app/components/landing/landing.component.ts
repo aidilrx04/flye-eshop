@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 import { CarouselComponent } from '../core/carousel/carousel.component';
 import { faker } from '@faker-js/faker';
 import { CarouselData } from '../../classes/carousel-data';
+import { SectionComponent } from "../core/section/section.component";
+import { FooterComponent } from "../core/footer/footer.component";
+import { NavbarComponent } from "../core/navbar/navbar.component";
 
 @Component({
   selector: 'app-landing',
-  imports: [CarouselComponent],
+  imports: [CarouselComponent, SectionComponent, FooterComponent, NavbarComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css',
 })

@@ -1,24 +1,139 @@
-<div class="container mx-auto max-w-5xl">
-	<header class="flex justify-between items-center mx-auto py-4">
-		<a
-			href="#"
-			class="text-4xl font-bold"
-		>Flye Shop</a>
-		<nav class="flex list-none gap-5">
-			<li class="font-semibold ">Explore</li>
-			<li class="font-semibold ">Services</li>
-			<li class="font-semibold ">Contact</li>
-			<li class="font-semibold ">About</li>
-		</nav>
-	</header>
-</div>
+<app-navbar />
 
 <main>
+	<app-section>
+		<div class="flex w-7xl max-w-full px-6 mx-auto aspect-[2/1] gap-8 justify-center overflow-hidden">
+			<div class="w-full relative">
+				<div class="relative top-0 left-0">
+					<img
+						src="https://loremflickr.com/1080/1080?a"
+						alt=""
+						class="size-full object-cover"
+					>
+					<div class="bg-gray-700 absolute top-0 left-0 size-full opacity-65"></div>
+				</div>
+				<div
+					class="absolute text-white w-[70%] flex flex-col justify-center aspect-square top-[50%] left-[50%] -translate-[50%]">
+					<h2 class="font-bold text-5xl mb-4">We are FlyeShop</h2>
+					<p class="text-lg mb-4 text-gray-100">Find your best services</p>
+					<button
+						class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+					>Get Now!</button>
+				</div>
+			</div>
+			<div class="w-full relative">
+				<div class="grid grid-cols-2 grid-rows-2 gap-8">
+					<div class="size-full relative group">
+						<div class="relative top-0 left-0">
+							<img
+								src="https://loremflickr.com/1080/1080?b"
+								alt=""
+								class="size-full object-cover"
+							>
+							<div class="bg-gray-700 absolute top-0 left-0 size-full opacity-65"></div>
+						</div>
+						<div
+							class="absolute text-white w-[70%] flex flex-col justify-center aspect-square top-[50%] left-[50%] -translate-[50%] text-center">
+							<h2 class="font-bold text-3xl mb-4">Men</h2>
+							<p class="text-lg mb-4 text-gray-100">Best clothes for men</p>
+							<!-- <button
+								class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+							>Get Now!</button> -->
+						</div>
+						<div
+							class="overlay absolute w-[80%] top-[50%] left-[50%] -translate-[50%] aspect-square  flex-col text-white text-center bg-gray-800/90 p-8 opacity-0 group-hover:opacity-100 flex transition-all duration-300">
+							<h2 class="font-bold text-3xl mb-4">Men</h2>
+							<p class="text-lg mb-4 text-gray-100">Lorem ipsum dolor, sit amet consectetur</p>
+							<button
+								class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+							>Get Now!</button>
+						</div>
+					</div>
+					<div class="size-full relative group">
+						<div class="relative top-0 left-0">
+							<img
+								src="https://loremflickr.com/1080/1080?c"
+								alt=""
+								class="size-full object-cover"
+							>
+							<div class="bg-gray-700 absolute top-0 left-0 size-full opacity-65"></div>
+						</div>
+						<div
+							class="absolute text-white w-[70%] flex flex-col justify-center aspect-square top-[50%] left-[50%] -translate-[50%] text-center">
+							<h2 class="font-bold text-3xl mb-4">Women</h2>
+							<p class="text-lg mb-4 text-gray-100">Best clothes for women</p>
+							<!-- <button
+								class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+							>Get Now!</button> -->
+						</div>
+						<div
+							class="overlay absolute w-[80%] top-[50%] left-[50%] -translate-[50%] aspect-square  flex-col text-white text-center bg-gray-800/90 p-8 opacity-0 group-hover:opacity-100 flex transition-all duration-300">
+							<h2 class="font-bold text-3xl mb-4">Women</h2>
+							<p class="text-lg mb-4 text-gray-100">Lorem ipsum dolor, sit amet consectetur</p>
+							<button
+								class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+							>Get Now!</button>
+						</div>
+					</div>
+					<div class="size-full relative group">
+						<div class="relative top-0 left-0">
+							<img
+								src="https://loremflickr.com/1080/1080?d"
+								alt=""
+								class="size-full object-cover"
+							>
+							<div class="bg-gray-700 absolute top-0 left-0 size-full opacity-65"></div>
+						</div>
+						<div
+							class="absolute text-white w-[70%] flex flex-col justify-center aspect-square top-[50%] left-[50%] -translate-[50%] text-center">
+							<h2 class="font-bold text-3xl mb-4">Kids</h2>
+							<p class="text-lg mb-4 text-gray-100">Best clothes for kids</p>
+							<!-- <button
+								class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+							>Get Now!</button> -->
+						</div>
+						<div
+							class="overlay absolute w-[80%] top-[50%] left-[50%] -translate-[50%] aspect-square  flex-col text-white text-center bg-gray-800/90 p-8 opacity-0 group-hover:opacity-100 flex transition-all duration-300">
+							<h2 class="font-bold text-3xl mb-4">Kids</h2>
+							<p class="text-lg mb-4 text-gray-100">Lorem ipsum dolor, sit amet consectetur</p>
+							<button
+								class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+							>Get Now!</button>
+						</div>
+					</div>
+					<div class="size-full relative group">
+						<div class="relative top-0 left-0">
+							<img
+								src="https://loremflickr.com/1080/1080?e"
+								alt=""
+								class="size-full object-cover"
+							>
+							<div class="bg-gray-700 absolute top-0 left-0 size-full opacity-65"></div>
+						</div>
+						<div
+							class="absolute text-white w-[70%] flex flex-col justify-center aspect-square top-[50%] left-[50%] -translate-[50%] text-center">
+							<h2 class="font-bold text-3xl mb-4">Many More</h2>
+							<p class="text-lg mb-4 text-gray-100">We have more to offer</p>
+							<!-- <button
+								class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+							>Get Now!</button> -->
+						</div>
+						<div
+							class="overlay absolute w-[80%] top-[50%] left-[50%] -translate-[50%] aspect-square  flex-col text-white text-center bg-gray-800/90 p-8 opacity-0 group-hover:opacity-100 flex transition-all duration-300">
+							<h2 class="font-bold text-3xl mb-4">Many More</h2>
+							<p class="text-lg mb-4 text-gray-100">Lorem ipsum dolor, sit amet consectetur</p>
+							<button
+								class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
+							>Get Now!</button>
+						</div>
+					</div>
+				</div>
 
-	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
-		<h1 class="text-4xl font-bold text-gray-900 text-center mb-4 mt-6">We are Flye Shop</h1>
-		<p class="text-center text-gray-600 text-xl mb-4">Awesome shop</p>
-		<div class="flex w-7xl max-w-full aspect-[2/1] px-6 mx-auto gap-6 justify-center overflow-hidden">
+			</div>
+		</div>
+		<!-- <h1 class="text-4xl font-bold text-gray-900 text-center mb-4 mt-6">We are Flye Shop</h1> -->
+		<!-- <p class="text-center text-gray-600 text-xl mb-4">Awesome shop</p> -->
+		<!-- <div class="flex w-7xl max-w-full aspect-[2/1] px-6 mx-auto gap-6 justify-center overflow-hidden">
 			<div class="h-full aspect-square  overflow-hidden relative">
 				<img
 					src="https://loremflickr.com/640/640/dog"
@@ -47,9 +162,9 @@
 					>Find Now!</button>
 				</div>
 			</div>
-		</div>
-	</section>
-	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+		</div> -->
+	</app-section>
+	<app-section>
 		<div class="w-5xl max-w-full mx-auto">
 			<h2 class="text-4xl font-bold  mb-1">Men's Latest</h2>
 			<p class="mb-8 text-lg text-gray-500">New cool men clothings.
@@ -88,8 +203,8 @@
 				</ng-template>
 			</app-carousel>
 		</div>
-	</section>
-	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+	</app-section>
+	<app-section>
 		<div class="w-5xl max-w-full mx-auto">
 			<h2 class="text-4xl font-bold  mb-1">Women's Latest</h2>
 			<p class="mb-8 text-lg text-gray-500">New beautiful and eye-catching women clothings.
@@ -128,8 +243,8 @@
 				</ng-template>
 			</app-carousel>
 		</div>
-	</section>
-	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+	</app-section>
+	<app-section>
 		<div class="w-5xl max-w-full mx-auto">
 			<h2 class="text-4xl font-bold  mb-1">Kid's Latest</h2>
 			<p class="mb-8 text-lg text-gray-500">New comfortable and cute kid's clothing.
@@ -168,9 +283,9 @@
 				</ng-template>
 			</app-carousel>
 		</div>
-	</section>
+	</app-section>
 
-	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+	<app-section>
 		<div class="w-5xl max-w-full mx-auto">
 			<div class="flex gap-8">
 				<div class="w-full">
@@ -224,8 +339,8 @@
 				</div>
 			</div>
 		</div>
-	</section>
-	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+	</app-section>
+	<app-section>
 		<div class="w-5xl max-w-full mx-auto">
 			<h2 class="text-4xl font-bold mb-2">Social Media</h2>
 			<p class="text-gray-500 mb-8">Connect to us directly via our social medias!</p>
@@ -274,8 +389,8 @@
 				</div>
 			</div>
 		</div>
-	</section>
-	<section class="border-t-[3px] border-dotted border-t-gray-200 py-20">
+	</app-section>
+	<app-section>
 		<div class="w-5xl max-w-full mx-auto">
 			<div class="flex gap-8">
 				<div class="w-full">
@@ -343,90 +458,8 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</app-section>
 </main>
 
-<footer class="bg-gray-800 text-white pt-12 pb-8">
-	<div class="container mx-auto max-w-5xl">
-		<div class="flex gap-4 mb-6">
-			<div class="w-full">
-				<h2 class="text-4xl font-bold text-center mb-4">Flye Shop</h2>
-				<p class="mb-3">{{footerData.address}}</p>
-				<p class="mb-3">contact&commat;aidil.dev</p>
-				<p class="mb-3">555-12 312 3123</p>
-			</div>
-			<div class="w-full">
-				<h3 class="font-bold text-xl mb-4">Shopping & Categories</h3>
-				<ul>
-					<li class="mb-3">
-						<a href="#">Men's Shopping</a>
-					</li>
-					<li class="mb-3">
-						<a href="#">Women's Shopping</a>
-					</li>
-					<li class="mb-3">
-						<a href="#">Kid's Shopping</a>
-					</li>
-				</ul>
-			</div>
-			<div class="w-full">
-				<h3 class="mb-4 font-bold text-xl">Useful Links</h3>
-				<ul>
-					<li class="mb-3">
-						<a href="/">Homepage</a>
-					</li>
-					<li class="mb-3">
-						<a href="/">About Us</a>
-					</li>
-					<li class="mb-3">
-						<a href="/">Help</a>
-					</li>
-					<li class="mb-3">
-						<a href="/">Contact Us</a>
-					</li>
-				</ul>
-			</div>
-			<div class="w-full">
-				<h3 class="mb-4 text-xl font-bold">Help & Information</h3>
-				<ul>
-					<li class="mb-3">
-						<a href="#">Help</a>
-					</li>
-					<li class="mb-3">
-						<a href="#">FAQ's</a>
-					</li>
-					<li class="mb-3">
-						<a href="#">Shipping</a>
-					</li>
-					<li class="mb-3">
-						<a href="#">Tracking ID</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<hr class="mb-6 border-gray-600">
-		<div class="text-center">
-			<p class="mb-4">Copyright &copy; 2025 Flye Shop. All rights reserved</p>
-			<ul class="flex gap-4 justify-center">
-				<li>
-					<a
-						href="https://github.com/aidilrx04"
-						target="_blank"
-					>
-						<i class="ph ph-github-logo text-2xl"></i>
-					</a>
-				</li>
 
-				<li>
-					<a
-						href="https://linkedin/in/aidilrx04"
-						target="_blank"
-					>
-						<i class="ph ph-linkedin-logo text-2xl"></i>
-					</a>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-</footer>
+<app-footer />
