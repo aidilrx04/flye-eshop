@@ -15,12 +15,12 @@ export const routes: Routes = [
     component: SignupComponent,
   },
   {
-    path: 'single-product',
-    component: SingleProductComponent,
-  },
-  {
     path: 'products',
     component: ProductsComponent,
+  },
+  {
+    path: 'products/:productId',
+    component: SingleProductComponent,
   },
   {
     path: '',

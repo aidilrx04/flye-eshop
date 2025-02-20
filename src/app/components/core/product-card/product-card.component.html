@@ -7,9 +7,12 @@
 		>
 		<div class="absolute -bottom-16 w-full h-16 group-hover:bottom-0 transition-all duration-300">
 			<div class="flex w-fit gap-3 mx-auto">
-				<button class="size-12 bg-white ">
+				<a
+					[routerLink]="['/products', product().id	]"
+					class="size-12 bg-white flex items-center justify-center"
+				>
 					<i class="ph ph-eye"></i>
-				</button>
+				</a>
 				<button class="size-12 bg-white">
 					<i class="ph ph-star"></i>
 				</button>

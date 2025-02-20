@@ -12,4 +12,10 @@ export class ProductService {
   getProducts() {
     return this.http.get<ProductModel[]>(`${environment.apiUrl}/products`);
   }
+
+  getProduct(productId: number) {
+    return this.http.get<ProductModel>(
+      `${environment.apiUrl}/products/${productId}`,
+    );
+  }
 }
