@@ -1,3 +1,11 @@
+@if (hasInitCompleted()) {
 <app-navbar></app-navbar>
 <main><router-outlet /></main>
 <app-footer />
+}
+@else {
+<div class="w-screen h-screen flex items-center justify-center">
+	<div class="spinner size-4 bg-gray-700 rounded-full animate-ping">
+	</div>
+</div>
+}

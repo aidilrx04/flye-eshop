@@ -6,7 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -15,12 +16,42 @@ import { RouterLink } from '@angular/router';
   styleUrl: './signin.component.css',
 })
 export class SigninComponent {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
+
   signinForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
   });
 
+  hasLoggedIn = false;
+
+  ngOnInit() {
+    this.hasLoggedIn = this.authService.isLoggedIn();
+  }
+
   onSubmit() {
     console.log(this.signinForm);
+
+    if (this.signinForm.invalid) return;
+
+    const { email, password } = this.signinForm.value;
+
+    this.authService.signIn(email!, password!).subscribe({
+      next(value) {
+        const { token } = value as { token: string };
+
+        localStorage.setItem('token', token);
+      },
+
+      complete: () => {
+        console.log('signed in');
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      },
+    });
   }
 }

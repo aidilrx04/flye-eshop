@@ -2,6 +2,13 @@
 
 	<div class="mx-auto w-lg max-w-full border p-8 border-gray-200">
 		<h1 class="font-bold text-3xl mb-8">Sign In</h1>
+
+		@if (hasLoggedIn) {
+		<p>You are already logged in.</p>
+		}
+
+		@if (hasLoggedIn === false) {
+
 		<form
 			action=""
 			[formGroup]="signinForm"
@@ -38,6 +45,8 @@
 				>Sign Up</a></small>
 
 		</form>
+		}
+
 	</div>
 
 </app-section>

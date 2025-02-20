@@ -22,6 +22,23 @@
 					>Explore</a>
 				</li>
 				<li>|</li>
+				@if (hasLoggedIn ) {
+				<li>
+					<a
+						href="#"
+						class="[.active]:text-gray-400 font-semibold"
+					>Profile</a>
+				</li>
+				<li>
+					<a
+						routerLink="/admin"
+						routerLinkActive="active"
+						class="[.active]:text-gray-400 font-semibold"
+					>Admin</a>
+				</li>
+				}
+				@else {
+
 				<li>
 					<a
 						routerLink="/signin"
@@ -40,6 +57,7 @@
 						Sign Up
 					</a>
 				</li>
+				}
 			</nav>
 		</header>
 	</div>
