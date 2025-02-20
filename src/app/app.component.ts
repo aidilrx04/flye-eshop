@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/core/navbar/navbar.component';
 import { FooterComponent } from './components/core/footer/footer.component';
 import { AuthService } from './services/auth.service';
@@ -12,10 +12,14 @@ import { zip } from 'rxjs';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   title = 'balls';
   hasInitCompleted = signal(false);
+  isInAdmin = false;
 
   ngOnInit() {
     zip([this.authService.init()]).subscribe({
@@ -23,5 +27,7 @@ export class AppComponent {
         this.hasInitCompleted.set(true);
       },
     });
+
+    this.isInAdmin = window.location.pathname.startsWith('/admin');
   }
 }

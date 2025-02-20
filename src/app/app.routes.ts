@@ -4,6 +4,7 @@ import { SingleProductComponent } from './components/single-product/single-produ
 import { ProductsComponent } from './components/products/products.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
+import { DashboardComponent as AdminDashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,13 @@ export const routes: Routes = [
     path: 'products/:productId',
     component: SingleProductComponent,
   },
+
+  // admin
+  {
+    path: 'admin',
+    component: AdminDashboardComponent,
+  },
+  // admin
   {
     path: '',
     component: LandingComponent,
