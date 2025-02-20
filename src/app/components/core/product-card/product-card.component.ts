@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { Product } from '../../../classes/product/product';
+import { ProductModel } from '../../../models/product.model';
 
 @Component({
   selector: 'app-product-card',
@@ -8,5 +9,5 @@ import { Product } from '../../../classes/product/product';
   styleUrl: './product-card.component.css',
 })
 export class ProductCardComponent {
-  product = input.required<Product>();
+  product = input.required<ProductModel>();
 }

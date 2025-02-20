@@ -7,9 +7,13 @@
 	<p class="text-center text-lg text-gray-500 mb-8">Check out all of our products</p>
 
 	<div class="grid grid-cols-3 grid-rows-3 gap-8 mb-8">
-		@for (product of products(); track $index) {
+
+		@if (products$ | async; as products) {
+		@for (product of products; track $index) {
 		<app-product-card [product]="product"></app-product-card>
 		}
+		}
+
 	</div>
 
 	<div class="paginator w-fit mx-auto flex gap-4">
