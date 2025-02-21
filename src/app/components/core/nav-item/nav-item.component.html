@@ -9,6 +9,9 @@
 	<a
 		[routerLink]="item().href"
 		routerLinkActive="active"
+		[routerLinkActiveOptions]="{
+			exact: true
+		}"
 		class="px-3.5 py-2.5 flex gap-2 items-center justify-start group [.active]:bg-gray-800 [.active]:text-white"
 	>
 

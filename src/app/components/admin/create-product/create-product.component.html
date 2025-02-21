@@ -1,1 +1,103 @@
-<p>create-product works!</p>
+<div class="flex gap-8">
+	<div class="w-full">
+		<div class="bg-white mb-8">
+			<div class="p-8">
+				<h1 class="text-2xl font-semibold mb-2">Create Products</h1>
+				<p class="text-gray-500 mb-8">Create new products for your collections.</p>
+
+				<form
+					[formGroup]="productGroup"
+					(ngSubmit)="onSubmit()"
+				>
+					<div class="input-group mb-4">
+						<label
+							for="name"
+							class="block mb-2"
+						>Name</label>
+						<input
+							type="text"
+							id="name"
+							class="block w-full px-3.5 py-2.5 border"
+							formControlName="name"
+						>
+					</div>
+
+					<div class="input-group mb-4">
+						<label
+							for="priceP"
+							class="block mb-2"
+						>Price</label>
+						<input
+							type="number"
+							id="price"
+							step="0.01"
+							class="block w-full px-3.5 py-2.5 border"
+							formControlName="price"
+						>
+					</div>
+					<div class="input-group mb-4">
+						<label
+							for="description"
+							class="block mb-2"
+						>Description</label>
+						<textarea
+							name=""
+							id=""
+							class="block w-full px-3.5 py-2.5 border"
+							formControlName="description"
+						></textarea>
+					</div>
+					<div class="input-group mb-4">
+						<label
+							for="tagline"
+							class="block mb-2"
+						>Tagline</label>
+						<input
+							type="text"
+							id="tagline"
+							class="block w-full px-3.5 py-2.5 border"
+							formControlName="tagline"
+						>
+					</div>
+					<div class="input-group mb-4">
+						<label
+							for="Images"
+							class="block mb-2"
+						>Images</label>
+						<small class="text-gray-500 mb-2 block">First image will be used as the thumbnail.</small>
+
+						<div class="images">
+							@for (imageUrl of images(); track $index) {
+							<img
+								[src]="imageUrl"
+								alt=""
+							>
+							}
+						</div>
+						<input
+							type="file"
+							name=""
+							id=""
+							class="block w-full border px-3.5 py-2.5"
+							(change)="fileChange($event)"
+						>
+					</div>
+					<button
+						type="submit"
+						class="px-3.5 py-2.5 bg-gray-800 text-white"
+					>Create</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="preview">
+		<div class="w-80">
+			<div class="card p-8 bg-white mb-8">
+				<h2 class="text-2xl font-semibold mb-2">Preview</h2>
+				<p class="text-gray-500 mb-8">Preview your product card view</p>
+
+				<app-product-card [product]="productPreview" />
+			</div>
+		</div>
+	</div>
+</div>

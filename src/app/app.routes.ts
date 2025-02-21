@@ -6,6 +6,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { DashboardComponent as AdminDashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { ProductsComponent as AdminProductsComponent } from './components/admin/products/products.component';
+import { CreateProductComponent as AdminCreateProductComponent } from './components/admin/create-product/create-product.component';
+import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
 
 export const routes: Routes = [
   {
@@ -28,11 +30,21 @@ export const routes: Routes = [
   // admin
   {
     path: 'admin',
-    component: AdminDashboardComponent,
-  },
-  {
-    path: 'admin/products',
-    component: AdminProductsComponent,
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: 'products/create',
+        component: AdminCreateProductComponent,
+      },
+      {
+        path: 'products',
+        component: AdminProductsComponent,
+      },
+      {
+        path: '',
+        component: AdminDashboardComponent,
+      },
+    ],
   },
   // admin
   {

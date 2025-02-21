@@ -15,30 +15,7 @@ import { NavItemType } from '../../core/nav-item/nav-item-type';
 })
 export class ProductsComponent {
   products$!: Observable<ProductModel[]>;
-  navItems: NavItemModel[] = [
-    {
-      label: 'Dashboard',
-      type: NavItemType.LINK,
-      href: '#',
-      icon: 'ph ph-house-simple',
-    },
-    {
-      label: 'Products',
-      type: NavItemType.HEADER,
-    },
-    {
-      label: 'Create Product',
-      type: NavItemType.LINK,
-      href: '#',
-      icon: 'ph ph-plus-square',
-    },
-    {
-      label: 'All Products',
-      type: NavItemType.LINK,
-      href: '/admin/products',
-      icon: 'ph ph-rows',
-    },
-  ];
+  
 
   ngOnInit() {
     this.products$ = of(this.generateProducts());
