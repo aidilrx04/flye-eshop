@@ -1,0 +1,82 @@
+<div class="flex relative bg-gray-100">
+	<aside class="sidebar w-60 shrink-0 sticky top-0 left-0 h-screen flex flex-col bg-white">
+		<h1 class="text-4xl py-8 text-center text-gray-600 ">Flye</h1>
+		<ul class="flex flex-col px-2 gap-px overflow-auto grow">
+			@for (item of navItems; track $index) {
+			<admin-nav-item [item]="item"></admin-nav-item>
+			}
+		</ul>
+	</aside>
+	<main class="w-full p-8">
+		<div class="card bg-white mb-8">
+			<div class="topbar flex items-center justify-end px-8 py-2">
+				<div class="profile">
+					<img
+						src="https://loremflickr.com/640/640?a"
+						alt=""
+						class="size-12 object-cover rounded-full"
+					>
+				</div>
+			</div>
+		</div>
+		<div class="card bg-white mb-8">
+			<div class="p-8">
+				<h1 class="text-2xl mb-2 font-semibold">All Products</h1>
+				<p class="text-gray-500 mb-4">All products created by you</p>
+				<table class="table w-full">
+					<thead>
+						<tr class="text-left border-y-1 border-gray-200">
+							<th class="px-2 py-5 uppercase text-sm font-semibold">Product Name</th>
+							<th class="px-2 py-5 uppercase text-sm font-semibold">Price</th>
+							<th class="px-2 py-5 uppercase text-sm font-semibold">Rating</th>
+							<th class="px-2 py-5 uppercase text-sm font-semibold">Sold</th>
+							<th class="px-2 py-5 uppercase text-sm font-semibold">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@if (products$ | async; as products) {
+						@for (product of products; track $index) {
+						<tr class="not-first:border-t border-gray-200">
+							<td class="px-2 py-4 flex items-center justify-start gap-2 text-gray-600">
+								<ul class="flex relative w-fit">
+									@for (image_url of product.image_urls.reverse(); track $index) {
+									<li
+										class="relative size-8 rounded-full overflow-hidden border-2 border-white"
+										[ngClass]="{
+										'-ml-4': $index !== 0
+									}"
+									>
+										<img
+											[src]="image_url"
+											alt=""
+											class="size-full object-cover"
+										>
+									</li>
+									}
+								</ul>
+								<span>{{product.name}}</span>
+							</td>
+							<td class="px-2 py-4 text-gray-600">
+								$ {{product.price}}
+							</td>
+							<td class="px-4 py-4 text-gray-600">
+								{{product.rating}}
+								<i class="ph-fill ph-star"></i>
+							</td>
+							<td class="px-4 py-4 text-gray-600">
+								0
+							</td>
+							<td class="px-4 py-4">
+								<button>
+									<i class="ph ph-dots-three-vertical"></i>
+								</button>
+							</td>
+						</tr>
+						}
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+</div>

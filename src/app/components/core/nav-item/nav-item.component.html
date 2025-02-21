@@ -1,0 +1,25 @@
+<li>
+	@if (isHeader) {
+	<div class="flex items-center justify-start gap-2 relative pl-4 text-gray-400 mt-4">
+		<span class="block w-4 h-0 border-b border-gray-300 absolute  top-[50%] -left-2"></span>
+		<span class="">{{item().label}}</span>
+	</div>
+	}
+	@else {
+	<a
+		[routerLink]="item().href"
+		routerLinkActive="active"
+		class="px-3.5 py-2.5 flex gap-2 items-center justify-start group [.active]:bg-gray-800 [.active]:text-white"
+	>
+
+		<!-- 
+					class="w-full px-3.5 py-2.5 bg-gray-800 text-white flex items-center justify-start gap-2"
+	 -->
+		<i [class]="item().icon + ' text-2xl'"></i>
+		<span class="text-gray-600 group-[.active]:text-white">{{item().label}}</span>
+	</a>
+	}
+</li>
+
+<!-- 
+ -->
