@@ -6,6 +6,7 @@ import { SectionComponent } from '../core/section/section.component';
 import { FooterComponent } from '../core/footer/footer.component';
 import { NavbarComponent } from '../core/navbar/navbar.component';
 import { ProductCardComponent } from '../core/product-card/product-card.component';
+import { ProductModel } from '../../models/product.model';
 
 @Component({
   selector: 'app-landing',
@@ -32,17 +33,27 @@ export class LandingComponent {
     // console.log(this.firstCarousel);
   }
 
-  generateCarouselData(): Product[] {
+  generateCarouselData() {
     const amount = 10;
 
-    const result = [];
+    const result: ProductModel[] = [];
     for (let i = 0; i < amount; i++) {
       const title = `${faker.commerce.productAdjective()} ${faker.commerce.product()}`;
       const price = Number(faker.commerce.price());
       const rating = faker.number.float({ min: 1, max: 2, fractionDigits: 1 });
       const imageUrl = faker.image.urlLoremFlickr();
 
-      result.push(new Product(imageUrl, title, rating, price));
+      result.push({
+        image_urls: [imageUrl],
+        name: title,
+        rating,
+        price,
+        created_at: new Date(),
+        updated_at: new Date(),
+        description: '',
+        tagline: '',
+        id: -1,
+      });
     }
 
     return result;

@@ -6,19 +6,21 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { NavItemComponent } from '../../core/nav-item/nav-item.component';
 import { NavItemModel } from '../../core/nav-item/nav-item.model';
 import { NavItemType } from '../../core/nav-item/nav-item-type';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'admin-products',
-  imports: [AsyncPipe, NavItemComponent, CommonModule],
+  imports: [AsyncPipe, CommonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
+  constructor(private productService: ProductService) {}
+
   products$!: Observable<ProductModel[]>;
-  
 
   ngOnInit() {
-    this.products$ = of(this.generateProducts());
+    this.products$ = this.productService.getProducts();
 
     this.products$.subscribe((value) => {
       console.log(value);
