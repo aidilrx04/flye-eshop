@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { SectionComponent } from '../core/section/section.component';
 import { HeroComponent } from '../core/hero/hero.component';
-import { Product } from '../../classes/product/product';
 import { faker } from '@faker-js/faker';
 import { ProductCardComponent } from '../core/product-card/product-card.component';
 import { ProductService } from '../../services/product.service';

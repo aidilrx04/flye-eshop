@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CarouselComponent } from '../core/carousel/carousel.component';
 import { faker } from '@faker-js/faker';
-import { Product } from '../../classes/product/product';
 import { SectionComponent } from '../core/section/section.component';
 import { FooterComponent } from '../core/footer/footer.component';
 import { NavbarComponent } from '../core/navbar/navbar.component';
