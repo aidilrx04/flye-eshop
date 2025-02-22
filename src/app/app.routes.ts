@@ -9,8 +9,13 @@ import { ProductsComponent as AdminProductsComponent } from './components/admin/
 import { CreateProductComponent as AdminCreateProductComponent } from './components/admin/create-product/create-product.component';
 import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
 import { CartComponent } from './components/cart/cart.component';
+import { OrderSuccessfulComponent } from './components/order-successful/order-successful.component';
 
 export const routes: Routes = [
+  {
+    path: 'order/success',
+    component: OrderSuccessfulComponent,
+  },
   {
     path: 'cart',
     component: CartComponent,

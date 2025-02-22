@@ -19,13 +19,16 @@ export class CartService {
     this.saveCart();
   }
 
-  removeProduct(product: ProductModel) {
-    // this.items = this.items
-    //   .slice(0, this.items.indexOf(product))
-    //   .concat(this.items.slice(this.items.indexOf(product)));
+  removeProduct(item: CartItemModel) {
+    this.items = this.items.filter((v) => v !== item);
+    this.saveCart();
   }
 
   private saveCart() {
     localStorage.setItem('flye-cart', JSON.stringify(this.items));
+  }
+
+  clearCart() {
+    this.items = [];
   }
 }

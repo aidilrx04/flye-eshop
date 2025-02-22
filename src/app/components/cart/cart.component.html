@@ -22,6 +22,9 @@
 									type="checkbox"
 									name=""
 									id=""
+									[attr.data-index]="$index"
+									(change)="onSelected($event)"
+									[checked]="$index == 0"
 								>
 							</td>
 							<td class="px-4 py-2">
@@ -52,20 +55,23 @@
 					<tbody>
 						<tr class="text-gray-600">
 							<td>Subtotal</td>
-							<td class="text-right">0.0</td>
+							<td class="text-right">{{subtotal()}}</td>
 						</tr>
 						<tr class="text-gray-600">
-							<td>Tax</td>
-							<td class="text-right">0.0</td>
+							<td>Tax (8%)</td>
+							<td class="text-right">{{tax()}}</td>
 						</tr>
 						<tr class="text-semibold text-lg">
 							<td>Total</td>
-							<td class="text-right">0.0</td>
+							<td class="text-right">{{total()}}</td>
 						</tr>
 					</tbody>
 				</table>
 
-				<button class="block w-full bg-gray-800 text-white py-2.5 px-3.5">Checkout</button>
+				<button
+					(click)="onCheckout()"
+					class="block w-full bg-gray-800 text-white py-2.5 px-3.5"
+				>Checkout</button>
 			</div>
 		</div>
 	</div>
