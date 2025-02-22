@@ -8,8 +8,13 @@ import { DashboardComponent as AdminDashboardComponent } from './components/admi
 import { ProductsComponent as AdminProductsComponent } from './components/admin/products/products.component';
 import { CreateProductComponent as AdminCreateProductComponent } from './components/admin/create-product/create-product.component';
 import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
+import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
   {
     path: 'signin',
     component: SigninComponent,

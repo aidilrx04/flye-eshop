@@ -31,23 +31,33 @@
 			<div class="flex items-center justify-between w-full mb-4">
 				<span class="text-gray-500 text-2xl block">No. of Orders</span>
 				<div class="counter  flex items-center justify-center h-7 aspect-[3/1]">
-					<button class="size-full aspect-square border border-gray-300">
+					<button
+						(click)="onDecrease()"
+						class="size-full aspect-square border border-gray-300"
+					>
 						<i class="ph ph-minus text-sm"></i>
 					</button>
 					<input
 						type="text"
-						value="0"
+						[formControl]="amount"
 						class="size-full text-center border border-gray-300 border-l-0"
 					>
-					<button class="size-full border border-gray-300 border-l-0">
+					<button
+						(click)="onIncrease()"
+						class="size-full border border-gray-300 border-l-0"
+					>
 						<i class="ph ph-plus text-sm"></i>
 					</button>
 				</div>
 			</div>
 			<hr class="mb-4 border-gray-300">
 			<div class="flex justify-between items-center">
-				<span class="text-gray-400 font-semibold text-2xl">Total: $210.00</span>
-				<button class="border px-3.5 py-2.5">Add To Cart</button>
+				<span class="text-gray-400 font-semibold text-2xl">Total: $ {{(amount.value ?? 0) *
+					product.price}}</span>
+				<button
+					(click)="onAddToCart()"
+					class="border px-3.5 py-2.5"
+				>Add To Cart</button>
 			</div>
 		</div>
 		}

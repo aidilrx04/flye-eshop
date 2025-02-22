@@ -22,6 +22,19 @@
 					>Explore</a>
 				</li>
 				<li>|</li>
+				<li>
+					<a
+						routerLink="/cart"
+						routerLinkActive="active"
+						class="[.active]:text-gray-400 font-semibold relative"
+					>
+						<i class="ph ph-shopping-cart text-lg">
+						</i>
+						<span
+							class="absolute -top-2.5 -right-2.5 text-xs size-4 grid place-items-center bg-blue-600 text-white rounded-full"
+						>{{itemInCartAmount}}</span>
+					</a>
+				</li>
 				@if (hasLoggedIn ) {
 				<li>
 					<a

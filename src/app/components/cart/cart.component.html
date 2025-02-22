@@ -1,0 +1,72 @@
+<app-section>
+	<div class="mx-auto w-5xl mb-20 max-w-full">
+		<div class="grid grid-cols-12 gap-8  ">
+			<div class="col-span-8">
+				<h1 class="text-2xl font-semibold mb-2">Your Cart</h1>
+				<p class="text-gray-500 mb-8">All items in your cart</p>
+
+				<table class="w-full">
+					<thead class="uppercase text-sm text-gray-600 border-y border-gray-400 text-left">
+						<tr>
+							<th class="font-normal py-4 px-4">Check</th>
+							<th class="font-normal py-4 px-4">Product</th>
+							<th class="font-normal py-4 px-4">Quantity</th>
+							<th class="font-normal py-4 px-4">Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (item of items; track $index) {
+						<tr class="border-b border-gray-400">
+							<td class="px-4 py-2">
+								<input
+									type="checkbox"
+									name=""
+									id=""
+								>
+							</td>
+							<td class="px-4 py-2">
+								<div class="flex gap-4">
+									<img
+										[src]="item.product.image_urls[0]"
+										alt=""
+										class="w-24 aspect-square object-cover"
+									>
+									<div>
+										<span class="block capitalize mb-4">{{item.product.name}}</span>
+										<span class="text-sm text-gray-600">$ {{item.product.price}} x 1</span>
+									</div>
+								</div>
+							</td>
+							<td class="px-4 py-2 text-center text-gray-600">{{item.quantity}}</td>
+							<td class="px-4 py-2 text-center">{{item.quantity * item.product.price}}</td>
+						</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+			<div class="col-span-4">
+				<h2 class="text-2xl mb-2 font-semibold">Checkout</h2>
+				<p class="mb-8 text-gray-600">Click checkout once you're ready</p>
+
+				<table class="w-full mb-8">
+					<tbody>
+						<tr class="text-gray-600">
+							<td>Subtotal</td>
+							<td class="text-right">0.0</td>
+						</tr>
+						<tr class="text-gray-600">
+							<td>Tax</td>
+							<td class="text-right">0.0</td>
+						</tr>
+						<tr class="text-semibold text-lg">
+							<td>Total</td>
+							<td class="text-right">0.0</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<button class="block w-full bg-gray-800 text-white py-2.5 px-3.5">Checkout</button>
+			</div>
+		</div>
+	</div>
+</app-section>
