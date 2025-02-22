@@ -21,4 +21,10 @@ export class OrderService {
       })
       .pipe(map((value) => value.data));
   }
+
+  getOrders() {
+    return this.http
+      .get<ApiResponseModel<OrderModel[]>>(`${environment.apiUrl}/orders`)
+      .pipe(map((value) => value.data));
+  }
 }

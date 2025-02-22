@@ -10,6 +10,7 @@ import { CreateProductComponent as AdminCreateProductComponent } from './compone
 import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrderSuccessfulComponent } from './components/order-successful/order-successful.component';
+import { OrdersComponent as AdminOrdersComponent } from './components/admin/orders/orders.component';
 
 export const routes: Routes = [
   {
@@ -42,6 +43,10 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminLayoutComponent,
     children: [
+      {
+        path: 'orders',
+        component: AdminOrdersComponent,
+      },
       {
         path: 'products/create',
         component: AdminCreateProductComponent,

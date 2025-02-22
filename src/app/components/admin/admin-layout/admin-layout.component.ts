@@ -34,5 +34,11 @@ export class AdminLayoutComponent {
       href: '/admin/products',
       icon: 'ph ph-rows',
     },
+    {
+      label: 'All Orders',
+      type: NavItemType.LINK,
+      href: '/admin/orders',
+      icon: 'ph ph-squares-four',
+    },
   ];
 }
