@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ProductModel } from '../models/product.model';
+import { map } from 'rxjs';
+import { ApiResponseModel } from '../models/api-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +12,17 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProducts() {
-    return this.http.get<ProductModel[]>(`${environment.apiUrl}/products`);
+    return this.http
+      .get<ApiResponseModel<ProductModel[]>>(`${environment.apiUrl}/products`)
+      .pipe(map((value) => value.data));
   }
 
   getProduct(productId: number) {
-    return this.http.get<ProductModel>(
-      `${environment.apiUrl}/products/${productId}`,
-    );
+    return this.http
+      .get<
+        ApiResponseModel<ProductModel>
+      >(`${environment.apiUrl}/products/${productId}`)
+      .pipe(map((value) => value.data));
   }
 
   createProduct(
@@ -36,6 +42,10 @@ export class ProductService {
       formData.append('images[]', imageFile);
     }
 
-    return this.http.post(`${environment.apiUrl}/products`, formData);
+    return this.http
+      .post<
+        ApiResponseModel<ProductModel>
+      >(`${environment.apiUrl}/products`, formData)
+      .pipe(map((value) => value.data));
   }
 }
