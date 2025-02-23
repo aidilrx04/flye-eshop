@@ -15,6 +15,7 @@
 						</tr>
 					</thead>
 					<tbody>
+						@if (items$ | async; as items) {
 						@for (item of items; track $index) {
 						<tr class="border-b border-gray-400">
 							<td class="px-4 py-2">
@@ -43,6 +44,7 @@
 							<td class="px-4 py-2 text-center text-gray-600">{{item.quantity}}</td>
 							<td class="px-4 py-2 text-center">{{item.quantity * item.product.price}}</td>
 						</tr>
+						}
 						}
 					</tbody>
 				</table>

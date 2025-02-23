@@ -21,6 +21,8 @@ export class NavbarComponent {
   ngOnInit() {
     this.hasLoggedIn = this.authService.isLoggedIn();
 
-    this.itemInCartAmount = this.cartService.items.length;
+    this.cartService.items$.subscribe((value) => {
+      this.itemInCartAmount = value.length;
+    });
   }
 }

@@ -4,15 +4,17 @@ import { CartItemModel } from '../../models/cart-item.model';
 import { SectionComponent } from '../core/section/section.component';
 import { OrderService } from '../../services/order.service';
 import { Router } from '@angular/router';
+import { firstValueFrom, Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  imports: [SectionComponent],
+  imports: [SectionComponent, AsyncPipe],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
 export class CartComponent {
-  items!: CartItemModel[];
+  items$!: Observable<CartItemModel[]>;
   selected = signal<CartItemModel[]>([]);
   subtotal = computed(() =>
     this.selected().reduce(
@@ -30,9 +32,7 @@ export class CartComponent {
   ) {}
 
   ngOnInit() {
-    this.items = this.cartService.items;
-
-    console.log(this.items);
+    this.items$ = this.cartService.items$.asObservable();
   }
 
   onCheckout() {
@@ -54,18 +54,19 @@ export class CartComponent {
       });
   }
 
-  onSelected(e: Event) {
+  async onSelected(e: Event) {
     const input = e.target as HTMLInputElement;
     const index = input.dataset['index'] ? Number(input.dataset['index']) : -1;
+    const items = await firstValueFrom(this.items$);
 
     if (input.checked) {
-      this.selected.update((val) => [...val, this.items[index]]);
+      this.selected.update((val) => [...val, items[index]]);
       return;
     }
 
     this.selected.update((val) => {
       return val.filter((v, i) => {
-        return v !== this.items[index];
+        return v !== items[index];
       });
     });
   }
