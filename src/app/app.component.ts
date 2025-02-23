@@ -1,10 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './components/core/navbar/navbar.component';
-import { FooterComponent } from './components/core/footer/footer.component';
+import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { zip } from 'rxjs';
 import { LoadingComponent } from './components/core/loading/loading.component';
+import { filter, zip } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,22 +11,17 @@ import { LoadingComponent } from './components/core/loading/loading.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {}
+  constructor(private authService: AuthService) {}
 
-  title = 'balls';
   hasInitCompleted = signal(false);
-  isInAdmin = false;
 
   ngOnInit() {
-    zip([this.authService.init()]).subscribe({
-      complete: () => {
-        this.hasInitCompleted.set(true);
-      },
+    zip(
+      this.authService.initCompletedSubject.pipe(
+        filter((initCompleted) => initCompleted === true),
+      ),
+    ).subscribe((v) => {
+      this.hasInitCompleted.set(true);
     });
-
-    this.isInAdmin = window.location.pathname.startsWith('/admin');
   }
 }

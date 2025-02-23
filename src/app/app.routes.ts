@@ -13,65 +13,70 @@ import { OrderSuccessfulComponent } from './components/order-successful/order-su
 import { OrdersComponent as AdminOrdersComponent } from './components/admin/orders/orders.component';
 import { ensureAuthenticatedGuard } from './guards/ensure-authenticated.guard';
 import { MainLayoutComponent } from './components/core/layouts/main-layout/main-layout.component';
+import { checkAuthenticationGuard } from './guards/check-authentication.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: MainLayoutComponent,
+    canActivate: [checkAuthenticationGuard],
     children: [
       {
-        path: 'order/success',
-        component: OrderSuccessfulComponent,
-      },
-      {
-        path: 'cart',
-        component: CartComponent,
-      },
-      {
-        path: 'signin',
-        component: SigninComponent,
-      },
-      {
-        path: 'signup',
-        component: SignupComponent,
-      },
-      {
-        path: 'products',
-        component: ProductsComponent,
-      },
-      {
-        path: 'products/:productId',
-        component: SingleProductComponent,
-      },
-      {
         path: '',
-        component: LandingComponent,
+        component: MainLayoutComponent,
+        children: [
+          {
+            path: 'order/success',
+            component: OrderSuccessfulComponent,
+          },
+          {
+            path: 'cart',
+            component: CartComponent,
+          },
+          {
+            path: 'signin',
+            component: SigninComponent,
+          },
+          {
+            path: 'signup',
+            component: SignupComponent,
+          },
+          {
+            path: 'products',
+            component: ProductsComponent,
+          },
+          {
+            path: 'products/:productId',
+            component: SingleProductComponent,
+          },
+          {
+            path: '',
+            component: LandingComponent,
+          },
+        ],
+      },
+      {
+        path: 'admin',
+        component: AdminLayoutComponent,
+        canActivate: [ensureAuthenticatedGuard],
+        children: [
+          {
+            path: 'orders',
+            component: AdminOrdersComponent,
+          },
+          {
+            path: 'products/create',
+            component: AdminCreateProductComponent,
+          },
+          {
+            path: 'products',
+            component: AdminProductsComponent,
+          },
+          {
+            path: '',
+            component: AdminDashboardComponent,
+          },
+        ],
       },
     ],
   },
-  // admin
-  {
-    path: 'admin',
-    component: AdminLayoutComponent,
-    canActivate: [ensureAuthenticatedGuard],
-    children: [
-      {
-        path: 'orders',
-        component: AdminOrdersComponent,
-      },
-      {
-        path: 'products/create',
-        component: AdminCreateProductComponent,
-      },
-      {
-        path: 'products',
-        component: AdminProductsComponent,
-      },
-      {
-        path: '',
-        component: AdminDashboardComponent,
-      },
-    ],
-  },
-  // admin
 ];

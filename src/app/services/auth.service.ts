@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
-import { catchError, Observable, of, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,9 +10,18 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  private user?: UserModel;
+  // private user?: UserModel;
+  private userSubject = new BehaviorSubject<UserModel | null>(null);
+  user$ = this.userSubject.asObservable();
+
+  initCompletedSubject = new BehaviorSubject(false);
 
   init() {
+    // check if the init has been run before
+    if (this.initCompletedSubject.value) {
+      return of(null);
+    }
+
     return this.http
       .post(`${environment.apiUrl}/auth/verify`, null, {
         headers: {
@@ -21,7 +30,7 @@ export class AuthService {
       })
       .pipe(
         tap((response: { [key: string]: any }) => {
-          this.user = {
+          this.userSubject.next({
             id: response?.['id'] ?? -1,
             full_name: response?.['full_name'] ?? '',
             email: response?.['email'] ?? '',
@@ -32,13 +41,15 @@ export class AuthService {
             updated_at: response?.['updated_at']
               ? new Date(response?.['updated_at'])
               : new Date(0),
-          };
+          });
+          this.initCompletedSubject.next(true);
         }),
         catchError((error) => {
-          console.error(
+          console.warn(
             'Failed to verify token. Token is missing/invalid:',
             error?.message,
           );
+          this.initCompletedSubject.next(true);
           return of(null);
         }),
       );
@@ -60,10 +71,10 @@ export class AuthService {
   }
 
   getUser() {
-    return this.user;
+    return this.userSubject.value;
   }
 
   isLoggedIn() {
-    return !!this.user;
+    return !!this.userSubject.value;
   }
 }
