@@ -4,10 +4,11 @@ import { NavbarComponent } from './components/core/navbar/navbar.component';
 import { FooterComponent } from './components/core/footer/footer.component';
 import { AuthService } from './services/auth.service';
 import { zip } from 'rxjs';
+import { LoadingComponent } from './components/core/loading/loading.component';
 
 @Component({
   selector: 'app-root',
-  imports: [NavbarComponent, RouterOutlet, FooterComponent],
+  imports: [RouterOutlet, LoadingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

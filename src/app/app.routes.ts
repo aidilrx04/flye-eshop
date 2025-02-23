@@ -11,37 +11,49 @@ import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layo
 import { CartComponent } from './components/cart/cart.component';
 import { OrderSuccessfulComponent } from './components/order-successful/order-successful.component';
 import { OrdersComponent as AdminOrdersComponent } from './components/admin/orders/orders.component';
+import { ensureAuthenticatedGuard } from './guards/ensure-authenticated.guard';
+import { MainLayoutComponent } from './components/core/layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
   {
-    path: 'order/success',
-    component: OrderSuccessfulComponent,
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'order/success',
+        component: OrderSuccessfulComponent,
+      },
+      {
+        path: 'cart',
+        component: CartComponent,
+      },
+      {
+        path: 'signin',
+        component: SigninComponent,
+      },
+      {
+        path: 'signup',
+        component: SignupComponent,
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+      },
+      {
+        path: 'products/:productId',
+        component: SingleProductComponent,
+      },
+      {
+        path: '',
+        component: LandingComponent,
+      },
+    ],
   },
-  {
-    path: 'cart',
-    component: CartComponent,
-  },
-  {
-    path: 'signin',
-    component: SigninComponent,
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-  },
-  {
-    path: 'products',
-    component: ProductsComponent,
-  },
-  {
-    path: 'products/:productId',
-    component: SingleProductComponent,
-  },
-
   // admin
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [ensureAuthenticatedGuard],
     children: [
       {
         path: 'orders',
@@ -62,8 +74,4 @@ export const routes: Routes = [
     ],
   },
   // admin
-  {
-    path: '',
-    component: LandingComponent,
-  },
 ];

@@ -6,7 +6,7 @@
 	<h1 class="text-center text-3xl font-bold mb-2">Our Latest Products</h1>
 	<p class="text-center text-lg text-gray-500 mb-8">Check out all of our products</p>
 
-	<div class="grid grid-cols-3 grid-rows-3 gap-8 mb-8">
+	<div class="grid grid-cols-3  gap-8 mb-8">
 
 		@if (products$ | async; as products) {
 		@for (product of products; track $index) {
