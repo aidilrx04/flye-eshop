@@ -17,5 +17,8 @@ export class OrdersComponent {
 
   ngOnInit() {
     this.orders$ = this.orderService.getOrders();
+    this.orders$.subscribe((val) => {
+      console.log(val);
+    });
   }
 }

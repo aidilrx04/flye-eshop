@@ -17,17 +17,22 @@
 	</div>
 
 	<div class="paginator w-fit mx-auto flex gap-4">
+		@if (pageMeta$ | async; as pageMeta) {
+		@for (link of pageMeta.links; track $index) {
+		@if (isNumberLink(link)) {
+
 		<a
-			href="#"
-			class="border size-12 text-center flex items-center justify-center"
-		>
-			1
-		</a>
-		<a
-			href="#"
-			class="border size-12 text-center flex items-center justify-center bg-gray-900 text-white"
-		>
-			2
-		</a>
+			routerLink="/products"
+			[queryParams]="{
+						page: link.label
+					}"
+			class="border size-12 text-center flex items-center justify-center [.active]:bg-gray-900 [.active]:text-white"
+			[ngClass]="{
+				active: link.active
+			}"
+		> {{link.label}}</a>
+		}
+		}
+		}
 	</div>
 </div>

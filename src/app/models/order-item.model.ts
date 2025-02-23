@@ -1,3 +1,5 @@
+import { ProductModel } from './product.model';
+
 export interface OrderItemModel {
   id: number;
   order_id: number;
@@ -5,4 +7,5 @@ export interface OrderItemModel {
   quantity: number;
   created_at: Date;
   updated_at: Date;
+  product: ProductModel;
 }

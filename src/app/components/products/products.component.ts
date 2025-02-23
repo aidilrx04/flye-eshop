@@ -4,40 +4,64 @@ import { HeroComponent } from '../core/hero/hero.component';
 import { faker } from '@faker-js/faker';
 import { ProductCardComponent } from '../core/product-card/product-card.component';
 import { ProductService } from '../../services/product.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, shareReplay, switchMap } from 'rxjs';
 import { ProductModel } from '../../models/product.model';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { Link, Meta } from '../../models/api-response-paginate.model';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-products',
-  imports: [SectionComponent, HeroComponent, ProductCardComponent, AsyncPipe],
+  imports: [
+    SectionComponent,
+    HeroComponent,
+    ProductCardComponent,
+    AsyncPipe,
+    RouterLink,
+    CommonModule,
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
+  ) {}
 
-  // products = signal(this.generateProducts());
-
-  // generateProducts(): Product[] {
-  //   const amount = 9;
-
-  //   const result = [];
-  //   for (let i = 0; i < amount; i++) {
-  //     const title = `${faker.commerce.productAdjective()} ${faker.commerce.product()}`;
-  //     const price = Number(faker.commerce.price());
-  //     const rating = faker.number.float({ min: 1, max: 2, fractionDigits: 1 });
-  //     const imageUrl = faker.image.urlLoremFlickr();
-
-  //     result.push(new Product(imageUrl, title, rating, price));
-  //   }
-
-  //   return result;
-  // }
+  // products$ = new BehaviorSubject<ProductModel[]>([]);
+  // pageMeta$ = new BehaviorSubject<Meta>({
+  //   current_page: 0,
+  //   from: 0,
+  //   last_page: 0,
+  //   links: [],
+  //   path: '',
+  //   per_page: 0,
+  //   to: 0,
+  //   total: 0,
+  // });
 
   products$!: Observable<ProductModel[]>;
+  pageMeta$!: Observable<Meta>;
 
   ngOnInit() {
-    this.products$ = this.productService.getProducts();
+    const productsWithMeta$ = this.route.queryParamMap.pipe(
+      switchMap((param) => {
+        return this.productService
+          .getProductsWithPage(Number(param.get('page')) ?? 1)
+          .pipe(shareReplay(1));
+      }),
+    );
+    // this.productService.getProductsWithPage().subscribe((value) => {
+    //   this.products$.next(value.data);
+    //   this.pageMeta$.next(value.meta);
+    // });
+
+    this.products$ = productsWithMeta$.pipe(map((v) => v.data));
+    this.pageMeta$ = productsWithMeta$.pipe(map((v) => v.meta));
+  }
+
+  isNumberLink(link: Link) {
+    return isNaN(Number(link.label)) === false;
   }
 }

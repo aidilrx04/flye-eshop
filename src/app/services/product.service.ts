@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { ProductModel } from '../models/product.model';
 import { map } from 'rxjs';
 import { ApiResponseModel } from '../models/api-response.model';
+import { APIResponsePaginateModel } from '../models/api-response-paginate.model';
 
 @Injectable({
   providedIn: 'root',
@@ -47,5 +48,11 @@ export class ProductService {
         ApiResponseModel<ProductModel>
       >(`${environment.apiUrl}/products`, formData)
       .pipe(map((value) => value.data));
+  }
+
+  getProductsWithPage(page = 1) {
+    return this.http.get<APIResponsePaginateModel<ProductModel>>(
+      `${environment.apiUrl}/products?page=${page}`,
+    );
   }
 }
