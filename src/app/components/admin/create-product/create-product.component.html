@@ -66,13 +66,38 @@
 						>Images</label>
 						<small class="text-gray-500 mb-2 block">First image will be used as the thumbnail.</small>
 
-						<div class="images">
-							@for (imageUrl of images(); track $index) {
-							<img
-								[src]="imageUrl"
-								alt=""
-							>
+						<div class="grid grid-cols-3 gap-4 min-h-24 bg-gray-100 mb-2">
+							@for (imageFile of images(); track $index) {
+							<div class="relative w-full bg-gray-200 group hover:bg-gray-800 ">
+								<!-- src="https://cari-kata.aidil.dev/favicon.png" -->
+								<img
+									[src]="imageFile.url"
+									alt=""
+									class="size-full object-cover aspect-square group-hover:brightness-50"
+								>
+								<div
+									class="absolute top-0 right-0 flex flex-col gap-2 text-white text-lg px-2 opacity-0 group-hover:opacity-100">
+									<button
+										type="button"
+										(click)="removeImage($index)"
+									>
+										<i class="ph ph-x"></i>
+									</button>
+									<button
+										type="button"
+										(click)="setAsThumbnail($index)"
+									>
+										<i class="ph ph-image"></i>
+									</button>
+								</div>
+							</div>
 							}
+							@if (images().length === 0) {
+							<div class="col-span-3 h-full grid place-items-center text-sm text-gray-600">
+								Image will be shown here.
+							</div>
+							}
+
 						</div>
 						<input
 							type="file"

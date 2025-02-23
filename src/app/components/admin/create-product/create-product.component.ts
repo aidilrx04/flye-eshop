@@ -98,15 +98,31 @@ export class CreateProductComponent {
   fileChange(e: Event) {
     const input = e.target as HTMLInputElement;
 
-    if (input.files === null) return;
+    if (input.files !== null && input.files.length === 0) return;
 
-    const url = URL.createObjectURL(input.files[0]);
+    const url = URL.createObjectURL(input.files![0]);
+
     this.images.update((images) => [
       ...images,
       {
         url: url,
         file: input.files![0],
       },
+    ]);
+  }
+
+  removeImage(index: number) {
+    // revoke url
+    URL.revokeObjectURL(this.images()[index].url);
+
+    // update imges
+    this.images.update((images) => images.filter((v, i) => i !== index));
+  }
+
+  setAsThumbnail(index: number) {
+    this.images.update((images) => [
+      images[index],
+      ...images.filter((v, i) => i !== index),
     ]);
   }
 }
