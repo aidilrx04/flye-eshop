@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ProductModel } from '../models/product.model';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { ApiResponseModel } from '../models/api-response.model';
 import { APIResponsePaginateModel } from '../models/api-response-paginate.model';
 
@@ -60,5 +60,52 @@ export class ProductService {
     return this.http.delete<{ message: string }>(
       `${environment.apiUrl}/products/${productId}`,
     );
+  }
+
+  updateProduct(
+    productId: number,
+    updatedData: {
+      name: string;
+      price: number;
+      description: string;
+      tagline: string;
+      newImages: File[];
+      removedImages: string[];
+      newThumbnail?: File;
+      setThumbnail?: string;
+    },
+  ) {
+    const formData = new FormData();
+
+    formData.append('name', updatedData.name);
+    formData.append('price', updatedData.price.toString());
+    formData.append('description', updatedData.description);
+    formData.append('tagline', updatedData.tagline);
+    if (updatedData.newThumbnail) {
+      formData.append('new_thumbnail', updatedData.newThumbnail);
+    }
+    if (updatedData.setThumbnail) {
+      formData.append('set_thumbnail', updatedData.setThumbnail);
+    }
+
+    for (const removedImage of updatedData.removedImages) {
+      formData.append('remove_images[]', removedImage);
+    }
+
+    for (const newImage of updatedData.newImages) {
+      formData.append('new_images[]', newImage);
+    }
+
+    /**
+     * This is a workaround for form data not working with laravel put request
+     */
+    return this.http
+      .post<
+        ApiResponseModel<ProductModel>
+      >(`${environment.apiUrl}/products/${productId}?_method=PUT`, formData)
+      .pipe(
+        tap((v) => console.log(v)),
+        map((value) => value.data),
+      );
   }
 }

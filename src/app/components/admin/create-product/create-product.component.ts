@@ -3,11 +3,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ProductModel } from '../../../models/product.model';
 import { ProductCardComponent } from '../../core/product-card/product-card.component';
 import { ProductService } from '../../../services/product.service';
-
-interface ImageFile {
-  file: File;
-  url: string;
-}
+import { ImageFileModel } from '../../../models/image-file.model';
 
 @Component({
   selector: 'app-create-product',
@@ -25,7 +21,7 @@ export class CreateProductComponent {
     tagline: [''],
   });
 
-  images = signal<ImageFile[]>([]);
+  images = signal<ImageFileModel[]>([]);
 
   imagePlaceholder = 'https://placehold.co/400x400?text=Thumbnail+Here';
   productPreview: ProductModel = {

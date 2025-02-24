@@ -55,22 +55,22 @@
 								class="dropdown-content absolute top-7 right-0 origin-top-right bg-white border shadow border-gray-200 py-2 hidden group-focus:block group-focus-within:block z-10">
 								<ul class="flex flex-col">
 									<li class="border-b border-gray-200">
-										<button
-											(click)="deleteProduct(product.id)"
-											class="px-3.5 py-1 flex items-center gap-2 justify-start w-full"
-										>
-											<i class="ph ph-trash"></i>
-											<span>Delete</span>
-										</button>
-									</li>
-									<li>
 										<a
 											[routerLink]="['/admin/products/', product.id, 'edit']"
-											class="px-3.5 py-1 flex items-center gap-2 justify-start w-full"
+											class="px-3.5 py-1 flex items-center gap-2 justify-start w-full hover:bg-gray-100"
 										>
 											<i class="ph ph-pencil"></i>
 											<span>Edit</span>
 										</a>
+									</li>
+									<li>
+										<button
+											(click)="deleteProduct(product.id)"
+											class="px-3.5 py-1 flex items-center gap-2 justify-start w-full text-red-500 cursor-pointer hover:bg-gray-100"
+										>
+											<i class="ph ph-trash"></i>
+											<span>Delete</span>
+										</button>
 									</li>
 								</ul>
 							</div>
