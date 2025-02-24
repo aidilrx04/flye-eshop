@@ -7,10 +7,11 @@ import { NavItemComponent } from '../../core/nav-item/nav-item.component';
 import { NavItemModel } from '../../core/nav-item/nav-item.model';
 import { NavItemType } from '../../core/nav-item/nav-item-type';
 import { ProductService } from '../../../services/product.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'admin-products',
-  imports: [AsyncPipe, CommonModule],
+  imports: [AsyncPipe, CommonModule, RouterLink],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
@@ -50,5 +51,18 @@ export class ProductsComponent {
     }
 
     return result;
+  }
+
+  deleteProduct(productId: number) {
+    this.productService.deleteProduct(productId).subscribe({
+      next: (v) => {
+        // ? maybe this is a bad idea
+        this.products$ = this.productService.getProducts();
+        alert('product deleted');
+      },
+      error: (err) => {
+        alert('Failed to delete product' + err);
+      },
+    });
   }
 }

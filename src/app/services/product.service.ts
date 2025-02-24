@@ -55,4 +55,10 @@ export class ProductService {
       `${environment.apiUrl}/products?page=${page}`,
     );
   }
+
+  deleteProduct(productId: number) {
+    return this.http.delete<{ message: string }>(
+      `${environment.apiUrl}/products/${productId}`,
+    );
+  }
 }
