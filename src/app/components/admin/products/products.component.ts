@@ -8,10 +8,12 @@ import { NavItemModel } from '../../core/nav-item/nav-item.model';
 import { NavItemType } from '../../core/nav-item/nav-item-type';
 import { ProductService } from '../../../services/product.service';
 import { RouterLink } from '@angular/router';
+import { DropdownComponent } from "../../core/dropdown/dropdown.component";
+import { DropdownItemComponent } from "../../core/dropdown-item/dropdown-item.component";
 
 @Component({
   selector: 'admin-products',
-  imports: [AsyncPipe, CommonModule, RouterLink],
+  imports: [AsyncPipe, CommonModule, RouterLink, DropdownComponent, DropdownItemComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })

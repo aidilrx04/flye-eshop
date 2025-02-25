@@ -1,0 +1,11 @@
+<div class="relative w-fit group">
+	<ng-container [ngTemplateOutlet]="togglerTemplate"></ng-container>
+
+	<div
+		class="dropdown-content min-w-36 absolute top-7 right-0 origin-top-right bg-white border shadow border-gray-200 py-2 hidden group-focus:block group-focus-within:block z-10">
+		<ul class="flex flex-col ">
+			<div class="border-b border-gray-200"></div>
+			<ng-content></ng-content>
+		</ul>
+	</div>
+</div>

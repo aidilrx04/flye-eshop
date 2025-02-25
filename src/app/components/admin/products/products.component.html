@@ -46,35 +46,33 @@
 						0
 					</td>
 					<td class="px-4 py-4">
-						<div class="relative w-fit group">
-							<button
-								class="size-6 grid place-items-center rounded-full cursor-pointer focus:bg-gray-200">
-								<i class="ph-bold ph-dots-three-vertical text-xl"></i>
-							</button>
-							<div
-								class="dropdown-content absolute top-7 right-0 origin-top-right bg-white border shadow border-gray-200 py-2 hidden group-focus:block group-focus-within:block z-10">
-								<ul class="flex flex-col">
-									<li class="border-b border-gray-200">
-										<a
-											[routerLink]="['/admin/products/', product.id, 'edit']"
-											class="px-3.5 py-1 flex items-center gap-2 justify-start w-full hover:bg-gray-100"
-										>
-											<i class="ph ph-pencil"></i>
-											<span>Edit</span>
-										</a>
-									</li>
-									<li>
-										<button
-											(click)="deleteProduct(product.id)"
-											class="px-3.5 py-1 flex items-center gap-2 justify-start w-full text-red-500 cursor-pointer hover:bg-gray-100"
-										>
-											<i class="ph ph-trash"></i>
-											<span>Delete</span>
-										</button>
-									</li>
-								</ul>
-							</div>
-						</div>
+						<app-dropdown>
+							<ng-template #toggler>
+								<button
+									class="size-6 grid place-items-center rounded-full cursor-pointer focus:bg-gray-200"
+								>
+									<i class="ph-bold ph-dots-three-vertical text-xl"></i>
+								</button>
+							</ng-template>
+							<app-dropdown-item>
+								<a
+									[routerLink]="['/admin/products/', product.id, 'edit']"
+									class="px-3.5 py-1 flex items-center gap-2 justify-start w-full hover:bg-gray-100"
+								>
+									<i class="ph ph-pencil"></i>
+									<span>Edit</span>
+								</a>
+							</app-dropdown-item>
+							<app-dropdown-item>
+								<button
+									(click)="deleteProduct(product.id)"
+									class="px-3.5 py-1 flex items-center gap-2 justify-start w-full text-red-500 cursor-pointer hover:bg-gray-100"
+								>
+									<i class="ph ph-trash"></i>
+									<span>Delete</span>
+								</button>
+							</app-dropdown-item>
+						</app-dropdown>
 					</td>
 				</tr>
 				}

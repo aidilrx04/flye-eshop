@@ -40,7 +40,24 @@
 					$ {{order.total}}
 				</td>
 				<td>
-					<i class="ph ph-dots-three-vertical"></i>
+					<app-dropdown>
+						<ng-template #toggler>
+							<button
+								class="size-6 grid place-items-center rounded-full cursor-pointer focus:bg-gray-200">
+								<i class="ph-bold ph-dots-three-vertical text-xl"></i>
+							</button>
+						</ng-template>
+
+						<app-dropdown-item>
+							<a
+								[routerLink]="['/admin/orders/', order.id]"
+								class="px-3.5 py-1 flex items-center gap-2 justify-start w-full hover:bg-gray-100"
+							>
+								<i class="ph ph-eye"></i>
+								<span>View</span>
+							</a>
+						</app-dropdown-item>
+					</app-dropdown>
 				</td>
 			</tr>
 			}

@@ -4,10 +4,19 @@ import { Observable } from 'rxjs';
 import { OrderModel } from '../../../models/order.model';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { OrderWithUserModel } from '../../../models/order-with-user.model';
+import { DropdownComponent } from '../../core/dropdown/dropdown.component';
+import { DropdownItemComponent } from '../../core/dropdown-item/dropdown-item.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
-  imports: [AsyncPipe, CommonModule],
+  imports: [
+    AsyncPipe,
+    CommonModule,
+    DropdownComponent,
+    DropdownItemComponent,
+    RouterLink,
+  ],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css',
 })
