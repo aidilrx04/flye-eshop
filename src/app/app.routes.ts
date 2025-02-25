@@ -18,6 +18,7 @@ import { EditProductComponent as AdminEditProductComponent } from './components/
 import { OrderDetailComponent as AdminOrderDetailComponent } from './components/admin/order-detail/order-detail.component';
 import { UserLayoutComponent } from './components/core/layouts/user-layout/user-layout.component';
 import { DashboardComponent as UserDashboardComponent } from './components/user/dashboard/dashboard.component';
+import { OrdersComponent as UserOrdersComponent } from './components/user/orders/orders.component';
 
 export const routes: Routes = [
   {
@@ -94,6 +95,10 @@ export const routes: Routes = [
         component: UserLayoutComponent,
         canActivate: [ensureAuthenticatedGuard],
         children: [
+          {
+            path: 'orders',
+            component: UserOrdersComponent,
+          },
           {
             path: '',
             component: UserDashboardComponent,
