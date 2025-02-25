@@ -15,7 +15,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProducts(
-    query: QueryModel = {
+    query: QueryModel<ProductModel> = {
       page: 1,
     },
   ) {

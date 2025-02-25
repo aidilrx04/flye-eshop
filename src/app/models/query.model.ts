@@ -1,8 +1,8 @@
-export interface QueryModel {
+export interface QueryModel<T = { [key: string]: any }> {
   page?: number;
   sort?: {
-    field: string;
+    field: keyof T;
     order: 'ASC' | 'DESC';
   };
-  filter?: { [key: string]: any };
+  filter?: Partial<T>;
 }
