@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Query } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ProductModel } from '../models/product.model';
 import { map, tap } from 'rxjs';
 import { ApiResponseModel } from '../models/api-response.model';
 import { APIResponsePaginateModel } from '../models/api-response-paginate.model';
+import { QueryModel } from '../models/query.model';
+import { QueryBuilder } from '../classes/query-builder';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +14,16 @@ import { APIResponsePaginateModel } from '../models/api-response-paginate.model'
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  getProducts() {
-    return this.http
-      .get<ApiResponseModel<ProductModel[]>>(`${environment.apiUrl}/products`)
-      .pipe(map((value) => value.data));
+  getProducts(
+    query: QueryModel = {
+      page: 1,
+    },
+  ) {
+    const queryString = QueryBuilder.buildQueryParam(query);
+
+    return this.http.get<APIResponsePaginateModel<ProductModel>>(
+      `${environment.apiUrl}/products?${queryString}`,
+    );
   }
 
   getProduct(productId: number) {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductModel } from '../../../models/product.model';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { faker } from '@faker-js/faker';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { NavItemComponent } from '../../core/nav-item/nav-item.component';
@@ -8,12 +8,19 @@ import { NavItemModel } from '../../core/nav-item/nav-item.model';
 import { NavItemType } from '../../core/nav-item/nav-item-type';
 import { ProductService } from '../../../services/product.service';
 import { RouterLink } from '@angular/router';
-import { DropdownComponent } from "../../core/dropdown/dropdown.component";
-import { DropdownItemComponent } from "../../core/dropdown-item/dropdown-item.component";
+import { DropdownComponent } from '../../core/dropdown/dropdown.component';
+import { DropdownItemComponent } from '../../core/dropdown-item/dropdown-item.component';
+import { ProductCategory } from '../../../enums/product-category';
 
 @Component({
   selector: 'admin-products',
-  imports: [AsyncPipe, CommonModule, RouterLink, DropdownComponent, DropdownItemComponent],
+  imports: [
+    AsyncPipe,
+    CommonModule,
+    RouterLink,
+    DropdownComponent,
+    DropdownItemComponent,
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
@@ -23,7 +30,9 @@ export class ProductsComponent {
   products$!: Observable<ProductModel[]>;
 
   ngOnInit() {
-    this.products$ = this.productService.getProducts();
+    this.products$ = this.productService
+      .getProducts()
+      .pipe(map((value) => value.data));
 
     this.products$.subscribe((value) => {
       console.log(value);
@@ -49,6 +58,9 @@ export class ProductsComponent {
         tagline: faker.word.words(10),
         created_at: faker.date.anytime(),
         updated_at: faker.date.anytime(),
+        category: faker.helpers.arrayElement(
+          Object.values(ProductCategory) as ProductCategory[],
+        ),
       });
     }
 
@@ -59,7 +71,9 @@ export class ProductsComponent {
     this.productService.deleteProduct(productId).subscribe({
       next: (v) => {
         // ? maybe this is a bad idea
-        this.products$ = this.productService.getProducts();
+        this.products$ = this.productService
+          .getProducts()
+          .pipe(map((value) => value.data));
         alert('product deleted');
       },
       error: (err) => {

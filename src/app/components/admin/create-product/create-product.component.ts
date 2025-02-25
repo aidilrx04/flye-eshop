@@ -4,6 +4,7 @@ import { ProductModel } from '../../../models/product.model';
 import { ProductCardComponent } from '../../core/product-card/product-card.component';
 import { ProductService } from '../../../services/product.service';
 import { ImageFileModel } from '../../../models/image-file.model';
+import { ProductCategory } from '../../../enums/product-category';
 
 @Component({
   selector: 'app-create-product',
@@ -34,6 +35,7 @@ export class CreateProductComponent {
     price: 0.0,
     rating: 5,
     tagline: '',
+    category: ProductCategory.MEN,
   };
 
   constructor(private productService: ProductService) {

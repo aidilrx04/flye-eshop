@@ -6,6 +6,7 @@ import { FooterComponent } from '../core/footer/footer.component';
 import { NavbarComponent } from '../core/navbar/navbar.component';
 import { ProductCardComponent } from '../core/product-card/product-card.component';
 import { ProductModel } from '../../models/product.model';
+import { ProductCategory } from '../../enums/product-category';
 
 @Component({
   selector: 'app-landing',
@@ -52,6 +53,7 @@ export class LandingComponent {
         description: '',
         tagline: '',
         id: -1,
+        category: ProductCategory.MEN,
       });
     }
 
