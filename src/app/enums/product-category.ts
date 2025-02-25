@@ -1,6 +1,6 @@
 export enum ProductCategory {
-  MEN,
-  WOMEN,
-  KID,
-  ACCESSORY,
+  MEN = 'MEN',
+  WOMEN = 'WOMEN',
+  KID = 'KID',
+  ACCESSORY = 'ACCESSORY',
 }

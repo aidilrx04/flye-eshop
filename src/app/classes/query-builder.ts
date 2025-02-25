@@ -20,10 +20,18 @@ export class QueryBuilder {
     if (filter) {
       const filterArr = Object.entries(filter);
       for (const entry of filterArr) {
-        queryParam.append(`filter[${entry[0]}]`, entry[1].toString());
+        // queryParam.append(`filter[${entry[0]}]`, entry[1].toString());
+        queryParam.set(`filter[${entry[0]}]`, entry[1].toString());
       }
     }
 
-    return queryParam.toString();
+    let queryString = queryParam.toString();
+
+    // replace encoded [ and ] to original [ and ]
+    // since query-builder require the use of it
+    queryString = queryString.replaceAll('filter%5B', 'filter[');
+    queryString = queryString.replaceAll('%5D=', ']=');
+
+    return queryString;
   }
 }

@@ -41,9 +41,13 @@
 						class="overlay absolute w-[80%] top-[50%] left-[50%] -translate-[50%] aspect-square  flex-col text-white text-center bg-gray-800/90 p-8 opacity-0 group-hover:opacity-100 flex transition-all duration-300">
 						<h2 class="font-bold text-3xl mb-4">Men</h2>
 						<p class="text-lg mb-4 text-gray-100">Lorem ipsum dolor, sit amet consectetur</p>
-						<button
+						<a
+							routerLink="/products"
+							[queryParams]="{
+								category: 'MEN'
+							}"
 							class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
-						>Get Now!</button>
+						>Get Now!</a>
 					</div>
 				</div>
 				<div class="size-full relative group">
@@ -67,9 +71,13 @@
 						class="overlay absolute w-[80%] top-[50%] left-[50%] -translate-[50%] aspect-square  flex-col text-white text-center bg-gray-800/90 p-8 opacity-0 group-hover:opacity-100 flex transition-all duration-300">
 						<h2 class="font-bold text-3xl mb-4">Women</h2>
 						<p class="text-lg mb-4 text-gray-100">Lorem ipsum dolor, sit amet consectetur</p>
-						<button
+						<a
+							routerLink="/products"
+							[queryParams]="{
+								category: 'WOMEN'
+							}"
 							class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
-						>Get Now!</button>
+						>Get Now!</a>
 					</div>
 				</div>
 				<div class="size-full relative group">
@@ -93,9 +101,13 @@
 						class="overlay absolute w-[80%] top-[50%] left-[50%] -translate-[50%] aspect-square  flex-col text-white text-center bg-gray-800/90 p-8 opacity-0 group-hover:opacity-100 flex transition-all duration-300">
 						<h2 class="font-bold text-3xl mb-4">Kids</h2>
 						<p class="text-lg mb-4 text-gray-100">Lorem ipsum dolor, sit amet consectetur</p>
-						<button
+						<a
+							routerLink="/products"
+							[queryParams]="{
+								category: 'KID'
+							}"
 							class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
-						>Get Now!</button>
+						>Get Now!</a>
 					</div>
 				</div>
 				<div class="size-full relative group">
@@ -119,47 +131,16 @@
 						class="overlay absolute w-[80%] top-[50%] left-[50%] -translate-[50%] aspect-square  flex-col text-white text-center bg-gray-800/90 p-8 opacity-0 group-hover:opacity-100 flex transition-all duration-300">
 						<h2 class="font-bold text-3xl mb-4">Many More</h2>
 						<p class="text-lg mb-4 text-gray-100">Lorem ipsum dolor, sit amet consectetur</p>
-						<button
+						<a
+							routerLink="/products"
 							class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
-						>Get Now!</button>
+						>Get Now!</a>
 					</div>
 				</div>
 			</div>
 
 		</div>
 	</div>
-	<!-- <h1 class="text-4xl font-bold text-gray-900 text-center mb-4 mt-6">We are Flye Shop</h1> -->
-	<!-- <p class="text-center text-gray-600 text-xl mb-4">Awesome shop</p> -->
-	<!-- <div class="flex w-7xl max-w-full aspect-[2/1] px-6 mx-auto gap-6 justify-center overflow-hidden">
-			<div class="h-full aspect-square  overflow-hidden relative">
-				<img
-					src="https://loremflickr.com/640/640/dog"
-					alt=""
-					class="brightness-50"
-				>
-				<div class="absolute text-white w-[60%] aspect-square top-[50%] left-[50%] -translate-[50%]">
-					<h2 class="font-bold text-5xl mb-4">Services</h2>
-					<p class="text-lg mb-4 text-gray-100">Find your best services</p>
-					<button
-						class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
-					>Get Now!</button>
-				</div>
-			</div>
-			<div class="h-full aspect-square overflow-hidden relative">
-				<img
-					src="https://loremflickr.com/640/640/paris"
-					alt=""
-					class="brightness-50"
-				>
-				<div class="absolute top-[50%] left-[50%] -translate-[50%] w-[60%] text-white aspect-square">
-					<h2 class="text-5xl font-bold mb-4">Find Jobs</h2>
-					<p class="text-lg mb-4 text-gray-100">Get money from your skills</p>
-					<button
-						class="border-2 bg-transparent px-3.5 py-2.5 cursor-pointer hover:bg-black hover:text-white transition-colors "
-					>Find Now!</button>
-				</div>
-			</div>
-		</div> -->
 </app-section>
 <app-section>
 	<div class="w-5xl max-w-full mx-auto">
@@ -167,7 +148,8 @@
 		<p class="mb-8 text-lg text-gray-500">New cool men clothings.
 		</p>
 
-		<app-carousel [values]="menData">
+		@if (men$ | async; as men) {
+		<app-carousel [values]="men">
 			<ng-template
 				#itemTemplate
 				let-item
@@ -175,6 +157,7 @@
 				<app-product-card [product]="item" />
 			</ng-template>
 		</app-carousel>
+		}
 	</div>
 </app-section>
 <app-section>
@@ -183,7 +166,9 @@
 		<p class="mb-8 text-lg text-gray-500">New beautiful and eye-catching women clothings.
 		</p>
 
-		<app-carousel [values]="womenData">
+		@if (women$ | async; as women) {
+
+		<app-carousel [values]="women">
 			<ng-template
 				#itemTemplate
 				let-item
@@ -191,6 +176,7 @@
 				<app-product-card [product]="item"></app-product-card>
 			</ng-template>
 		</app-carousel>
+		}
 	</div>
 </app-section>
 <app-section>
@@ -198,8 +184,9 @@
 		<h2 class="text-4xl font-bold  mb-1">Kid's Latest</h2>
 		<p class="mb-8 text-lg text-gray-500">New comfortable and cute kid's clothing.
 		</p>
+		@if (kids$ | async; as kids) {
 
-		<app-carousel [values]="kidsData">
+		<app-carousel [values]="kids">
 			<ng-template
 				#itemTemplate
 				let-item
@@ -207,6 +194,7 @@
 				<app-product-card [product]="item"></app-product-card>
 			</ng-template>
 		</app-carousel>
+		}
 	</div>
 </app-section>
 

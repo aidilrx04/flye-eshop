@@ -7,23 +7,29 @@ import { NavbarComponent } from '../core/navbar/navbar.component';
 import { ProductCardComponent } from '../core/product-card/product-card.component';
 import { ProductModel } from '../../models/product.model';
 import { ProductCategory } from '../../enums/product-category';
+import { RouterLink } from '@angular/router';
+import { map, Observable, take } from 'rxjs';
+import { ProductService } from '../../services/product.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-landing',
   imports: [
     CarouselComponent,
     SectionComponent,
-    FooterComponent,
-    NavbarComponent,
     ProductCardComponent,
+    RouterLink,
+    AsyncPipe,
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css',
 })
 export class LandingComponent {
-  menData = this.generateCarouselData();
-  womenData = this.generateCarouselData();
-  kidsData = this.generateCarouselData();
+  constructor(private productService: ProductService) {}
+
+  men$!: Observable<ProductModel[]>;
+  women$!: Observable<ProductModel[]>;
+  kids$!: Observable<ProductModel[]>;
 
   footerData = {
     address: `${faker.location.streetAddress({ useFullAddress: true })}, ${faker.location.city()}, ${faker.location.country()}`,
@@ -31,32 +37,36 @@ export class LandingComponent {
 
   ngOnInit() {
     // console.log(this.firstCarousel);
-  }
 
-  generateCarouselData() {
-    const amount = 10;
-
-    const result: ProductModel[] = [];
-    for (let i = 0; i < amount; i++) {
-      const title = `${faker.commerce.productAdjective()} ${faker.commerce.product()}`;
-      const price = Number(faker.commerce.price());
-      const rating = faker.number.float({ min: 1, max: 2, fractionDigits: 1 });
-      const imageUrl = faker.image.urlLoremFlickr();
-
-      result.push({
-        image_urls: [imageUrl],
-        name: title,
-        rating,
-        price,
-        created_at: new Date(),
-        updated_at: new Date(),
-        description: '',
-        tagline: '',
-        id: -1,
-        category: ProductCategory.MEN,
-      });
-    }
-
-    return result;
+    this.men$ = this.productService
+      .getProducts({
+        filter: {
+          category: ProductCategory.MEN,
+        },
+      })
+      .pipe(
+        map((value) => value.data),
+        take(12),
+      );
+    this.women$ = this.productService
+      .getProducts({
+        filter: {
+          category: ProductCategory.WOMEN,
+        },
+      })
+      .pipe(
+        map((value) => value.data),
+        take(12),
+      );
+    this.kids$ = this.productService
+      .getProducts({
+        filter: {
+          category: ProductCategory.KID,
+        },
+      })
+      .pipe(
+        map((value) => value.data),
+        take(12),
+      );
   }
 }
