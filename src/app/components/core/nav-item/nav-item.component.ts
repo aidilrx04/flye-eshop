@@ -4,7 +4,7 @@ import { NavItemModel } from './nav-item.model';
 import { NavItemType } from './nav-item-type';
 
 @Component({
-  selector: 'admin-nav-item',
+  selector: 'dashboard-nav-item',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav-item.component.html',
   styleUrl: './nav-item.component.css',

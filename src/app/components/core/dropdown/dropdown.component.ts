@@ -1,10 +1,9 @@
-import { CommonModule, NgComponentOutlet } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, ContentChild, TemplateRef } from '@angular/core';
-import { OutletContext } from '@angular/router';
 
 @Component({
   selector: 'app-dropdown',
-  imports: [CommonModule, NgComponentOutlet],
+  imports: [CommonModule],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.css',
 })

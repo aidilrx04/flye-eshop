@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavItemModel } from '../../core/nav-item/nav-item.model';
-import { NavItemType } from '../../core/nav-item/nav-item-type';
-import { NavItemComponent } from '../../core/nav-item/nav-item.component';
+import { NavItemModel } from '../../nav-item/nav-item.model';
+import { NavItemType } from '../../nav-item/nav-item-type';
+import { DashboardLayoutComponent } from '../dashboard-layout/dashboard-layout.component';
 
 @Component({
   selector: 'app-admin-layout',
-  imports: [RouterOutlet, NavItemComponent],
+  imports: [RouterOutlet, DashboardLayoutComponent],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css',
 })
