@@ -16,6 +16,8 @@ import { MainLayoutComponent } from './components/core/layouts/main-layout/main-
 import { checkAuthenticationGuard } from './guards/check-authentication.guard';
 import { EditProductComponent as AdminEditProductComponent } from './components/admin/edit-product/edit-product.component';
 import { OrderDetailComponent as AdminOrderDetailComponent } from './components/admin/order-detail/order-detail.component';
+import { UserLayoutComponent } from './components/core/layouts/user-layout/user-layout.component';
+import { DashboardComponent as UserDashboardComponent } from './components/user/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -84,6 +86,17 @@ export const routes: Routes = [
           {
             path: '',
             component: AdminDashboardComponent,
+          },
+        ],
+      },
+      {
+        path: 'profile',
+        component: UserLayoutComponent,
+        canActivate: [ensureAuthenticatedGuard],
+        children: [
+          {
+            path: '',
+            component: UserDashboardComponent,
           },
         ],
       },
