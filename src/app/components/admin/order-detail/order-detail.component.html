@@ -1,0 +1,85 @@
+@if (order$ | async; as order) {
+<div class="grid grid-cols-12 gap-8">
+	<div class="col-span-8">
+		<div class="bg-white mb-8 p-8">
+			<h1 class="text-2xl font-semibold mb-2">Order #{{order.id}}</h1>
+			<p class="text-gray-500 mb-8">Detail of order #{{order.id}}</p>
+
+			<div class="details">
+				<div class="row mb-8">
+					<small class="uppercase font-semibold text-gray-500 block mb-2">STATUS</small>
+					<span>#STATUS</span>
+				</div>
+				<div class="row mb-8">
+					<small class="uppercase font-semibold text-gray-500 block mb-2">USER</small>
+					<span>{{order.user.full_name}}</span>
+				</div>
+				<div class="mb-8">
+					<small class="uppercase font-semibold text-gray-500 block mb-2">SHIPPING ADDRESS</small>
+					<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat quisquam alias et minima
+						nostrum
+						eligendi eius quam culpa in tempore dolores vitae quae temporibus incidunt, commodi unde quod
+						illo?
+						Quos.</span>
+				</div>
+				<div>
+					<small class="uppercase font-semibold text-gray-500 block mb-2">Order Date</small>
+					<span>{{order.created_at}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="bg-white mb-8 p-8">
+			<h2 class="mb-8 font-semibold text-2xl">Items</h2>
+			<table class="w-full">
+				<thead class="border-y border-gray-200 text-sm text-gray-500 uppercase text-left">
+					<tr>
+						<th class="px-2 py-4 font-semibold">Product Name</th>
+						<th class="px-2 py-4 font-semibold">Quantity</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (item of order.items; track $index) {
+					<tr class="border-b border-gray-200">
+						<td class="p-2">
+							<div class="flex gap-4">
+								<img
+									[src]="item.product.image_urls[0]"
+									alt=""
+									class="size-24"
+								>
+								<span>{{item.product.name}}</span>
+							</div>
+						</td>
+						<td class="p-2 ">{{item.quantity}}</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-span-4">
+		<div class="bg-white p-8 mb-8">
+			<h2 class="text-2xl font-semibold mb-8">Payment Details</h2>
+			<table class="w-full">
+				<tbody>
+					<tr class="text-gray-500">
+						<td class="pb-2">Subtotal</td>
+						<td class="pb-2 text-end">{{order.total - order.total * 0.08}}</td>
+					</tr>
+					<tr class="text-gray-500">
+						<td class="pb-4">Tax (8%)</td>
+						<td class="pb-4 text-end">{{order.total * 0.08}}</td>
+					</tr>
+					<tr class="text-lg">
+						<td class="font-semibold">
+							Total
+						</td>
+						<td class="font-semibold text-end">{{order.total}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+}

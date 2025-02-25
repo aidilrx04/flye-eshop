@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import { map, tap } from 'rxjs';
 import { CartItemModel } from '../models/cart-item.model';
 import { CreateOrderItemModel } from '../models/create-order-item.model';
+import { OrderWithUserModel } from '../models/order-with-user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,22 @@ export class OrderService {
   getOrders() {
     return this.http
       .get<ApiResponseModel<OrderModel[]>>(`${environment.apiUrl}/orders`)
+      .pipe(map((value) => value.data));
+  }
+
+  getOrderWithUsers() {
+    return this.http
+      .get<
+        ApiResponseModel<OrderWithUserModel[]>
+      >(`${environment.apiUrl}/orders?include=user`)
+      .pipe(map((value) => value.data));
+  }
+
+  getOrderWithUser(orderId: number) {
+    return this.http
+      .get<
+        ApiResponseModel<OrderWithUserModel>
+      >(`${environment.apiUrl}/orders/${orderId}?include=user`)
       .pipe(map((value) => value.data));
   }
 }

@@ -3,6 +3,7 @@ import { OrderService } from '../../../services/order.service';
 import { Observable } from 'rxjs';
 import { OrderModel } from '../../../models/order.model';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { OrderWithUserModel } from '../../../models/order-with-user.model';
 
 @Component({
   selector: 'app-orders',
@@ -13,10 +14,10 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 export class OrdersComponent {
   constructor(private orderService: OrderService) {}
 
-  orders$!: Observable<OrderModel[]>;
+  orders$!: Observable<OrderWithUserModel[]>;
 
   ngOnInit() {
-    this.orders$ = this.orderService.getOrders();
+    this.orders$ = this.orderService.getOrderWithUsers();
     this.orders$.subscribe((val) => {
       console.log(val);
     });

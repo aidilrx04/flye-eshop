@@ -15,6 +15,7 @@ import { ensureAuthenticatedGuard } from './guards/ensure-authenticated.guard';
 import { MainLayoutComponent } from './components/core/layouts/main-layout/main-layout.component';
 import { checkAuthenticationGuard } from './guards/check-authentication.guard';
 import { EditProductComponent as AdminEditProductComponent } from './components/admin/edit-product/edit-product.component';
+import { OrderDetailComponent as AdminOrderDetailComponent } from './components/admin/order-detail/order-detail.component';
 
 export const routes: Routes = [
   {
@@ -63,6 +64,10 @@ export const routes: Routes = [
           {
             path: 'orders',
             component: AdminOrdersComponent,
+          },
+          {
+            path: 'orders/:orderId',
+            component: AdminOrderDetailComponent,
           },
           {
             path: 'products/create',
