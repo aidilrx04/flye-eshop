@@ -49,6 +49,6 @@ export class SingleProductComponent {
 
   async onAddToCart() {
     const product = await firstValueFrom(this.product$);
-    this.cartService.addProduct(product, Number(this.amount.value));
+    this.cartService.addItem(product, Number(this.amount.value));
   }
 }

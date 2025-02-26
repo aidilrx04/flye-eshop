@@ -1,10 +1,10 @@
+@if (product$ | async; as product) {
 <app-section>
-	<app-hero></app-hero>
+	<app-hero [title]="product.name"></app-hero>
 </app-section>
 
 <div class="w-5xl max-w-full mx-auto mb-20">
 	<div class="grid grid-cols-[2fr_1fr] gap-8">
-		@if (product$ | async; as product) {
 		<div class="flex flex-col gap-8">
 			@for (imageUrl of product.image_urls; track $index) {
 			<img
@@ -60,6 +60,6 @@
 				>Add To Cart</button>
 			</div>
 		</div>
-		}
 	</div>
 </div>
+}

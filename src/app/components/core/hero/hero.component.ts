@@ -7,5 +7,5 @@ import { Component, input } from '@angular/core';
   styleUrl: './hero.component.css',
 })
 export class HeroComponent {
-  title = input.required<string>();
+  title = input<string>('');
 }

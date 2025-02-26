@@ -1,39 +1,123 @@
 import { Injectable } from '@angular/core';
 import { ProductModel } from '../models/product.model';
 import { CartItemModel } from '../models/cart-item.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable } from 'rxjs';
+import { AuthService } from './auth.service';
+import { HttpClient } from '@angular/common/http';
+import { ApiResponseModel } from '../models/api-response.model';
+import { environment } from '../../environments/environment';
+import { LocalCartItemModel } from '../models/local-cart-item.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  constructor() {
-    const stored = localStorage.getItem('flye-cart');
-    // this.items = stored ? JSON.parse(stored) : [];
-    if (stored) {
-      this.items$.next(JSON.parse(stored));
+  keyName = 'flye-cart';
+
+  private itemsSubject = new BehaviorSubject<LocalCartItemModel[]>([]);
+  items$ = this.itemsSubject.asObservable();
+
+  isUserLoggedIn = false;
+
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient,
+  ) {
+    this.isUserLoggedIn = authService.isLoggedIn();
+
+    // get local data
+    const stored = localStorage.getItem(this.keyName);
+    const localItems = JSON.parse(stored ?? '[]') as LocalCartItemModel[];
+
+    if (this.isUserLoggedIn === false) {
+      // local only :(
+      this.itemsSubject.next(localItems);
+      this.items$.subscribe((value) => {
+        localStorage.setItem(this.keyName, JSON.stringify(value));
+      });
+      return;
     }
+
+    // sync local data
+
+    const request =
+      localItems.length > 0
+        ? this.syncCartItems(
+            localItems.map((item) => ({
+              product_id: item.product.id,
+              quantity: item.quantity,
+            })),
+          )
+        : new Observable((sb) => sb.next([]));
+
+    request
+      .pipe(
+        catchError(() => {
+          // ignore any error from the request
+          return [];
+        }),
+      )
+      .subscribe(() => {
+        // clear localStorage
+        localStorage.removeItem(this.keyName);
+        this.getCartItems()
+          .pipe(
+            catchError(() => {
+              // ignore any error from the request
+              console.warn('Failed to get cart items.');
+              return [];
+            }),
+          )
+          .subscribe((items) => {
+            console.log(items);
+            this.itemsSubject.next(items);
+          });
+      });
   }
 
-  items$ = new BehaviorSubject<CartItemModel[]>([]);
-
-  addProduct(product: ProductModel, quantity: number) {
-    // this.items.push({ product, quantity });
-    this.items$.next([...this.items$.value, { product, quantity }]);
-    this.saveCart();
+  private syncCartItems(
+    localItems: { quantity: number; product_id: number }[],
+  ) {
+    return this.http.post<ApiResponseModel<CartItemModel[]>>(
+      `${environment.apiUrl}/carts/bulkSave`,
+      { items: localItems },
+    );
   }
 
-  removeProduct(item: CartItemModel) {
-    // this.items = this.items.filter((v) => v !== item);
-    this.items$.next(this.items$.value.filter((v) => v !== item));
-    this.saveCart();
+  private getCartItems() {
+    return this.http
+      .get<ApiResponseModel<CartItemModel[]>>(`${environment.apiUrl}/carts`)
+      .pipe(map((value) => value.data));
   }
 
-  private saveCart() {
-    localStorage.setItem('flye-cart', JSON.stringify(this.items$.value));
+  addItem(product: ProductModel, quantity: number) {
+    if (this.isUserLoggedIn === false) {
+      this.itemsSubject.next([
+        ...this.itemsSubject.value,
+        {
+          product,
+          quantity,
+        },
+      ]);
+
+      return;
+    }
+
+    this.createItem(product, quantity).subscribe((value) => {
+      this.itemsSubject.next([...this.itemsSubject.value, value]);
+    });
   }
 
-  clearCart() {
-    this.items$.next([]);
+  private createItem(product: ProductModel, quantity: number) {
+    return this.http
+      .post<ApiResponseModel<CartItemModel>>(`${environment.apiUrl}/carts`, {
+        product_id: product.id,
+        quantity,
+      })
+      .pipe(map((value) => value.data));
+  }
+
+  removeItem(item: LocalCartItemModel) {
+    this.itemsSubject.next(this.itemsSubject.value.filter((i) => i !== item));
   }
 }

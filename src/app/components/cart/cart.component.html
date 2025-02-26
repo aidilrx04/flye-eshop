@@ -70,10 +70,24 @@
 					</tbody>
 				</table>
 
+				@if (isUserLoggedIn()) {
+
 				<button
 					(click)="onCheckout()"
 					class="block w-full bg-gray-800 text-white py-2.5 px-3.5"
 				>Checkout</button>
+				}
+				@else {
+
+				<a
+					routerLink="/signin"
+					[queryParams]="{
+					redirect: router.url
+				}"
+					class="block w-full bg-gray-800 text-white py-2.5 px-3.5 text-center"
+				>Sign In</a>
+				}
+
 			</div>
 		</div>
 	</div>

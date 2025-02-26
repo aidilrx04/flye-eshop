@@ -1,21 +1,22 @@
 import { Component, computed, signal } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { CartItemModel } from '../../models/cart-item.model';
 import { SectionComponent } from '../core/section/section.component';
 import { OrderService } from '../../services/order.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { LocalCartItemModel } from '../../models/local-cart-item.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-cart',
-  imports: [SectionComponent, AsyncPipe],
+  imports: [SectionComponent, AsyncPipe, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
 export class CartComponent {
-  items$!: Observable<CartItemModel[]>;
-  selected = signal<CartItemModel[]>([]);
+  items$!: Observable<LocalCartItemModel[]>;
+  selected = signal<LocalCartItemModel[]>([]);
   subtotal = computed(() =>
     this.selected().reduce(
       (acc, item) => acc + item.product.price * item.quantity,
@@ -24,15 +25,18 @@ export class CartComponent {
   );
   tax = computed(() => this.subtotal() * 0.08);
   total = computed(() => this.subtotal() + this.tax());
+  isUserLoggedIn = signal(false);
 
   constructor(
     private cartService: CartService,
     private orderService: OrderService,
-    private router: Router,
+    protected router: Router,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
-    this.items$ = this.cartService.items$.asObservable();
+    this.items$ = this.cartService.items$;
+    this.isUserLoggedIn.set(this.authService.isLoggedIn());
   }
 
   onCheckout() {
@@ -47,9 +51,6 @@ export class CartComponent {
       )
       .subscribe((value) => {
         console.log(value);
-        for (const item of this.selected()) {
-          this.cartService.removeProduct(item);
-        }
         this.router.navigate(['/order/success']);
       });
   }
