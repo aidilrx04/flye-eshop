@@ -41,10 +41,6 @@ export class RemoteCartService extends CartService {
         this.itemsSubject.next(value);
         console.log('remote cart service init completed');
       });
-
-    this.items$.subscribe((v) => {
-      console.log('items', v);
-    });
   }
 
   public override addItem(product: ProductModel, quantity: number): void {
