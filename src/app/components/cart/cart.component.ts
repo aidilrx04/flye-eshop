@@ -7,6 +7,7 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { LocalCartItemModel } from '../../models/local-cart-item.model';
 import { AuthService } from '../../services/auth.service';
+import { RemoteCartService } from '../../services/remote-cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -46,7 +47,7 @@ export class CartComponent {
       .createOrder(this.selected().map((v) => v.id!))
       .subscribe((value) => {
         console.log(value);
-        this.cartService.refresh();
+        (this.cartService as RemoteCartService).refresh();
         this.router.navigate(['/order/success']);
       });
   }
@@ -66,5 +67,13 @@ export class CartComponent {
         return v !== items[index];
       });
     });
+  }
+
+  removeItem(item: LocalCartItemModel) {
+    const confirmed = confirm('Remove this item from cart?');
+
+    if (confirmed === false) return;
+
+    this.cartService.removeItem(item);
   }
 }
