@@ -60,18 +60,7 @@ export class CartService {
       .subscribe(() => {
         // clear localStorage
         localStorage.removeItem(this.keyName);
-        this.getCartItems()
-          .pipe(
-            catchError(() => {
-              // ignore any error from the request
-              console.warn('Failed to get cart items.');
-              return [];
-            }),
-          )
-          .subscribe((items) => {
-            console.log(items);
-            this.itemsSubject.next(items);
-          });
+        this.loadItems();
       });
   }
 
@@ -119,5 +108,24 @@ export class CartService {
 
   removeItem(item: LocalCartItemModel) {
     this.itemsSubject.next(this.itemsSubject.value.filter((i) => i !== item));
+  }
+
+  private loadItems() {
+    this.getCartItems()
+      .pipe(
+        catchError(() => {
+          // ignore any error from the request
+          console.warn('Failed to get cart items.');
+          return [];
+        }),
+      )
+      .subscribe((items) => {
+        console.log(items);
+        this.itemsSubject.next(items);
+      });
+  }
+
+  refresh() {
+    this.loadItems();
   }
 }

@@ -43,14 +43,10 @@ export class CartComponent {
     if (this.selected().length === 0) alert('Please select an item');
 
     this.orderService
-      .createOrder(
-        this.selected().map((v) => ({
-          quantity: v.quantity,
-          product_id: v.product.id,
-        })),
-      )
+      .createOrder(this.selected().map((v) => v.id!))
       .subscribe((value) => {
         console.log(value);
+        this.cartService.refresh();
         this.router.navigate(['/order/success']);
       });
   }
