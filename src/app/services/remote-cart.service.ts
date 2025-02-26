@@ -56,7 +56,7 @@ export class RemoteCartService extends CartService {
     return this.http.post<ApiResponseModel<CartItemModel[]>>(
       `${environment.apiUrl}/carts`,
       {
-        product,
+        product_id: product.id,
         quantity,
       },
     );

@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { SectionComponent } from '../core/section/section.component';
 import { OrderService } from '../../services/order.service';
@@ -8,14 +8,31 @@ import { AsyncPipe } from '@angular/common';
 import { LocalCartItemModel } from '../../models/local-cart-item.model';
 import { AuthService } from '../../services/auth.service';
 import { RemoteCartService } from '../../services/remote-cart.service';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LoadingComponent } from '../core/loading/loading.component';
 
 @Component({
   selector: 'app-cart',
-  imports: [SectionComponent, AsyncPipe, RouterLink],
+  imports: [
+    SectionComponent,
+    AsyncPipe,
+    RouterLink,
+    ReactiveFormsModule,
+    LoadingComponent,
+  ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
 export class CartComponent {
+  constructor(
+    private cartService: CartService,
+    private orderService: OrderService,
+    protected router: Router,
+    private authService: AuthService,
+  ) {}
+
+  private form = inject(FormBuilder);
+
   items$!: Observable<LocalCartItemModel[]>;
   selected = signal<LocalCartItemModel[]>([]);
   subtotal = computed(() =>
@@ -27,13 +44,8 @@ export class CartComponent {
   tax = computed(() => this.subtotal() * 0.08);
   total = computed(() => this.subtotal() + this.tax());
   isUserLoggedIn = signal(false);
-
-  constructor(
-    private cartService: CartService,
-    private orderService: OrderService,
-    protected router: Router,
-    private authService: AuthService,
-  ) {}
+  shippingAddress = this.form.control('', [Validators.required]);
+  isCheckingOut = signal(false);
 
   ngOnInit() {
     this.items$ = this.cartService.items$;
@@ -41,10 +53,22 @@ export class CartComponent {
   }
 
   onCheckout() {
-    if (this.selected().length === 0) alert('Please select an item');
+    if (this.selected().length === 0) {
+      alert('Please select an item');
+      return;
+    }
 
+    if (this.shippingAddress.invalid) {
+      alert('Please fill the shipping address');
+      return;
+    }
+
+    this.isCheckingOut.set(true);
     this.orderService
-      .createOrder(this.selected().map((v) => v.id!))
+      .createOrder({
+        items: this.selected().map((v) => v.id!),
+        shipping_address: this.shippingAddress.value!,
+      })
       .subscribe((value) => {
         console.log(value);
         (this.cartService as RemoteCartService).refresh();

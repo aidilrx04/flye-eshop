@@ -1,11 +1,17 @@
 <app-section>
 	<div class="mx-auto w-5xl mb-20 max-w-full">
+		@if (isCheckingOut()) {
+		<div class="h-36">
+			<app-loading label="Processing..."></app-loading>
+		</div>
+		}
+		@else {
 		<div class="grid grid-cols-12 gap-8  ">
 			<div class="col-span-8">
 				<h1 class="text-2xl font-semibold mb-2">Your Cart</h1>
 				<p class="text-gray-500 mb-8">All items in your cart</p>
 
-				<table class="w-full">
+				<table class="w-full mb-8">
 					<thead class="uppercase text-sm text-gray-600 border-y border-gray-400 text-left">
 						<tr>
 							<th class="font-normal py-4 px-4">Check</th>
@@ -56,47 +62,64 @@
 						}
 					</tbody>
 				</table>
+
+				<div class="mb-8">
+					<label
+						for=""
+						class="block mb-2 text-gray-500  text-sm"
+					>Shipping Address</label>
+					<textarea
+						name=""
+						id=""
+						class="block w-full border h-24 px-3.5 py-2.5"
+						placeholder="123 Example Street"
+						[formControl]="shippingAddress"
+					></textarea>
+				</div>
 			</div>
-			<div class="col-span-4">
-				<h2 class="text-2xl mb-2 font-semibold">Checkout</h2>
-				<p class="mb-8 text-gray-600">Click checkout once you're ready</p>
+			<div class="col-span-4 relative">
+				<div class="sticky top-24 left-0">
+					<h2 class="text-2xl mb-2 font-semibold">Checkout</h2>
+					<p class="mb-8 text-gray-600">Click checkout once you're ready</p>
 
-				<table class="w-full mb-8">
-					<tbody>
-						<tr class="text-gray-600">
-							<td>Subtotal</td>
-							<td class="text-right">{{subtotal()}}</td>
-						</tr>
-						<tr class="text-gray-600">
-							<td>Tax (8%)</td>
-							<td class="text-right">{{tax()}}</td>
-						</tr>
-						<tr class="text-semibold text-lg">
-							<td>Total</td>
-							<td class="text-right">{{total()}}</td>
-						</tr>
-					</tbody>
-				</table>
+					<table class="w-full mb-8">
+						<tbody>
+							<tr class="text-gray-600">
+								<td>Subtotal</td>
+								<td class="text-right">{{subtotal()}}</td>
+							</tr>
+							<tr class="text-gray-600">
+								<td>Tax (8%)</td>
+								<td class="text-right">{{tax()}}</td>
+							</tr>
+							<tr class="text-semibold text-lg">
+								<td>Total</td>
+								<td class="text-right">{{total()}}</td>
+							</tr>
+						</tbody>
+					</table>
 
-				@if (isUserLoggedIn()) {
+					@if (isUserLoggedIn()) {
 
-				<button
-					(click)="onCheckout()"
-					class="block w-full bg-gray-800 text-white py-2.5 px-3.5"
-				>Checkout</button>
-				}
-				@else {
+					<button
+						(click)="onCheckout()"
+						class="block w-full bg-gray-800 text-white py-2.5 px-3.5"
+					>Checkout</button>
+					}
+					@else {
 
-				<a
-					routerLink="/signin"
-					[queryParams]="{
-					redirect: router.url
-				}"
-					class="block w-full bg-gray-800 text-white py-2.5 px-3.5 text-center"
-				>Sign In</a>
-				}
+					<a
+						routerLink="/signin"
+						[queryParams]="{
+							redirect: router.url
+						}"
+						class="block w-full bg-gray-800 text-white py-2.5 px-3.5 text-center"
+					>Sign In</a>
+					}
+				</div>
 
 			</div>
 		</div>
+		}
 	</div>
 </app-section>

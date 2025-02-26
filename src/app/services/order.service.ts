@@ -12,11 +12,9 @@ import { OrderWithUserModel } from '../models/order-with-user.model';
 export class OrderService {
   constructor(private http: HttpClient) {}
 
-  createOrder(items: number[]) {
+  createOrder(form: { items: number[]; shipping_address: string }) {
     return this.http
-      .post<ApiResponseModel<OrderModel>>(`${environment.apiUrl}/orders`, {
-        items,
-      })
+      .post<ApiResponseModel<OrderModel>>(`${environment.apiUrl}/orders`, form)
       .pipe(map((value) => value.data));
   }
 
