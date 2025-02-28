@@ -19,6 +19,7 @@ import { OrderDetailComponent as AdminOrderDetailComponent } from './components/
 import { UserLayoutComponent } from './components/core/layouts/user-layout/user-layout.component';
 import { DashboardComponent as UserDashboardComponent } from './components/user/dashboard/dashboard.component';
 import { OrdersComponent as UserOrdersComponent } from './components/user/orders/orders.component';
+import { OrderStatusComponent } from './components/order-status/order-status.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,10 @@ export const routes: Routes = [
         path: '',
         component: MainLayoutComponent,
         children: [
+          {
+            path: 'order/status',
+            component: OrderStatusComponent,
+          },
           {
             path: 'order/success',
             component: OrderSuccessfulComponent,

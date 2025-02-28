@@ -39,4 +39,14 @@ export class OrderService {
       >(`${environment.apiUrl}/orders/${orderId}?include=user`)
       .pipe(map((value) => value.data));
   }
+
+  updateOrderStatus(statusId: number, orderId: number) {
+    const params = new URLSearchParams();
+    params.append('status_id', statusId.toString());
+    params.append('order_id', orderId.toString());
+    return this.http.post(
+      `${environment.apiUrl}/orders/status?${params.toString()}`,
+      null,
+    );
+  }
 }
