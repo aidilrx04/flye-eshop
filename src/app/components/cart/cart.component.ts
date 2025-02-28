@@ -72,7 +72,9 @@ export class CartComponent {
       .subscribe((value) => {
         console.log(value);
         (this.cartService as RemoteCartService).refresh();
-        this.router.navigate(['/order/success']);
+        // this.router.navigate(['/order/success']);
+        // go to payment page
+        window.location.href = value.payment.url;
       });
   }
 
