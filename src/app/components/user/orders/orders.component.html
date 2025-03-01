@@ -25,17 +25,17 @@
 						}"
 					>
 						<img
-							src="https://loremflickr.com/360/360?a"
+							[src]="order.items[0].product.image_urls[0]"
 							alt=""
 							class="size-8 rounded-full"
 						>
-						<span>Men T XL</span>
+						<span>{{order.items[0].product.name}}</span>
 					</div>
 					@if (order.items.length > 1) {
 					<span class="text-sm text-gray-500">and {{order.items.length - 1}} more...</span>
 					}
 				</td>
-				<td class="px-2 py-4">#STATUS</td>
+				<td class="px-2 py-4"><app-order-badge [status]="order.status"></app-order-badge></td>
 				<td class="px-2 py-4">
 					$ {{order.total}}
 				</td>

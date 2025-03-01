@@ -6,6 +6,9 @@ import { DropdownComponent } from '../../core/dropdown/dropdown.component';
 import { DropdownItemComponent } from '../../core/dropdown-item/dropdown-item.component';
 import { RouterLink } from '@angular/router';
 import { OrderService } from '../../../services/order.service';
+import { AdminLayoutComponent } from "../../core/layouts/admin-layout/admin-layout.component";
+import { OrderStatusComponent } from "../../order-status/order-status.component";
+import { OrderBadgeComponent } from "../../core/order-badge/order-badge.component";
 
 @Component({
   selector: 'app-orders',
@@ -15,7 +18,10 @@ import { OrderService } from '../../../services/order.service';
     DropdownItemComponent,
     RouterLink,
     CommonModule,
-  ],
+    AdminLayoutComponent,
+    OrderStatusComponent,
+    OrderBadgeComponent
+],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css',
 })
