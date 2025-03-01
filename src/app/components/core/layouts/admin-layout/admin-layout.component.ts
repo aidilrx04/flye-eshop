@@ -40,5 +40,15 @@ export class AdminLayoutComponent {
       href: '/admin/orders',
       icon: 'ph ph-squares-four',
     },
+    {
+      label: 'Users',
+      type: NavItemType.HEADER,
+    },
+    {
+      label: 'All Users',
+      type: NavItemType.LINK,
+      href: '/admin/users',
+      icon: 'ph ph-users',
+    },
   ];
 }

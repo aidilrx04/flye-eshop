@@ -5,18 +5,18 @@
 		<table class="table w-full">
 			<thead>
 				<tr class="text-left border-y-1 border-gray-200">
-					<th class="px-2 py-5 uppercase text-sm font-semibold">Product Name</th>
-					<th class="px-2 py-5 uppercase text-sm font-semibold">Price</th>
-					<th class="px-2 py-5 uppercase text-sm font-semibold">Rating</th>
-					<th class="px-2 py-5 uppercase text-sm font-semibold">Sold</th>
-					<th class="px-2 py-5 uppercase text-sm font-semibold">Actions</th>
+					<th class="px-4 py-5 uppercase text-sm font-semibold">Product Name</th>
+					<th class="px-4 py-5 uppercase text-sm font-semibold">Price</th>
+					<th class="px-4 py-5 uppercase text-sm font-semibold">Rating</th>
+					<th class="px-4 py-5 uppercase text-sm font-semibold">Sold</th>
+					<th class="px-4 py-5 uppercase text-sm font-semibold">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				@if (products$ | async; as products) {
 				@for (product of products; track $index) {
 				<tr class="not-first:border-t border-gray-200">
-					<td class="px-2 py-4 flex items-center justify-start gap-2 text-gray-600">
+					<td class="px-4 py-4 flex items-center justify-start gap-2 text-gray-600">
 						<ul class="flex relative w-fit">
 							@for (image_url of product.image_urls.reverse(); track $index) {
 							<li
@@ -35,7 +35,7 @@
 						</ul>
 						<span>{{product.name}}</span>
 					</td>
-					<td class="px-2 py-4 text-gray-600">
+					<td class="px-4 py-4 text-gray-600">
 						$ {{product.price}}
 					</td>
 					<td class="px-4 py-4 text-gray-600">

@@ -48,9 +48,7 @@ export class SigninComponent {
 
       complete: () => {
         console.log('signed in');
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        window.location.reload();
       },
     });
   }

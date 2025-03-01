@@ -21,6 +21,7 @@ import { DashboardComponent as UserDashboardComponent } from './components/user/
 import { OrdersComponent as UserOrdersComponent } from './components/user/orders/orders.component';
 import { OrderStatusComponent } from './components/order-status/order-status.component';
 import { SignoutComponent } from './components/signout/signout.component';
+import { UsersComponent as AdminUsersComponent } from './components/admin/users/users.component';
 
 export const routes: Routes = [
   {
@@ -93,6 +94,10 @@ export const routes: Routes = [
           {
             path: 'products/:productId/edit',
             component: AdminEditProductComponent,
+          },
+          {
+            path: 'users',
+            component: AdminUsersComponent,
           },
           {
             path: '',
