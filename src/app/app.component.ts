@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { LoadingComponent } from './components/core/loading/loading.component';
 import { filter, zip } from 'rxjs';
+import { ModalComponent } from "./components/core/modal/modal.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoadingComponent],
+  imports: [RouterOutlet, LoadingComponent, ModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -1,0 +1,19 @@
+@if (modal$ | async; as modalTemplate) {
+<div
+	(click)="closeCurrentModal()"
+	class="fixed top-0 left-0 size-full z-20 grid place-items-center"
+>
+	<div class="absolute size-full bg-gray-800 opacity-10 top-0 left-0"></div>
+	<div
+		(click)="$event.stopPropagation()"
+		class="bg-white shadow-xl border border-gray-200 relative"
+	>
+		<ng-container
+			[ngTemplateOutlet]="modalTemplate"
+			[ngTemplateOutletContext]="{
+			close: closeModalTemplate.bind(this)
+		}"
+		></ng-container>
+	</div>
+</div>
+}
