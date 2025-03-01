@@ -15,7 +15,7 @@
 		<tbody>
 			@if (orders$ | async; as orders) {
 			@for (order of orders; track $index) {
-			<tr class="border-b border-gray-200">
+			<tr class="border-b border-gray-200 cursor-pointer hover:bg-gray-100">
 				<td class="text-center px-2 py-4">{{order.id}}</td>
 				<td class="px-2 py-4">
 					<div

@@ -18,8 +18,6 @@ import { OrderBadgeComponent } from "../../core/order-badge/order-badge.componen
     DropdownItemComponent,
     RouterLink,
     CommonModule,
-    AdminLayoutComponent,
-    OrderStatusComponent,
     OrderBadgeComponent
 ],
   templateUrl: './orders.component.html',
