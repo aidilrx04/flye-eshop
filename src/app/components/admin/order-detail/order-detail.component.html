@@ -11,54 +11,11 @@
 					<div class="flex gap-8 items-center">
 						<app-order-badge [status]="order.status"></app-order-badge>
 						<button
-							(click)="toggleModal()"
+							(click)="openStatusModal()"
 							type="button"
 						><i class="ph ph-pencil text-lg"></i></button>
 					</div>
-					<div
-						class="fixed top-0 left-0 hidden place-items-center size-full [.opened]:grid"
-						[ngClass]="{
-						'opened': isModalOpen()
-					}"
-					>
-						<div class="absolute bg-gray-900 opacity-20 top-0 left-0 size-full"></div>
-						<div class="relative bg-white border border-gray-200 shadow">
-							<span class="text-xl p-4 block mb-2 border-b border-gray-200">Update Order Status</span>
-							<ul class="text-start">
-								@for (data of updateData; track $index) {
-								<li>
-									<button
-										type="button"
-										(click)="setCurrentCheckedStatus(data.status)"
-										class="grid w-full grid-cols-[min-content_1fr] text-left border-b border-gray-200 px-4 py-2 items-center gap-x-4 gap-y-2 cursor-pointer hover:bg-gray-100
-										[.checked]:bg-gray-200
-										"
-										[ngClass]=" {
-											'checked': currentCheckedStatus() !== order.status ? currentCheckedStatus() === data.status  : order.status === data.status
-										}
-										"
-									>
-										<i [class]="data.icon + ' ' + data.color"></i>
-										<span [class]="data.color">{{data.label}}</span>
-										<span></span>
-										<p class="text-sm text-gray-500">{{data.description}}</p>
-									</button>
-								</li>
-								}
-							</ul>
-							<div class="flex items-center gap-4 justify-end py-2 px-4">
-								<button
-									type="button"
-									(click)="toggleModal()"
-									class="text-gray-500 font-semibold uppercase px-3.5 py-1.5 cursor-pointer hover:bg-gray-100"
-								>Cancel</button>
-								<button
-									(click)="updateOrderStatus()"
-									class="text-white bg-gray-800 font-semibold uppercase px-3.5 py-1.5 cursor-pointer hover:bg-gray-600"
-								>Update</button>
-							</div>
-						</div>
-					</div>
+
 				</div>
 				<div class="row mb-8">
 					<small class="uppercase font-semibold text-gray-500 block mb-2">USER</small>
@@ -129,3 +86,51 @@
 	</div>
 </div>
 }
+
+<ng-template
+	#statusTemplate
+	let-closeModal="close"
+>
+
+	<span class="text-xl p-4 block mb-2 border-b border-gray-200">Update Order Status</span>
+	<ul class="text-start">
+		@if (order$ | async; as order) {
+		@for (data of updateData; track $index) {
+		<li>
+			<button
+				type="button"
+				(click)="setCurrentCheckedStatus(data.status)"
+				class="grid w-full grid-cols-[min-content_1fr] text-left border-b border-gray-200 px-4 py-2 items-center gap-x-4 gap-y-2 cursor-pointer hover:bg-gray-100
+										[.checked]:bg-gray-200
+										"
+				[ngClass]=" {
+											'checked': currentCheckedStatus() !== order.status ? currentCheckedStatus() === data.status  : order.status === data.status
+										}
+										"
+			>
+				<i [class]="data.icon + ' ' + data.color"></i>
+				<span [class]="data.color">{{data.label}}</span>
+				<span></span>
+				<p class="text-sm text-gray-500">{{data.description}}</p>
+			</button>
+		</li>
+		}
+		}
+		@else {
+		<li class="py-4">
+			<app-loading></app-loading>
+		</li>
+		}
+	</ul>
+	<div class="flex items-center gap-4 justify-end py-2 px-4">
+		<button
+			type="button"
+			(click)="closeModal()"
+			class="text-gray-500 font-semibold uppercase px-3.5 py-1.5 cursor-pointer hover:bg-gray-100"
+		>Cancel</button>
+		<button
+			(click)="updateOrderStatus()"
+			class="text-white bg-gray-800 font-semibold uppercase px-3.5 py-1.5 cursor-pointer hover:bg-gray-600"
+		>Update</button>
+	</div>
+</ng-template>

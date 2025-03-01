@@ -1,22 +1,15 @@
-import {
-  Component,
-  Input,
-  signal,
-  TemplateRef,
-  viewChild,
-  WritableSignal,
-} from '@angular/core';
-import { BehaviorSubject, firstValueFrom, Observable, switchMap } from 'rxjs';
+import { Component, Input } from '@angular/core';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { OrderModel } from '../../../models/order.model';
 import { OrderService } from '../../../services/order.service';
 import { OrderBadgeComponent } from '../../core/order-badge/order-badge.component';
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { OrderStatus } from '../../../enums/order-status';
 import { Router } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-order-detail',
-  imports: [OrderBadgeComponent, AsyncPipe, NgTemplateOutlet],
+  imports: [OrderBadgeComponent, AsyncPipe],
   templateUrl: './order-detail.component.html',
   styleUrl: './order-detail.component.css',
 })

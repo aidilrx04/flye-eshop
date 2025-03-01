@@ -1,4 +1,11 @@
-import { Component, Input, signal } from '@angular/core';
+import {
+  Component,
+  Input,
+  signal,
+  TemplateRef,
+  viewChild,
+  ViewChild,
+} from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
 import { OrderModel } from '../../../models/order.model';
 import { OrderWithUserModel } from '../../../models/order-with-user.model';
@@ -6,6 +13,8 @@ import { OrderService } from '../../../services/order.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { OrderBadgeComponent } from '../../core/order-badge/order-badge.component';
 import { OrderStatus } from '../../../enums/order-status';
+import { ModalService } from '../../../services/modal.service';
+import { LoadingComponent } from "../../core/loading/loading.component";
 
 export interface UpdateOrderStatusData {
   status: OrderStatus;
@@ -17,12 +26,15 @@ export interface UpdateOrderStatusData {
 
 @Component({
   selector: 'app-order-detail',
-  imports: [AsyncPipe, OrderBadgeComponent, CommonModule],
+  imports: [AsyncPipe, OrderBadgeComponent, CommonModule, LoadingComponent],
   templateUrl: './order-detail.component.html',
   styleUrl: './order-detail.component.css',
 })
 export class OrderDetailComponent {
-  constructor(private orderService: OrderService) {}
+  constructor(
+    private orderService: OrderService,
+    private modalService: ModalService,
+  ) {}
 
   order$!: Observable<OrderWithUserModel>;
 
@@ -71,8 +83,8 @@ export class OrderDetailComponent {
     },
   ];
 
-  isModalOpen = signal(false);
   currentCheckedStatus = signal<OrderStatus>(OrderStatus.PENDING);
+  statusTemplate = viewChild<TemplateRef<any>>('statusTemplate');
 
   @Input()
   set orderId(orderId: number) {
@@ -89,9 +101,10 @@ export class OrderDetailComponent {
     });
   }
 
-  toggleModal() {
-    this.isModalOpen.update((state) => !state);
+  openStatusModal() {
+    this.modalService.openModal(this.statusTemplate()!);
   }
+
   setCurrentCheckedStatus(status: OrderStatus) {
     this.currentCheckedStatus.update(() => status);
   }
