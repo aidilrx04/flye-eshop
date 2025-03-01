@@ -5,6 +5,7 @@ import { OrderModel } from '../models/order.model';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs';
 import { OrderWithUserModel } from '../models/order-with-user.model';
+import { OrderStatus } from '../enums/order-status';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +41,7 @@ export class OrderService {
       .pipe(map((value) => value.data));
   }
 
-  updateOrderStatus(statusId: number, orderId: number) {
+  updatePaymentStatus(statusId: number, orderId: number) {
     const params = new URLSearchParams();
     params.append('status_id', statusId.toString());
     params.append('order_id', orderId.toString());
@@ -48,5 +49,13 @@ export class OrderService {
       `${environment.apiUrl}/orders/status?${params.toString()}`,
       null,
     );
+  }
+
+  updateOrder(orderId: number, newOrder: Partial<OrderModel>) {
+    return this.http
+      .post<
+        ApiResponseModel<OrderModel>
+      >(`${environment.apiUrl}/orders/${orderId}?_method=PUT`, newOrder)
+      .pipe(map((value) => value.data));
   }
 }

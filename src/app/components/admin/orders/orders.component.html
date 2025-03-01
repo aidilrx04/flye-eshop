@@ -7,6 +7,7 @@
 			<tr>
 				<th class="font-semibold px-2 py-4">ID</th>
 				<th class="font-semibold px-2 py-4">Client</th>
+				<th class="font-semibold px-2 py-4">Status</th>
 				<th class="font-semibold px-2 py-4">Product(s)</th>
 				<th class="font-semibold px-2 py-4">Total</th>
 				<th class="font-semibold px-2 py-4">Actions</th>
@@ -18,6 +19,7 @@
 			<tr class="border-b border-gray-200">
 				<td class="text-center px-2 py-4">{{order.id}}</td>
 				<td class="px-2 py-4">{{order.user.full_name}}</td>
+				<td class="px-2 py-4"><app-order-badge [status]="order.status"></app-order-badge></td>
 				<td class="px-2 py-4">
 					<div
 						class="product flex gap-2 items-center"
@@ -26,11 +28,11 @@
 					}"
 					>
 						<img
-							src="https://loremflickr.com/360/360?a"
+							[src]="order.items[0].product.image_urls[0]"
 							alt=""
 							class="size-8 rounded-full"
 						>
-						<span>Men T XL</span>
+						<span>{{order.items[0].product.name}}</span>
 					</div>
 					@if (order.items.length > 1) {
 					<span class="text-sm text-gray-500">and {{order.items.length - 1}} more...</span>

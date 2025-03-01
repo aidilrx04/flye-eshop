@@ -7,6 +7,7 @@ import { OrderWithUserModel } from '../../../models/order-with-user.model';
 import { DropdownComponent } from '../../core/dropdown/dropdown.component';
 import { DropdownItemComponent } from '../../core/dropdown-item/dropdown-item.component';
 import { RouterLink } from '@angular/router';
+import { OrderBadgeComponent } from "../../core/order-badge/order-badge.component";
 
 @Component({
   selector: 'app-orders',
@@ -16,7 +17,8 @@ import { RouterLink } from '@angular/router';
     DropdownComponent,
     DropdownItemComponent,
     RouterLink,
-  ],
+    OrderBadgeComponent
+],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css',
 })

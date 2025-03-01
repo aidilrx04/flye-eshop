@@ -40,7 +40,7 @@ export class OrderStatusComponent {
   }
   updateOrderStatus(statusId: number, orderId: number) {
     this.orderService
-      .updateOrderStatus(statusId, orderId)
+      .updatePaymentStatus(statusId, orderId)
       .subscribe((value) => {
         console.log(value);
       });

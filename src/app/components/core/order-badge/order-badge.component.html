@@ -1,0 +1,9 @@
+<span
+	[class]="data().background + ' ' + data().color"
+	[ngClass]="{
+	'px-2 flex gap-2 w-fit items-center rounded-full text-sm py-1 font-semibold': true
+}"
+>
+	<i [class]="data().icon"></i>
+	<span>{{status()}}</span>
+</span>
