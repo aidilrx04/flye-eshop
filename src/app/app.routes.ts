@@ -22,6 +22,7 @@ import { OrdersComponent as UserOrdersComponent } from './components/user/orders
 import { OrderStatusComponent } from './components/order-status/order-status.component';
 import { SignoutComponent } from './components/signout/signout.component';
 import { UsersComponent as AdminUsersComponent } from './components/admin/users/users.component';
+import { OrderDetailComponent as UserOrderDetailComponent } from './components/user/order-detail/order-detail.component';
 
 export const routes: Routes = [
   {
@@ -113,6 +114,10 @@ export const routes: Routes = [
           {
             path: 'orders',
             component: UserOrdersComponent,
+          },
+          {
+            path: 'orders/:orderId',
+            component: UserOrderDetailComponent,
           },
           {
             path: '',

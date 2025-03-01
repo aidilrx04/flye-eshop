@@ -37,6 +37,11 @@ export class OrderBadgeComponent {
       color: 'text-white',
       icon: 'ph ph-check-fat',
     },
+    [OrderStatus.CANCELLED]: {
+      background: 'bg-red-500',
+      color: 'text-white',
+      icon: 'ph ph-x',
+    },
   };
 
   data = computed(() => this.STATUS_DATA[this.status()]);

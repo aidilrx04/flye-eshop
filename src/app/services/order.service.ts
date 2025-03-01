@@ -58,4 +58,12 @@ export class OrderService {
       >(`${environment.apiUrl}/orders/${orderId}?_method=PUT`, newOrder)
       .pipe(map((value) => value.data));
   }
+
+  getOrder(orderId: number) {
+    return this.http
+      .get<
+        ApiResponseModel<OrderModel>
+      >(`${environment.apiUrl}/orders/${orderId}`)
+      .pipe(map((value) => value.data));
+  }
 }

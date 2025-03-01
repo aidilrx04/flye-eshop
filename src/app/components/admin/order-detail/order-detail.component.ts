@@ -62,6 +62,13 @@ export class OrderDetailComponent {
       icon: 'ph ph-check-fat',
       color: 'text-blue-500',
     },
+    {
+      status: OrderStatus.CANCELLED,
+      label: 'Cancelled',
+      description: 'Order has been cancelled',
+      icon: 'ph ph-x',
+      color: 'text-red-500',
+    },
   ];
 
   isModalOpen = signal(false);
