@@ -6,15 +6,14 @@ import {
   viewChild,
   ViewChild,
 } from '@angular/core';
-import { firstValueFrom, Observable } from 'rxjs';
-import { OrderModel } from '../../../models/order.model';
+import { BehaviorSubject, firstValueFrom, Observable, switchMap } from 'rxjs';
 import { OrderWithUserModel } from '../../../models/order-with-user.model';
 import { OrderService } from '../../../services/order.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { OrderBadgeComponent } from '../../core/order-badge/order-badge.component';
 import { OrderStatus } from '../../../enums/order-status';
 import { ModalService } from '../../../services/modal.service';
-import { LoadingComponent } from "../../core/loading/loading.component";
+import { LoadingComponent } from '../../core/loading/loading.component';
 
 export interface UpdateOrderStatusData {
   status: OrderStatus;
@@ -36,6 +35,7 @@ export class OrderDetailComponent {
     private modalService: ModalService,
   ) {}
 
+  private orderSubject!: BehaviorSubject<OrderWithUserModel>;
   order$!: Observable<OrderWithUserModel>;
 
   updateData: UpdateOrderStatusData[] = [
@@ -88,16 +88,12 @@ export class OrderDetailComponent {
 
   @Input()
   set orderId(orderId: number) {
-    this.order$ = this.orderService.getOrderWithUser(orderId);
-
-    this.order$.subscribe((order) => {
-      this.currentCheckedStatus.set(order.status);
-    });
-  }
-
-  ngOnInit() {
-    this.order$.subscribe((value) => {
-      console.log(value);
+    this.orderService.getOrderWithUser(orderId).subscribe((value) => {
+      this.orderSubject = new BehaviorSubject(value);
+      this.order$ = this.orderSubject.asObservable();
+      this.order$.subscribe((order) => {
+        this.currentCheckedStatus.set(order.status);
+      });
     });
   }
 
@@ -117,10 +113,14 @@ export class OrderDetailComponent {
       .updateOrder(order.id, {
         status: status,
       })
+      .pipe(switchMap(() => this.orderService.getOrder(order.id)))
       .subscribe((v) => {
-        console.log(v);
-        console.log('order updated');
-        window.location.reload();
+        this.orderSubject.next({
+          ...this.orderSubject.value,
+          ...v,
+        });
+
+        this.modalService.closeCurrentModal();
       });
   }
 }
