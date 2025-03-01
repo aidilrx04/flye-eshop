@@ -77,4 +77,8 @@ export class AuthService {
   isLoggedIn() {
     return !!this.userSubject.value;
   }
+
+  signOut() {
+    return this.http.post<any>(`${environment.apiUrl}/auth/signout`, null);
+  }
 }

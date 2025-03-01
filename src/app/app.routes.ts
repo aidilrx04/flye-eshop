@@ -20,6 +20,7 @@ import { UserLayoutComponent } from './components/core/layouts/user-layout/user-
 import { DashboardComponent as UserDashboardComponent } from './components/user/dashboard/dashboard.component';
 import { OrdersComponent as UserOrdersComponent } from './components/user/orders/orders.component';
 import { OrderStatusComponent } from './components/order-status/order-status.component';
+import { SignoutComponent } from './components/signout/signout.component';
 
 export const routes: Routes = [
   {
@@ -49,6 +50,10 @@ export const routes: Routes = [
           {
             path: 'signup',
             component: SignupComponent,
+          },
+          {
+            path: 'signout',
+            component: SignoutComponent,
           },
           {
             path: 'products',

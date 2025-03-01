@@ -35,40 +35,13 @@
 						>{{itemInCartAmount}}</span>
 					</a>
 				</li>
-				@if (hasLoggedIn ) {
+				@for (navItem of (hasLoggedIn ? navItems.user : navItems.guest); track $index) {
 				<li>
 					<a
-						href="#"
-						class="[.active]:text-gray-400 font-semibold"
-					>Profile</a>
-				</li>
-				<li>
-					<a
-						routerLink="/admin"
+						[routerLink]="navItem.href"
 						routerLinkActive="active"
 						class="[.active]:text-gray-400 font-semibold"
-					>Admin</a>
-				</li>
-				}
-				@else {
-
-				<li>
-					<a
-						routerLink="/signin"
-						routerLinkActive="active"
-						class="[.active]:text-gray-400 font-semibold"
-					>
-						Sign In
-					</a>
-				</li>
-				<li>
-					<a
-						routerLink="/signup"
-						routerLinkActive="active"
-						class="[.active]:text-gray-400 font-semibold"
-					>
-						Sign Up
-					</a>
+					>{{navItem.label}}</a>
 				</li>
 				}
 			</nav>

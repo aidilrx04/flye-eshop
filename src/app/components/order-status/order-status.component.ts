@@ -27,6 +27,7 @@ export class OrderStatusComponent {
         const statusId = params.get('status_id');
 
         if (orderId !== null && statusId !== null) {
+          // TODO(aidil): disable this call on production mode
           this.updateOrderStatus(Number(statusId), Number(orderId));
         }
       }),
