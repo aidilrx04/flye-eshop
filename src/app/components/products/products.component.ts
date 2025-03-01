@@ -1,22 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, TemplateRef, ViewChild } from '@angular/core';
 import { SectionComponent } from '../core/section/section.component';
 import { HeroComponent } from '../core/hero/hero.component';
 import { faker } from '@faker-js/faker';
 import { ProductCardComponent } from '../core/product-card/product-card.component';
 import { ProductService } from '../../services/product.service';
-import {
-  BehaviorSubject,
-  map,
-  Observable,
-  shareReplay,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { map, Observable, shareReplay, switchMap, tap } from 'rxjs';
 import { ProductModel } from '../../models/product.model';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Link, Meta } from '../../models/api-response-paginate.model';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { ProductCategory } from '../../enums/product-category';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-products',
