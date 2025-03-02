@@ -1,0 +1,27 @@
+@if (meta$ | async; as meta) {
+@if (url$ | async; as url) {
+<div class="flex justify-between">
+	<p class="text-gray-500">
+		Showing result <span class="text-gray-800">{{meta.from}}</span> to <span
+			class="text-gray-800">{{meta.to}}</span> of <span class="text-gray-800">{{meta.total}}</span>
+	</p>
+	<div class="flex">
+		@for (link of meta.links; track $index) {
+		<a
+			class="text-gray-500 [.disabled]:text-gray-500  font-semibold hover:text-gray-800 block px-2 py-0.5 [.active]:text-gray-800"
+			[routerLink]="url"
+			[queryParams]="getQueryParam({
+				page: $index !== 0 && $index !== meta.links.length - 1 ? link.label : $index === 0 ? meta.current_page === 1 ? 1 : meta.current_page -1 : meta.current_page + 1
+			})
+			"
+			[ngClass]="{
+					active: link.active,
+					disabled: meta.links[$index].url === null
+				}"
+			[innerHTML]="link.label"
+		></a>
+		}
+	</div>
+</div>
+}
+}
