@@ -1,8 +1,5 @@
-export function isNumberOr(value: any, fallback = 0) {
-  const toNumber = Number(value);
-  const isNan = Number.isNaN(toNumber);
+import isNumber from 'is-number';
 
-  if (isNan) return fallback;
-
-  return toNumber;
+export function isNumberOr(value: any, fallback = 0): number {
+  return isNumber(value) ? Number(value) : fallback;
 }

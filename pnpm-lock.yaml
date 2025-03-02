@@ -35,6 +35,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.0.6
         version: 4.0.6
+      is-number:
+        specifier: ^7.0.0
+        version: 7.0.0
       postcss:
         specifier: ^8.5.2
         version: 8.5.2
@@ -63,6 +66,9 @@ importers:
       '@faker-js/faker':
         specifier: ^9.5.0
         version: 9.5.0
+      '@types/is-number':
+        specifier: ^7.0.5
+        version: 7.0.5
       '@types/jasmine':
         specifier: ~5.1.0
         version: 5.1.6
@@ -1693,6 +1699,9 @@ packages:
 
   '@types/http-proxy@1.17.16':
     resolution: {integrity: sha512-sdWoUajOB1cd0A8cRRQ1cfyWNbmFKLAqBB89Y8x5iYyG/mkJHc0YUH8pdWBy2omi9qtCpiIgGjuwO0dQST2l5w==}
+
+  '@types/is-number@7.0.5':
+    resolution: {integrity: sha512-NGmRpXeZg9qDX+AlmBeq4Xk9ruTMj0KfzspDCxTLAcpbts2EjojAvY6A1eumKHInMwGY4xHM8ILA9CHRHfUUWA==}
 
   '@types/jasmine@5.1.6':
     resolution: {integrity: sha512-JDwKwipGFDwf021BtRTuluYe1aMDNimtO72ygPrVXnZSC8Df2V22AHeIgGa84tbF4SLkRvN+dJnlV8aMwQjkVw==}
@@ -6168,6 +6177,8 @@ snapshots:
   '@types/http-proxy@1.17.16':
     dependencies:
       '@types/node': 22.13.4
+
+  '@types/is-number@7.0.5': {}
 
   '@types/jasmine@5.1.6': {}
 

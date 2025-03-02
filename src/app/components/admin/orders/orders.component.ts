@@ -40,7 +40,7 @@ export class OrdersComponent {
       .pipe(
         switchMap((params) =>
           this.orderService.getOrders<OrderWithUserModel>({
-            includes: ['user'],
+            include: ['user'],
             page: isNumberOr(params.get('page'), 1),
           }),
         ),
