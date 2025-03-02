@@ -14,7 +14,9 @@
 				<table class="w-full mb-8">
 					<thead class="uppercase text-sm text-gray-600 border-y border-gray-400 text-left">
 						<tr>
-							<th class="font-normal py-4 px-4">Check</th>
+							<th class="font-normal py-4 px-4">
+								Check
+							</th>
 							<th class="font-normal py-4 px-4">Product</th>
 							<th class="font-normal py-4 px-4">Quantity</th>
 							<th class="font-normal py-4 px-4">Amount</th>
@@ -32,7 +34,6 @@
 										id=""
 										[attr.data-index]="$index"
 										(change)="onSelected($event)"
-										[checked]="$index == 0"
 									>
 									<button
 										class="cursor-pointer"
@@ -56,7 +57,7 @@
 								</div>
 							</td>
 							<td class="px-4 py-2 text-center text-gray-600">{{item.quantity}}</td>
-							<td class="px-4 py-2 text-center">{{item.quantity * item.product.price}}</td>
+							<td class="px-4 py-2 text-center">{{tcurrency(item.quantity * item.product.price)}}</td>
 						</tr>
 						}
 						}

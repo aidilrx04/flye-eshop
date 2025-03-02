@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
 import { RemoteCartService } from '../../services/remote-cart.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoadingComponent } from '../core/loading/loading.component';
+import { currency } from '../../utils/currency';
 
 @Component({
   selector: 'app-cart',
@@ -37,15 +38,18 @@ export class CartComponent {
   selected = signal<LocalCartItemModel[]>([]);
   subtotal = computed(() =>
     this.selected().reduce(
-      (acc, item) => acc + item.product.price * item.quantity,
+      (acc, item) =>
+        currency(acc + currency(item.product.price * item.quantity)),
       0,
     ),
   );
-  tax = computed(() => this.subtotal() * 0.08);
-  total = computed(() => this.subtotal() + this.tax());
+  tax = computed(() => currency(this.subtotal() * 0.08));
+  total = computed(() => currency(this.subtotal() + this.tax()));
   isUserLoggedIn = signal(false);
   shippingAddress = this.form.control('', [Validators.required]);
   isCheckingOut = signal(false);
+
+  tcurrency = currency;
 
   ngOnInit() {
     this.items$ = this.cartService.items$;
