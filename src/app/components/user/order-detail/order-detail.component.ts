@@ -6,6 +6,7 @@ import { OrderBadgeComponent } from '../../core/order-badge/order-badge.componen
 import { OrderStatus } from '../../../enums/order-status';
 import { Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import { currency } from '../../../utils/currency';
 
 @Component({
   selector: 'app-order-detail',
@@ -19,6 +20,7 @@ export class OrderDetailComponent {
     private router: Router,
   ) {}
 
+  fcurrency = currency;
   private orderSubject!: BehaviorSubject<OrderModel>;
   order$!: Observable<OrderModel>;
 

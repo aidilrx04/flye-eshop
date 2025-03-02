@@ -9,6 +9,7 @@ import { ProductService } from '../../services/product.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
+import { currency } from '../../utils/currency';
 
 @Component({
   selector: 'app-single-product',
@@ -21,6 +22,8 @@ export class SingleProductComponent {
     private productService: ProductService,
     private cartService: CartService,
   ) {}
+
+  fcurrency = currency;
 
   product$!: Observable<ProductModel>;
 

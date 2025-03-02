@@ -101,11 +101,11 @@
 				<tbody>
 					<tr class="text-gray-500">
 						<td class="pb-2">Subtotal</td>
-						<td class="pb-2 text-end">{{order.total - order.total * 0.08}}</td>
+						<td class="pb-2 text-end">{{fcurrency(order.total - order.total * 0.08)}}</td>
 					</tr>
 					<tr class="text-gray-500">
 						<td class="pb-4">Tax (8%)</td>
-						<td class="pb-4 text-end">{{order.total * 0.08}}</td>
+						<td class="pb-4 text-end">{{fcurrency(order.total * 0.08)}}</td>
 					</tr>
 					<tr class="text-lg">
 						<td class="font-semibold">

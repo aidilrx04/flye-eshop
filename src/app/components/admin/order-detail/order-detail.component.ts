@@ -14,6 +14,7 @@ import { OrderBadgeComponent } from '../../core/order-badge/order-badge.componen
 import { OrderStatus } from '../../../enums/order-status';
 import { ModalService } from '../../../services/modal.service';
 import { LoadingComponent } from '../../core/loading/loading.component';
+import { currency } from '../../../utils/currency';
 
 export interface UpdateOrderStatusData {
   status: OrderStatus;
@@ -34,6 +35,8 @@ export class OrderDetailComponent {
     private orderService: OrderService,
     private modalService: ModalService,
   ) {}
+
+  fcurrency = currency;
 
   private orderSubject!: BehaviorSubject<OrderWithUserModel>;
   order$!: Observable<OrderWithUserModel>;
