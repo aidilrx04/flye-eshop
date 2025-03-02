@@ -35,7 +35,8 @@
 						>{{itemInCartAmount}}</span>
 					</a>
 				</li>
-				@for (navItem of (hasLoggedIn ? navItems.user : navItems.guest); track $index) {
+				@for (navItem of (hasLoggedIn ? role === Role.ADMIN ? navItems.admin : navItems.user : navItems.guest);
+				track $index) {
 				<li>
 					<a
 						[routerLink]="navItem.href"

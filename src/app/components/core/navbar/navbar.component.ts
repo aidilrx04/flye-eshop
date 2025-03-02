@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { CartService } from '../../../services/cart.service';
 import { NavItemModel } from '../nav-item/nav-item.model';
 import { NavItemType } from '../nav-item/nav-item-type';
+import { UserRole } from '../../../enums/user-role';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,11 @@ export class NavbarComponent {
     private cartService: CartService,
   ) {}
 
-  navItems: { guest: NavItemModel[]; user: NavItemModel[] } = {
+  navItems: {
+    guest: NavItemModel[];
+    user: NavItemModel[];
+    admin: NavItemModel[];
+  } = {
     guest: [
       {
         label: 'Sign In',
@@ -37,6 +42,13 @@ export class NavbarComponent {
         href: '/profile',
       },
       {
+        label: 'Sign Out',
+        type: NavItemType.LINK,
+        href: '/signout',
+      },
+    ],
+    admin: [
+      {
         label: 'Admin',
         type: NavItemType.LINK,
         href: '/admin',
@@ -49,11 +61,15 @@ export class NavbarComponent {
     ],
   };
 
+  Role = UserRole;
+
   hasLoggedIn = false;
   itemInCartAmount = 0;
+  role: UserRole | undefined = undefined;
 
   ngOnInit() {
     this.hasLoggedIn = this.authService.isLoggedIn();
+    this.role = this.authService.getUser()?.role;
 
     this.cartService.items$.subscribe((value) => {
       this.itemInCartAmount = value.length;

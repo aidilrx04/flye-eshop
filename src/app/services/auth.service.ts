@@ -23,25 +23,14 @@ export class AuthService {
     }
 
     return this.http
-      .post(`${environment.apiUrl}/auth/verify`, null, {
+      .post<UserModel>(`${environment.apiUrl}/auth/verify`, null, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
       .pipe(
-        tap((response: { [key: string]: any }) => {
-          this.userSubject.next({
-            id: response?.['id'] ?? -1,
-            full_name: response?.['full_name'] ?? '',
-            email: response?.['email'] ?? '',
-            email_verified_at: response?.['email_verified_at'] ?? null,
-            created_at: response?.['created_at']
-              ? new Date(response?.['created_at'])
-              : new Date(0),
-            updated_at: response?.['updated_at']
-              ? new Date(response?.['updated_at'])
-              : new Date(0),
-          });
+        tap((response) => {
+          this.userSubject.next(response);
           this.initCompletedSubject.next(true);
         }),
         catchError((error) => {

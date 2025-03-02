@@ -23,6 +23,7 @@ import { OrderStatusComponent } from './components/order-status/order-status.com
 import { SignoutComponent } from './components/signout/signout.component';
 import { UsersComponent as AdminUsersComponent } from './components/admin/users/users.component';
 import { OrderDetailComponent as UserOrderDetailComponent } from './components/user/order-detail/order-detail.component';
+import { ensureUserIsAdminGuard } from './guards/ensure-user-is-admin.guard';
 
 export const routes: Routes = [
   {
@@ -74,7 +75,7 @@ export const routes: Routes = [
       {
         path: 'admin',
         component: AdminLayoutComponent,
-        canActivate: [ensureAuthenticatedGuard],
+        canActivate: [ensureAuthenticatedGuard, ensureUserIsAdminGuard],
         children: [
           {
             path: 'orders',
