@@ -1,9 +1,8 @@
 import { Params } from '@angular/router';
 
-export interface QueryModel<T = { [key: string]: any }> {
+export interface QueryModel<T = Params> {
   page?: number;
   sort?: string[];
   filter?: Partial<T>;
   include?: string[];
-  extras?: Params;
 }

@@ -21,7 +21,7 @@ export class MetaService {
       this.querySubject.next({
         page: isNumberOr(params.get('page'), 1),
         filter: params.keys
-          .filter((key) => key.startsWith('filter'))
+          .filter((key) => !exclude.includes(key))
           .map((key) => [key, params.get(key)])
           .reduce<{ [key: string]: any }>((acc, key) => {
             acc[key[0]!] = key[1];
@@ -29,13 +29,6 @@ export class MetaService {
           }, {}),
         sort: (params.get('sort') ?? '').split(','),
         include: (params.get('include') ?? '').split(','),
-        extras: params.keys
-          .filter((key) => !key.startsWith('filter'))
-          .filter((key) => !exclude.includes(key))
-          .reduce<{ [key: string]: any }>((acc, key) => {
-            acc[key] = params.get(key);
-            return acc;
-          }, {}),
       });
     });
   }
