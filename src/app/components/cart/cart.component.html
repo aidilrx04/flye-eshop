@@ -78,18 +78,18 @@
 					></textarea>
 				</div>
 			</div>
-			<div class="col-span-4 /relative fixed bottom-0 left-0 w-full bg-white p-4">
+			<div class="col-span-4 fixed lg:relative bottom-0 left-0 w-full bg-white p-4">
 				<div class="sticky top-24 left-0">
 					<h2 class="text-2xl mb-2 font-semibold">Checkout</h2>
-					<p class="mb-8 text-gray-600 hidden">Click checkout once you're ready</p>
+					<p class="mb-8 text-gray-600 hidden lg:block">Click checkout once you're ready</p>
 
 					<table class="w-full mb-8">
 						<tbody>
-							<tr class="text-gray-600 hidden">
+							<tr class="text-gray-600 hidden lg:table-row">
 								<td>Subtotal</td>
 								<td class="text-right">{{subtotal()}}</td>
 							</tr>
-							<tr class="text-gray-600 hidden">
+							<tr class="text-gray-600 hidden lg:table-row">
 								<td>Tax (8%)</td>
 								<td class="text-right">{{tax()}}</td>
 							</tr>
