@@ -1,12 +1,12 @@
 <app-section>
-	<div class="mx-auto w-5xl mb-20 max-w-full">
+	<div class="mx-auto w-5xl mb-20 max-w-full px-4">
 		@if (isCheckingOut()) {
 		<div class="h-36">
 			<app-loading label="Processing..."></app-loading>
 		</div>
 		}
 		@else {
-		<div class="grid grid-cols-12 gap-8  ">
+		<div class="grid lg:grid-cols-12 gap-8">
 			<div class="col-span-8">
 				<h1 class="text-2xl font-semibold mb-2">Your Cart</h1>
 				<p class="text-gray-500 mb-8">All items in your cart</p>
@@ -48,7 +48,7 @@
 									<img
 										[src]="item.product.image_urls[0]"
 										alt=""
-										class="w-24 aspect-square object-cover"
+										class="w-16 sm:w-24  aspect-square object-cover"
 									>
 									<div>
 										<span class="block capitalize mb-4">{{item.product.name}}</span>
@@ -78,18 +78,18 @@
 					></textarea>
 				</div>
 			</div>
-			<div class="col-span-4 relative">
+			<div class="col-span-4 /relative fixed bottom-0 left-0 w-full bg-white p-4">
 				<div class="sticky top-24 left-0">
 					<h2 class="text-2xl mb-2 font-semibold">Checkout</h2>
-					<p class="mb-8 text-gray-600">Click checkout once you're ready</p>
+					<p class="mb-8 text-gray-600 hidden">Click checkout once you're ready</p>
 
 					<table class="w-full mb-8">
 						<tbody>
-							<tr class="text-gray-600">
+							<tr class="text-gray-600 hidden">
 								<td>Subtotal</td>
 								<td class="text-right">{{subtotal()}}</td>
 							</tr>
-							<tr class="text-gray-600">
+							<tr class="text-gray-600 hidden">
 								<td>Tax (8%)</td>
 								<td class="text-right">{{tax()}}</td>
 							</tr>

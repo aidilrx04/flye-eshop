@@ -2,11 +2,11 @@
 	<app-hero [title]="categoryLabel()"></app-hero>
 </app-section>
 
-<div class="w-5xl max-w-full mb-20 mx-auto">
+<div class="w-5xl max-w-full mb-20 mx-auto px-4">
 	<h1 class="text-center text-3xl font-bold mb-2">Our Latest Products</h1>
 	<p class="text-center text-lg text-gray-500 mb-8">Check out all of our products</p>
 
-	<div class="grid grid-cols-3  gap-8 mb-8">
+	<div class="grid md:grid-cols-2 lg:grid-cols-3  gap-8 mb-8 transition-all">
 
 		@if (products$ | async; as products) {
 		@for (product of products; track $index) {
@@ -16,7 +16,7 @@
 
 	</div>
 
-	<div class="paginator w-fit mx-auto flex gap-4">
+	<div class="paginator w-fit mx-auto flex gap-4 flex-wrap">
 		@if (pageMeta$ | async; as pageMeta) {
 		@for (link of pageMeta.links; track $index) {
 		@if (isNumberLink(link)) {
@@ -25,7 +25,7 @@
 			routerLink="/products"
 			[queryParams]="{
 						page: link.label,
-						category: categoryLabel() !== 'Category' ? categoryLabel().toUpperCase() : undefined
+						category: categoryLabel() !== 'Explore Our Products' ? categoryLabel().toUpperCase() : undefined
 					}"
 			class="border size-12 text-center flex items-center justify-center [.active]:bg-gray-900 [.active]:text-white"
 			[ngClass]="{

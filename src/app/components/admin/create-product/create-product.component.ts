@@ -63,6 +63,7 @@ export class CreateProductComponent {
   }
 
   onSubmit() {
+    //TODO(aidil): add category to choose
     if (this.images().length === 0) {
       alert('insert at least one image');
       return;

@@ -1,69 +1,72 @@
-<div class="bg-white p-8 mb-8">
+<div class="bg-white px-2 md:px-8 py-8 mb-8">
 	<h1 class="text-2xl mb-2 font-semibold">My Orders</h1>
 	<p class="text-gray-500 mb-8">All my orders</p>
 
-	<table class="w-full mb-4">
-		<thead class="text-gray-500 uppercase border-y border-gray-200 text-sm text-left">
-			<tr>
-				<th class="font-semibold px-2 py-4">ID</th>
-				<th class="font-semibold px-2 py-4">Product(s)</th>
-				<th class="font-semibold px-2 py-4">Status</th>
-				<th class="font-semibold px-2 py-4">Total</th>
-				<th class="font-semibold px-2 py-4">Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			@if (orders$ | async; as orders) {
-			@for (order of orders; track $index) {
-			<tr class="border-b border-gray-200 cursor-pointer hover:bg-gray-100">
-				<td class="text-center px-2 py-4">{{order.id}}</td>
-				<td class="px-2 py-4">
-					<div
-						class="product flex gap-2 items-center"
-						[ngClass]="{
-							'mb-2': order.items.length > 1
-						}"
-					>
-						<img
-							[src]="order.items[0].product.image_urls[0]"
-							alt=""
-							class="size-8 rounded-full"
+	<div class="overflow-x-auto mb-4">
+		<table class="w-full">
+			<thead class="text-gray-500 uppercase border-y border-gray-200 text-sm text-left">
+				<tr>
+					<th class="font-semibold px-2 py-4">ID</th>
+					<th class="font-semibold px-2 py-4">Product(s)</th>
+					<th class="font-semibold px-2 py-4">Status</th>
+					<th class="font-semibold px-2 py-4">Total</th>
+					<th class="font-semibold px-2 py-4">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (orders$ | async; as orders) {
+				@for (order of orders; track $index) {
+				<tr class="border-b border-gray-200 cursor-pointer hover:bg-gray-100">
+					<td class="text-center px-2 py-4">{{order.id}}</td>
+					<td class="px-2 py-4">
+						<div
+							class="product flex gap-2 items-center"
+							[ngClass]="{
+								'mb-2': order.items.length > 1
+							}"
 						>
-						<span>{{order.items[0].product.name}}</span>
-					</div>
-					@if (order.items.length > 1) {
-					<span class="text-sm text-gray-500">and {{order.items.length - 1}} more...</span>
-					}
-				</td>
-				<td class="px-2 py-4"><app-order-badge [status]="order.status"></app-order-badge></td>
-				<td class="px-2 py-4">
-					$ {{order.total}}
-				</td>
-				<td>
-					<app-dropdown>
-						<ng-template #toggler>
-							<button
-								class="size-6 grid place-items-center rounded-full cursor-pointer focus:bg-gray-200">
-								<i class="ph-bold ph-dots-three-vertical text-xl"></i>
-							</button>
-						</ng-template>
-
-						<app-dropdown-item>
-							<a
-								[routerLink]="['/profile/orders/', order.id]"
-								class="px-3.5 py-1 flex items-center gap-2 justify-start w-full hover:bg-gray-100"
+							<img
+								[src]="order.items[0].product.image_urls[0]"
+								alt=""
+								class="size-8 rounded-full"
 							>
-								<i class="ph ph-eye"></i>
-								<span>View</span>
-							</a>
-						</app-dropdown-item>
-					</app-dropdown>
-				</td>
-			</tr>
-			}
-			}
-		</tbody>
-	</table>
+							<span>{{order.items[0].product.name}}</span>
+						</div>
+						@if (order.items.length > 1) {
+						<span class="text-sm text-gray-500">and {{order.items.length - 1}} more...</span>
+						}
+					</td>
+					<td class="px-2 py-4"><app-order-badge [status]="order.status"></app-order-badge></td>
+					<td class="px-2 py-4">
+						$ {{order.total}}
+					</td>
+					<td>
+						<app-dropdown>
+							<ng-template #toggler>
+								<button
+									class="size-6 grid place-items-center rounded-full cursor-pointer focus:bg-gray-200"
+								>
+									<i class="ph-bold ph-dots-three-vertical text-xl"></i>
+								</button>
+							</ng-template>
+
+							<app-dropdown-item>
+								<a
+									[routerLink]="['/profile/orders/', order.id]"
+									class="px-3.5 py-1 flex items-center gap-2 justify-start w-full hover:bg-gray-100"
+								>
+									<i class="ph ph-eye"></i>
+									<span>View</span>
+								</a>
+							</app-dropdown-item>
+						</app-dropdown>
+					</td>
+				</tr>
+				}
+				}
+			</tbody>
+		</table>
+	</div>
 
 	<app-paging></app-paging>
 </div>

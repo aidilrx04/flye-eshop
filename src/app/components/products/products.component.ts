@@ -34,7 +34,7 @@ export class ProductsComponent {
   products$!: Observable<ProductModel[]>;
   pageMeta$!: Observable<Meta>;
 
-  categoryLabel = signal('Category');
+  categoryLabel = signal('Explore Our Products');
 
   ngOnInit() {
     const productsWithMeta$ = this.route.queryParamMap.pipe(

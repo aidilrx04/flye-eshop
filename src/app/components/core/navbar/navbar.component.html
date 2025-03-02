@@ -1,38 +1,62 @@
-<div class="sticky top-0 left-0 bg-white z-10">
-	<div class="container mx-auto max-w-5xl ">
-		<header class="flex justify-between items-center mx-auto py-4">
+<div class="sticky top-0 left-0 bg-white z-20">
+	<div class="container mx-auto max-w-5xl px-4 transition-all relative">
+		<header
+			class="flex justify-between items-center mx-auto py-4 group"
+			[ngClass]="{
+			'nav-opened': isNavOpen()
+		}"
+		>
 			<a
 				href="#"
 				class="text-4xl font-bold"
 			>Flye Shop</a>
-			<nav class="flex list-none gap-8">
+			<button
+				(click)="toggleNav()"
+				class="md:hidden"
+			>
+				<i
+					class="ph text-3xl"
+					[ngClass]="{
+					'ph-list': isNavOpen() === false,
+					'ph-x': isNavOpen() === true
+				}"
+				></i>
+			</button>
+			<nav
+				class="absolute md:static top-full right-0 hidden md:flex group-[.nav-opened]:flex list-none /gap-8  bg-white flex-col md:flex-row w-full md:w-fit">
 				<li class="font-semibold ">
 					<a
 						routerLink="/"
 						routerLinkActive="active"
-						class="[.active]:text-gray-400"
+						class="[.active]:text-gray-400 px-4 py-3 block"
 						[routerLinkActiveOptions]="{exact: true}"
+						#a
 					>Home</a>
 				</li>
 				<li class="font-semibold ">
 					<a
 						routerLink="/products"
 						routerLinkActive="active"
-						class="[.active]:text-gray-400"
+						class="[.active]:text-gray-400 px-4 py-3 block"
+						#a
 					>Explore</a>
 				</li>
-				<li>|</li>
+				<li class="hidden">|</li>
 				<li>
 					<a
 						routerLink="/cart"
 						routerLinkActive="active"
-						class="[.active]:text-gray-400 font-semibold relative"
+						class="[.active]:text-gray-400 font-semibold px-4 py-3 flex gap-4 items-center"
+						#a
 					>
-						<i class="ph ph-shopping-cart text-lg">
-						</i>
-						<span
-							class="absolute -top-2.5 -right-2.5 text-xs size-4 grid place-items-center bg-blue-600 text-white rounded-full"
-						>{{itemInCartAmount}}</span>
+						<span class="relative">
+							<i class="ph ph-shopping-cart text-lg">
+							</i>
+							<span
+								class="absolute -top-2.5 -right-2.5 text-xs size-4 grid place-items-center bg-blue-600 text-white rounded-full"
+							>{{itemInCartAmount}}</span>
+						</span>
+						<span class="md:hidden">Cart</span>
 					</a>
 				</li>
 				@for (navItem of (hasLoggedIn ? role === Role.ADMIN ? navItems.admin : navItems.user : navItems.guest);
@@ -41,7 +65,8 @@
 					<a
 						[routerLink]="navItem.href"
 						routerLinkActive="active"
-						class="[.active]:text-gray-400 font-semibold"
+						class="[.active]:text-gray-400 font-semibold px-4 block py-3"
+						#a
 					>{{navItem.label}}</a>
 				</li>
 				}

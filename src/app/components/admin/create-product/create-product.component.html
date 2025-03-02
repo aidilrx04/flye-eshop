@@ -1,7 +1,7 @@
-<div class="flex gap-8">
+<div class="flex flex-col lg:flex-row gap-8">
 	<div class="w-full">
 		<div class="bg-white mb-8">
-			<div class="p-8">
+			<div class="py-8 px-4 lg:px-8">
 				<h1 class="text-2xl font-semibold mb-2">Create Products</h1>
 				<p class="text-gray-500 mb-8">Create new products for your collections.</p>
 
@@ -66,17 +66,17 @@
 						>Images</label>
 						<small class="text-gray-500 mb-2 block">First image will be used as the thumbnail.</small>
 
-						<div class="grid grid-cols-3 gap-4 min-h-24 bg-gray-100 mb-2">
+						<div class="grid grid-cols-2 lg:grid-cols-3 gap-4 min-h-24 bg-gray-100 mb-2">
 							@for (imageFile of images(); track $index) {
 							<div class="relative w-full bg-gray-200 group hover:bg-gray-800 ">
 								<!-- src="https://cari-kata.aidil.dev/favicon.png" -->
 								<img
 									[src]="imageFile.url"
 									alt=""
-									class="size-full object-cover aspect-square group-hover:brightness-50"
+									class="size-full object-cover aspect-square brightness-50 lg:brightness-100 group-hover:brightness-50"
 								>
 								<div
-									class="absolute top-0 right-0 flex flex-col gap-2 text-white text-lg px-2 opacity-0 group-hover:opacity-100">
+									class="absolute top-0 right-0 flex flex-col gap-2 text-white text-lg px-2 opacity-100 lg:opacity-0 group-hover:opacity-100">
 									<button
 										type="button"
 										(click)="removeImage($index)"
@@ -116,7 +116,7 @@
 		</div>
 	</div>
 	<div class="preview">
-		<div class="w-80">
+		<div class="w-80 max-w-full">
 			<div class="card p-8 bg-white mb-8">
 				<h2 class="text-2xl font-semibold mb-2">Preview</h2>
 				<p class="text-gray-500 mb-8">Preview your product card view</p>

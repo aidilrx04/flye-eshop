@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, ElementRef, input, viewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavItemModel } from './nav-item.model';
 import { NavItemType } from './nav-item-type';
@@ -12,7 +12,13 @@ import { NavItemType } from './nav-item-type';
 export class NavItemComponent {
   item = input.required<NavItemModel>();
 
+  linkRef = viewChild<ElementRef<HTMLAnchorElement> | undefined>('link');
+
   get isHeader() {
     return this.item().type === NavItemType.HEADER;
+  }
+
+  ngAfterViewInit() {
+    // console.log(this.linkRef());
   }
 }

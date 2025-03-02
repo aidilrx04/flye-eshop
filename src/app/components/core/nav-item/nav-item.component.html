@@ -1,18 +1,19 @@
 <li>
 	@if (isHeader) {
-	<div class="flex items-center justify-start gap-2 relative pl-4 text-gray-400 mt-4">
-		<span class="block w-4 h-0 border-b border-gray-300 absolute  top-[50%] -left-2"></span>
-		<span class="">{{item().label}}</span>
+	<div class="flex items-center justify-center gap-2 relative /pl-4 text-gray-400 mt-4">
+		<span class="block w-full /w-4 h-0 border-b border-gray-300 absolute  top-[50%] -left-2"></span>
+		<span class="bg-white relative px-4">{{item().label}}</span>
 	</div>
 	}
 	@else {
 	<a
+		#link
 		[routerLink]="item().href"
 		routerLinkActive="active"
 		[routerLinkActiveOptions]="{
 			exact: true
 		}"
-		class="px-3.5 py-2.5 flex gap-2 items-center justify-start group [.active]:bg-gray-800 [.active]:text-white"
+		class="px-3.5 py-2.5 flex gap-2 items-center justify-start group [.active]:bg-gray-800 [.active]:text-white hover:bg-gray-100"
 	>
 
 		<!-- 

@@ -1,71 +1,72 @@
 <app-section>
+	<div class="px-4">
+		<div class="mx-auto w-lg max-w-full border p-8 border-gray-200">
+			<h1 class="font-bold text-3xl mb-8">Sign Up</h1>
+			<form
+				action=""
+				[formGroup]="signupForm"
+				(ngSubmit)="onSubmit()"
+			>
+				<div class="input-group mb-4">
+					<label
+						for=""
+						class="mb-2 block"
+					>Email</label>
+					<input
+						type="email"
+						class="block border w-full px-3.5 py-2.5"
+						formControlName="email"
+					>
+				</div>
 
-	<div class="mx-auto w-lg max-w-full border p-8 border-gray-200">
-		<h1 class="font-bold text-3xl mb-8">Sign Up</h1>
-		<form
-			action=""
-			[formGroup]="signupForm"
-			(ngSubmit)="onSubmit()"
-		>
-			<div class="input-group mb-4">
-				<label
-					for=""
-					class="mb-2 block"
-				>Email</label>
-				<input
-					type="email"
-					class="block border w-full px-3.5 py-2.5"
-					formControlName="email"
-				>
-			</div>
+				<div class="input-group mb-4">
+					<label
+						for=""
+						class="block mb-2"
+					>Full Name</label>
+					<input
+						type="text"
+						class="block w-full px-3.5 py-2.5 border"
+						formControlName="fullName"
+					>
+				</div>
 
-			<div class="input-group mb-4">
-				<label
-					for=""
-					class="block mb-2"
-				>Full Name</label>
-				<input
-					type="text"
-					class="block w-full px-3.5 py-2.5 border"
-					formControlName="fullName"
-				>
-			</div>
+				<div class="input-group mb-4">
+					<label
+						for=""
+						class="block mb-2"
+					>Password</label>
+					<input
+						type="password"
+						class="block w-full px-3.5 py-2.5 border"
+						formControlName="password"
+					>
+				</div>
 
-			<div class="input-group mb-4">
-				<label
-					for=""
-					class="block mb-2"
-				>Password</label>
-				<input
-					type="password"
-					class="block w-full px-3.5 py-2.5 border"
-					formControlName="password"
-				>
-			</div>
+				<div class="input-group mb-4">
+					<label
+						for=""
+						class="block mb-2"
+					>Password Confirmation</label>
+					<input
+						type="password"
+						class="block w-full px-3.5 py-2.5 border"
+						formControlName="passwordConfirmation"
+					>
+				</div>
 
-			<div class="input-group mb-4">
-				<label
-					for=""
-					class="block mb-2"
-				>Password Confirmation</label>
-				<input
-					type="password"
-					class="block w-full px-3.5 py-2.5 border"
-					formControlName="passwordConfirmation"
-				>
-			</div>
+				<button
+					type="submit"
+					class="block w-full px-3.5 py-2.5 bg-gray-800 text-white mb-2 disabled:bg-gray-600"
+				>Sign Up</button>
+				<!-- [disabled]="signupForm.status === 'INVALID'" -->
+				<small class="block text-center">Already registered? <a
+						routerLink="/signin"
+						class="text-gray-600"
+					>Sign In</a></small>
 
-			<button
-				type="submit"
-				class="block w-full px-3.5 py-2.5 bg-gray-800 text-white mb-2 disabled:bg-gray-600"
-			>Sign Up</button>
-			<!-- [disabled]="signupForm.status === 'INVALID'" -->
-			<small class="block text-center">Already registered? <a
-					routerLink="/signin"
-					class="text-gray-600"
-				>Sign In</a></small>
-
-		</form>
+			</form>
+		</div>
 	</div>
 
 </app-section>

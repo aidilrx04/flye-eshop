@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { CarouselComponent } from '../core/carousel/carousel.component';
 import { faker } from '@faker-js/faker';
 import { SectionComponent } from '../core/section/section.component';
-import { FooterComponent } from '../core/footer/footer.component';
-import { NavbarComponent } from '../core/navbar/navbar.component';
 import { ProductCardComponent } from '../core/product-card/product-card.component';
 import { ProductModel } from '../../models/product.model';
 import { ProductCategory } from '../../enums/product-category';

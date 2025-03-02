@@ -1,84 +1,86 @@
 <div class="card bg-white mb-8">
-	<div class="p-8">
+	<div class="py-8 px-4 lg:px-8">
 		<h1 class="text-2xl mb-2 font-semibold">All Products</h1>
 		<p class="text-gray-500 mb-4">All products created by you</p>
-		<table class="table w-full mb-4">
-			<thead>
-				<tr class="text-left border-y-1 border-gray-200 text-gray-500">
-					<th class="px-4 py-5 uppercase text-sm font-semibold">Product Name</th>
-					<th class="px-4 py-5 uppercase text-sm font-semibold">Price</th>
-					<th class="px-4 py-5 uppercase text-sm font-semibold">Rating</th>
-					<th class="px-4 py-5 uppercase text-sm font-semibold">Sold</th>
-					<th class="px-4 py-5 uppercase text-sm font-semibold">Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@if (products$ | async; as products) {
-				@for (product of products; track $index) {
-				<tr class="not-first:border-t border-gray-200">
-					<td class="px-4 py-4 flex items-center justify-start gap-2 text-gray-600">
-						<ul class="flex relative w-fit">
-							@for (image_url of product.image_urls.reverse(); track $index) {
-							<li
-								class="relative size-8 rounded-full overflow-hidden border-2 border-white"
-								[ngClass]="{
-										'-ml-4': $index !== 0
-									}"
-							>
-								<img
-									[src]="image_url"
-									alt=""
-									class="size-full object-cover"
+		<div class="overflow-x-auto mb-4">
+			<table class="table w-full">
+				<thead>
+					<tr class="text-left border-y-1 border-gray-200 text-gray-500">
+						<th class="px-4 py-5 uppercase text-sm font-semibold">Product Name</th>
+						<th class="px-4 py-5 uppercase text-sm font-semibold">Price</th>
+						<th class="px-4 py-5 uppercase text-sm font-semibold">Rating</th>
+						<th class="px-4 py-5 uppercase text-sm font-semibold">Sold</th>
+						<th class="px-4 py-5 uppercase text-sm font-semibold">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if (products$ | async; as products) {
+					@for (product of products; track $index) {
+					<tr class="not-first:border-t border-gray-200">
+						<td class="px-4 py-4 flex items-center justify-start gap-2 text-gray-600">
+							<ul class="flex relative w-fit">
+								@for (image_url of product.image_urls.reverse(); track $index) {
+								<li
+									class="relative size-8 rounded-full overflow-hidden border-2 border-white"
+									[ngClass]="{
+											'-ml-4': $index !== 0
+										}"
 								>
-							</li>
-							}
-						</ul>
-						<span>{{product.name}}</span>
-					</td>
-					<td class="px-4 py-4 text-gray-600">
-						$ {{product.price}}
-					</td>
-					<td class="px-4 py-4 text-gray-600">
-						{{product.rating}}
-						<i class="ph-fill ph-star"></i>
-					</td>
-					<td class="px-4 py-4 text-gray-600">
-						0
-					</td>
-					<td class="px-4 py-4">
-						<app-dropdown>
-							<ng-template #toggler>
-								<button
-									class="size-6 grid place-items-center rounded-full cursor-pointer focus:bg-gray-200"
-								>
-									<i class="ph-bold ph-dots-three-vertical text-xl"></i>
-								</button>
-							</ng-template>
-							<app-dropdown-item>
-								<a
-									[routerLink]="['/admin/products/', product.id, 'edit']"
-									class="px-3.5 py-1 flex items-center gap-2 justify-start w-full hover:bg-gray-100"
-								>
-									<i class="ph ph-pencil"></i>
-									<span>Edit</span>
-								</a>
-							</app-dropdown-item>
-							<app-dropdown-item>
-								<button
-									(click)="deleteProduct(product.id)"
-									class="px-3.5 py-1 flex items-center gap-2 justify-start w-full text-red-500 cursor-pointer hover:bg-gray-100"
-								>
-									<i class="ph ph-trash"></i>
-									<span>Delete</span>
-								</button>
-							</app-dropdown-item>
-						</app-dropdown>
-					</td>
-				</tr>
-				}
-				}
-			</tbody>
-		</table>
+									<img
+										[src]="image_url"
+										alt=""
+										class="size-full object-cover"
+									>
+								</li>
+								}
+							</ul>
+							<span>{{product.name}}</span>
+						</td>
+						<td class="px-4 py-4 text-gray-600">
+							$ {{product.price}}
+						</td>
+						<td class="px-4 py-4 text-gray-600">
+							{{product.rating}}
+							<i class="ph-fill ph-star"></i>
+						</td>
+						<td class="px-4 py-4 text-gray-600">
+							0
+						</td>
+						<td class="px-4 py-4">
+							<app-dropdown>
+								<ng-template #toggler>
+									<button
+										class="size-6 grid place-items-center rounded-full cursor-pointer focus:bg-gray-200"
+									>
+										<i class="ph-bold ph-dots-three-vertical text-xl"></i>
+									</button>
+								</ng-template>
+								<app-dropdown-item>
+									<a
+										[routerLink]="['/admin/products/', product.id, 'edit']"
+										class="px-3.5 py-1 flex items-center gap-2 justify-start w-full hover:bg-gray-100"
+									>
+										<i class="ph ph-pencil"></i>
+										<span>Edit</span>
+									</a>
+								</app-dropdown-item>
+								<app-dropdown-item>
+									<button
+										(click)="deleteProduct(product.id)"
+										class="px-3.5 py-1 flex items-center gap-2 justify-start w-full text-red-500 cursor-pointer hover:bg-gray-100"
+									>
+										<i class="ph ph-trash"></i>
+										<span>Delete</span>
+									</button>
+								</app-dropdown-item>
+							</app-dropdown>
+						</td>
+					</tr>
+					}
+					}
+				</tbody>
+			</table>
+		</div>
 		<app-paging></app-paging>
 	</div>
 </div>

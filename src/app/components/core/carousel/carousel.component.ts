@@ -3,10 +3,10 @@ import {
   Component,
   computed,
   ContentChild,
+  HostListener,
   input,
   signal,
   TemplateRef,
-  ViewChild,
 } from '@angular/core';
 
 @Component({
@@ -17,20 +17,20 @@ import {
 })
 export class CarouselComponent {
   values = input.required<any[]>();
-  itemPerPage = 3;
+  itemPerPage = signal(3);
   page = signal(0);
   totalPage = computed(() =>
-    Math.ceil(this.values().length / this.itemPerPage),
+    Math.ceil(this.values().length / this.itemPerPage()),
   );
   totalPageData = computed(() => new Array(this.totalPage()).fill(null));
 
   pageData = computed(() => {
-    const startIndex = this.page() * this.itemPerPage;
-    const endIndex = startIndex + this.itemPerPage;
+    const startIndex = this.page() * this.itemPerPage();
+    const endIndex = startIndex + this.itemPerPage();
 
     const window = this.values().slice(startIndex, endIndex);
 
-    const shouldFill = this.itemPerPage - window.length;
+    const shouldFill = this.itemPerPage() - window.length;
 
     const filledWindow = [...window, ...new Array(shouldFill)];
     return filledWindow;
@@ -40,7 +40,19 @@ export class CarouselComponent {
     | TemplateRef<any>
     | undefined;
 
-  ngOnInit() {}
+  pageConstraints = {
+    0: 1,
+    640: 2,
+    964: 3,
+  };
+
+  ngOnInit() {
+    for (const entry of Object.entries(this.pageConstraints)) {
+      if (window.screen.width > Number(entry[0])) {
+        this.itemPerPage.set(entry[1]);
+      }
+    }
+  }
 
   ngOnChanges() {}
 
@@ -62,5 +74,14 @@ export class CarouselComponent {
 
   setPage(page: number) {
     this.page.set(page);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  private onResize(e: Event) {
+    for (const entry of Object.entries(this.pageConstraints)) {
+      if (window.screen.width > Number(entry[0])) {
+        this.itemPerPage.set(entry[1]);
+      }
+    }
   }
 }

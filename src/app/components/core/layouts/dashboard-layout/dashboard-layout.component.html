@@ -1,15 +1,40 @@
-<div class="flex relative bg-gray-100">
-	<aside class="sidebar w-60 shrink-0 sticky top-0 left-0 h-screen flex flex-col bg-white">
-		<a routerLink="/">
-			<h1 class="text-4xl py-8 text-center text-gray-600 ">Flye</h1>
-		</a>
-		<ul class="flex flex-col px-2 gap-px overflow-auto grow">
+<div class="flex flex-col lg:flex-row relative bg-gray-100">
+	<aside
+		class="sidebar lg:w-60 shrink-0 sticky top-0 left-0 lg:h-screen flex lg:flex-col  bg-white group z-30"
+		[ngClass]="{
+		'nav-opened': isNavOpen()
+	}"
+	>
+		<div class="flex items-center justify-between px-4 w-full">
+			<a
+				routerLink="/"
+				class="lg:w-full"
+			>
+				<h1 class="text-4xl lg:py-8 lg:text-center text-gray-600 text-left py-4 ">Flye</h1>
+			</a>
+			<button
+				(click)="toggleNav()"
+				class="lg:hidden"
+			>
+				<i
+					class="ph ph-list text-3xl"
+					[ngClass]="{
+					'ph-x': isNavOpen()
+				}"
+				></i>
+			</button>
+		</div>
+		<ul
+			class="hidden group-[.nav-opened]:flex lg:flex flex-col /px-2 gap-px overflow-auto grow absolute lg:static top-full w-full bg-white border-b border-gray-200 shadow lg:shadow-none">
 			@for (item of navItems(); track $index) {
-			<dashboard-nav-item [item]="item"></dashboard-nav-item>
+			<dashboard-nav-item
+				[item]="item"
+				#navItem
+			></dashboard-nav-item>
 			}
 		</ul>
 	</aside>
-	<main class="w-full p-8">
+	<main class="w-full p-4 /p-8">
 		<div class="card bg-white mb-8">
 			<div class="topbar flex items-center justify-end px-8 py-2">
 				<div class="profile">

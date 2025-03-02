@@ -1,58 +1,60 @@
 <div class="card bg-white mb-8">
-	<div class="p-8">
+	<div class="py-8 px-4 lg:px-8">
 		<h1 class="text-2xl mb-2 font-semibold">All Users</h1>
 		<p class="text-gray-500 mb-4">All registered users.</p>
-		<table class="table w-full mb-4">
-			<thead>
-				<tr class="text-left border-y-1 border-gray-200 text-gray-500">
-					<th class="px-4 py-5 uppercase text-sm font-semibold">ID</th>
-					<th class="px-4 py-5 uppercase text-sm font-semibold">Full Name</th>
-					<th class="px-4 py-5 uppercase text-sm font-semibold">Email</th>
-					<th class="px-4 py-5 uppercase text-sm font-semibold">Register Date</th>
-					<th class="px-4 py-5 uppercase text-sm font-semibold">Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@if (users$ | async; as users) {
-				@for (user of users; track $index) {
-				<tr class="not-first:border-t border-gray-200">
-					<td class="px-4 py-4 text-gray-600">
-						{{user.id}}
-					</td>
-					<td class="px-4 py-4">
-						{{user.full_name}}
-					</td>
-					<td class="px-4 py-4 text-gray-600">
-						{{user.email}}
-					</td>
-					<td class="px-4 py-4 text-gray-600">
-						{{user.created_at}}
-					</td>
-					<td class="px-4 py-4">
-						<app-dropdown>
-							<ng-template #toggler>
-								<button
-									class="size-6 grid place-items-center rounded-full cursor-pointer focus:bg-gray-200"
-								>
-									<i class="ph-bold ph-dots-three-vertical text-xl"></i>
-								</button>
-							</ng-template>
-							<app-dropdown-item>
-								<button
-									(click)="deleteUser(user.id)"
-									class="px-3.5 py-1 flex items-center gap-2 justify-start w-full text-red-500 cursor-pointer hover:bg-gray-100"
-								>
-									<i class="ph ph-trash"></i>
-									<span>Delete</span>
-								</button>
-							</app-dropdown-item>
-						</app-dropdown>
-					</td>
-				</tr>
-				}
-				}
-			</tbody>
-		</table>
+		<div class="overflow-x-auto mb-4">
+			<table class="table w-full">
+				<thead>
+					<tr class="text-left border-y-1 border-gray-200 text-gray-500">
+						<th class="px-4 py-5 uppercase text-sm font-semibold">ID</th>
+						<th class="px-4 py-5 uppercase text-sm font-semibold">Full Name</th>
+						<th class="px-4 py-5 uppercase text-sm font-semibold">Email</th>
+						<th class="px-4 py-5 uppercase text-sm font-semibold">Register Date</th>
+						<th class="px-4 py-5 uppercase text-sm font-semibold">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if (users$ | async; as users) {
+					@for (user of users; track $index) {
+					<tr class="not-first:border-t border-gray-200">
+						<td class="px-4 py-4 text-gray-600">
+							{{user.id}}
+						</td>
+						<td class="px-4 py-4">
+							{{user.full_name}}
+						</td>
+						<td class="px-4 py-4 text-gray-600">
+							{{user.email}}
+						</td>
+						<td class="px-4 py-4 text-gray-600">
+							{{user.created_at}}
+						</td>
+						<td class="px-4 py-4">
+							<app-dropdown>
+								<ng-template #toggler>
+									<button
+										class="size-6 grid place-items-center rounded-full cursor-pointer focus:bg-gray-200"
+									>
+										<i class="ph-bold ph-dots-three-vertical text-xl"></i>
+									</button>
+								</ng-template>
+								<app-dropdown-item>
+									<button
+										(click)="deleteUser(user.id)"
+										class="px-3.5 py-1 flex items-center gap-2 justify-start w-full text-red-500 cursor-pointer hover:bg-gray-100"
+									>
+										<i class="ph ph-trash"></i>
+										<span>Delete</span>
+									</button>
+								</app-dropdown-item>
+							</app-dropdown>
+						</td>
+					</tr>
+					}
+					}
+				</tbody>
+			</table>
+		</div>
 
 		<app-paging></app-paging>
 	</div>
