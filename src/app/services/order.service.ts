@@ -5,7 +5,9 @@ import { OrderModel } from '../models/order.model';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs';
 import { OrderWithUserModel } from '../models/order-with-user.model';
-import { OrderStatus } from '../enums/order-status';
+import { APIResponsePaginateModel } from '../models/api-response-paginate.model';
+import { QueryModel } from '../models/query.model';
+import { QueryBuilder } from '../classes/query-builder';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +21,12 @@ export class OrderService {
       .pipe(map((value) => value.data));
   }
 
-  getOrders() {
-    return this.http
-      .get<ApiResponseModel<OrderModel[]>>(`${environment.apiUrl}/orders`)
-      .pipe(map((value) => value.data));
+  getOrders<M extends OrderModel = OrderModel>(query: QueryModel = {}) {
+    const queryString = QueryBuilder.buildQueryParam(query);
+
+    return this.http.get<APIResponsePaginateModel<M>>(
+      `${environment.apiUrl}/orders?${queryString}&per_page=20`,
+    );
   }
 
   getOrderWithUsers() {

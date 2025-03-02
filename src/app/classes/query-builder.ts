@@ -4,7 +4,7 @@ export class QueryBuilder {
   static buildQueryParam(query: QueryModel): string {
     const queryParam = new URLSearchParams();
 
-    const { page, sort, filter } = query;
+    const { page, sort, filter, includes } = query;
 
     if (page !== undefined) {
       queryParam.append('page', page!.toString());
@@ -23,6 +23,10 @@ export class QueryBuilder {
         // queryParam.append(`filter[${entry[0]}]`, entry[1].toString());
         queryParam.set(`filter[${entry[0]}]`, entry[1].toString());
       }
+    }
+
+    if (includes) {
+      queryParam.append('include', includes.join(','));
     }
 
     let queryString = queryParam.toString();

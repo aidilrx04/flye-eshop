@@ -5,4 +5,5 @@ export interface QueryModel<T = { [key: string]: any }> {
     order: 'ASC' | 'DESC';
   };
   filter?: Partial<T>;
+  includes?: string[];
 }
