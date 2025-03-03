@@ -8,11 +8,24 @@
 
 	<div class="grid md:grid-cols-2 lg:grid-cols-3  gap-8 mb-8 transition-all">
 
-		@if (products$ | async; as products) {
+		@if (products$ | loading | async; as state) {
+		@if (state.data; as products) {
 		@for (product of products; track $index) {
 		<app-product-card [product]="product"></app-product-card>
 		}
 		}
+		@if (state.loading) {
+		<div class="col-span-1 md:col-span-2 lg:col-span-3 h-36">
+			<app-loading></app-loading>
+		</div>
+		}
+		@if(state.error; as error) {
+		<div class="col-span-1 md:col-span-2 lg:col-span-3 h-36">
+			<app-error [message]="error.message"></app-error>
+		</div>
+		}
+		}
+
 
 	</div>
 
@@ -36,4 +49,5 @@
 		}
 		}
 	</div>
+
 </div>

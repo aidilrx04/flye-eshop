@@ -149,7 +149,8 @@
 		<p class="mb-8 text-lg text-gray-500">New cool men clothings.
 		</p>
 
-		@if (men$ | async; as men) {
+		@if (men$ | loading | async; as state) {
+		@if (state.data; as men) {
 		<app-carousel [values]="men">
 			<ng-template
 				#itemTemplate
@@ -159,6 +160,15 @@
 			</ng-template>
 		</app-carousel>
 		}
+		@if (state.error; as error) {
+		<app-error [message]="error.message"></app-error>
+		}
+		@else {
+		<div class="h-36">
+			<app-loading></app-loading>
+		</div>
+		}
+		}
 	</div>
 </app-section>
 <app-section>
@@ -167,16 +177,25 @@
 		<p class="mb-8 text-lg text-gray-500">New beautiful and eye-catching women clothings.
 		</p>
 
-		@if (women$ | async; as women) {
-
+		@if (women$ | loading | async; as state) {
+		@if (state.data; as women) {
 		<app-carousel [values]="women">
 			<ng-template
 				#itemTemplate
 				let-item
 			>
-				<app-product-card [product]="item"></app-product-card>
+				<app-product-card [product]="item" />
 			</ng-template>
 		</app-carousel>
+		}
+		@if (state.error; as error) {
+		<app-error [message]="error.message"></app-error>
+		}
+		@else {
+		<div class="h-36">
+			<app-loading></app-loading>
+		</div>
+		}
 		}
 	</div>
 </app-section>
@@ -185,16 +204,25 @@
 		<h2 class="text-4xl font-bold  mb-1">Kid's Latest</h2>
 		<p class="mb-8 text-lg text-gray-500">New comfortable and cute kid's clothing.
 		</p>
-		@if (kids$ | async; as kids) {
-
+		@if (kids$ | loading | async; as state) {
+		@if (state.data; as kids) {
 		<app-carousel [values]="kids">
 			<ng-template
 				#itemTemplate
 				let-item
 			>
-				<app-product-card [product]="item"></app-product-card>
+				<app-product-card [product]="item" />
 			</ng-template>
 		</app-carousel>
+		}
+		@if (state.error; as error) {
+		<app-error [message]="error.message"></app-error>
+		}
+		@else {
+		<div class="h-36">
+			<app-loading></app-loading>
+		</div>
+		}
 		}
 	</div>
 </app-section>
