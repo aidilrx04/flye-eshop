@@ -32,18 +32,29 @@
 				#navItem
 			></dashboard-nav-item>
 			}
+			<li class="mb-4"></li>
+			<li class="lg:hidden">
+				<dashboard-nav-item [item]="signOutNavItem">
+
+				</dashboard-nav-item>
+			</li>
 		</ul>
 	</aside>
 	<main class="w-full p-4 /p-8">
 		<div class="card bg-white mb-8">
 			<div class="topbar flex items-center justify-end px-8 py-2">
-				<div class="profile">
-					<img
-						src="https://loremflickr.com/640/640?a"
-						alt=""
-						class="size-12 object-cover rounded-full"
+				@if (user$ | async; as user) {
+				<div class="profile flex justify-end items-center gap-8">
+					<span>Hi, {{user.full_name}}</span>
+					<a
+						routerLink="/signout"
+						class="flex hover:bg-gray-100  items-center  gap-4 px-3.5 py-2.5 text-red-500"
 					>
+						<i class="ph ph-sign-out"></i>
+						<span>Sign Out</span>
+					</a>
 				</div>
+				}
 			</div>
 		</div>
 
