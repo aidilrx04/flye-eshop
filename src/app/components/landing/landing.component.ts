@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CarouselComponent } from '../core/carousel/carousel.component';
-import { faker } from '@faker-js/faker';
 import { SectionComponent } from '../core/section/section.component';
 import { ProductCardComponent } from '../core/product-card/product-card.component';
 import { ProductModel } from '../../models/product.model';
@@ -30,7 +29,7 @@ export class LandingComponent {
   kids$!: Observable<ProductModel[]>;
 
   footerData = {
-    address: `${faker.location.streetAddress({ useFullAddress: true })}, ${faker.location.city()}, ${faker.location.country()}`,
+    address: `Midvalley KL-Eco City, Kuala Lumpur`,
   };
 
   ngOnInit() {

@@ -1,29 +1,30 @@
 import { Routes } from '@angular/router';
-import { LandingComponent } from './components/landing/landing.component';
-import { SingleProductComponent } from './components/single-product/single-product.component';
-import { ProductsComponent } from './components/products/products.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { SigninComponent } from './components/signin/signin.component';
-import { DashboardComponent as AdminDashboardComponent } from './components/admin/dashboard/dashboard.component';
+
+
+
+
+
+
 import { ProductsComponent as AdminProductsComponent } from './components/admin/products/products.component';
-import { CreateProductComponent as AdminCreateProductComponent } from './components/admin/create-product/create-product.component';
-import { AdminLayoutComponent } from './components/core/layouts/admin-layout/admin-layout.component';
-import { CartComponent } from './components/cart/cart.component';
-import { OrderSuccessfulComponent } from './components/order-successful/order-successful.component';
-import { OrdersComponent as AdminOrdersComponent } from './components/admin/orders/orders.component';
+
+
+
+
+
 import { ensureAuthenticatedGuard } from './guards/ensure-authenticated.guard';
-import { MainLayoutComponent } from './components/core/layouts/main-layout/main-layout.component';
+
 import { checkAuthenticationGuard } from './guards/check-authentication.guard';
-import { EditProductComponent as AdminEditProductComponent } from './components/admin/edit-product/edit-product.component';
-import { OrderDetailComponent as AdminOrderDetailComponent } from './components/admin/order-detail/order-detail.component';
-import { UserLayoutComponent } from './components/core/layouts/user-layout/user-layout.component';
+
+
+
 import { DashboardComponent as UserDashboardComponent } from './components/user/dashboard/dashboard.component';
 import { OrdersComponent as UserOrdersComponent } from './components/user/orders/orders.component';
-import { OrderStatusComponent } from './components/order-status/order-status.component';
-import { SignoutComponent } from './components/signout/signout.component';
-import { UsersComponent as AdminUsersComponent } from './components/admin/users/users.component';
+
+
+
 import { OrderDetailComponent as UserOrderDetailComponent } from './components/user/order-detail/order-detail.component';
 import { ensureUserIsAdminGuard } from './guards/ensure-user-is-admin.guard';
+
 
 export const routes: Routes = [
   {
@@ -32,97 +33,101 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: MainLayoutComponent,
+        loadComponent: () => import('./components/core/layouts/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
         children: [
           {
             path: 'order/status',
-            component: OrderStatusComponent,
+            loadComponent: () => import('./components/order-status/order-status.component').then(m => m.OrderStatusComponent),
           },
           {
             path: 'order/success',
-            component: OrderSuccessfulComponent,
+            loadComponent: () => import('./components/order-successful/order-successful.component').then(m => m.OrderSuccessfulComponent),
           },
           {
             path: 'cart',
-            component: CartComponent,
+            loadComponent: () => import('./components/cart/cart.component').then(m => m.CartComponent),
           },
           {
             path: 'signin',
-            component: SigninComponent,
+            loadComponent: () => import('./components/signin/signin.component').then(m => m.SigninComponent),
           },
           {
             path: 'signup',
-            component: SignupComponent,
+            loadComponent: () => import('./components/signup/signup.component').then(m => m.SignupComponent),
           },
           {
             path: 'signout',
-            component: SignoutComponent,
+            loadComponent: () => import('./components/signout/signout.component').then(m => m.SignoutComponent),
           },
           {
             path: 'products',
-            component: ProductsComponent,
+            loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent),
           },
           {
             path: 'products/:productId',
-            component: SingleProductComponent,
+            loadComponent: () => import('./components/single-product/single-product.component').then(m => m.SingleProductComponent),
           },
           {
             path: '',
-            component: LandingComponent,
+            loadComponent: () => import('./components/landing/landing.component').then(m => m.LandingComponent),
           },
         ],
       },
       {
         path: 'admin',
-        component: AdminLayoutComponent,
+        loadComponent: () => import('./components/core/layouts/admin-layout/admin-layout.component').then(m => m.AdminLayoutComponent),
         canActivate: [ensureAuthenticatedGuard, ensureUserIsAdminGuard],
         children: [
           {
             path: 'orders',
-            component: AdminOrdersComponent,
+            loadComponent: () => import('./components/admin/orders/orders.component').then(m => m.OrdersComponent),
           },
           {
             path: 'orders/:orderId',
-            component: AdminOrderDetailComponent,
+            loadComponent: () => import('./components/admin/order-detail/order-detail.component').then(m => m.OrderDetailComponent),
           },
           {
             path: 'products/create',
-            component: AdminCreateProductComponent,
+            loadComponent: () => import('./components/admin/create-product/create-product.component').then(m => m.CreateProductComponent),
           },
           {
             path: 'products',
-            component: AdminProductsComponent,
+            loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent),
           },
           {
             path: 'products/:productId/edit',
-            component: AdminEditProductComponent,
+            loadComponent: () => import('./components/admin/edit-product/edit-product.component').then(m => m.EditProductComponent),
           },
           {
             path: 'users',
-            component: AdminUsersComponent,
+            loadComponent: () => import('./components/admin/users/users.component').then(m => m.UsersComponent),
           },
           {
             path: '',
-            component: AdminDashboardComponent,
+            loadComponent: () => import('./components/admin/dashboard/dashboard.component').then(m => m.DashboardComponent),
           },
         ],
       },
       {
         path: 'profile',
-        component: UserLayoutComponent,
+        loadComponent: () => import('./components/core/layouts/user-layout/user-layout.component').then(m => m.UserLayoutComponent),
         canActivate: [ensureAuthenticatedGuard],
         children: [
           {
+            path: 'setting',
+            loadComponent: () => import('./components/user/setting/setting.component').then(m => m.SettingComponent),
+          },
+          {
             path: 'orders',
-            component: UserOrdersComponent,
+            loadComponent: () => import('./components/admin/orders/orders.component').then(m => m.OrdersComponent),
           },
           {
             path: 'orders/:orderId',
-            component: UserOrderDetailComponent,
+            loadComponent: () => import('./components/admin/order-detail/order-detail.component').then(m => m.OrderDetailComponent),
           },
           {
             path: '',
-            component: UserDashboardComponent,
+            loadComponent: () => import('./components/admin/dashboard/dashboard.component').then(m => m.DashboardComponent),
           },
         ],
       },

@@ -3,6 +3,7 @@ import { UserModel } from '../models/user.model';
 import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ApiResponseModel } from '../models/api-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -69,5 +70,17 @@ export class AuthService {
 
   signOut() {
     return this.http.post<any>(`${environment.apiUrl}/auth/signout`, null);
+  }
+
+  updateCurrentUser(newData: { full_name?: string; password?: string }) {
+    return this.http
+      .post<
+        ApiResponseModel<UserModel>
+      >(`${environment.apiUrl}/users/${this.getUser()!.id}?_method=PUT`, newData)
+      .pipe(
+        tap((newUserData) => {
+          this.userSubject.next(newUserData.data);
+        }),
+      );
   }
 }

@@ -1,0 +1,61 @@
+<div class="bg-white p-8 max-w-full mx-auto w-96">
+	@if (user$ | async; as user) {
+	<form
+		[formGroup]="updateUserGroup"
+		(ngSubmit)="onSubmit()"
+		class=""
+	>
+
+		<div class="input-group mb-4">
+			<label
+				for=""
+				class="block mb-2 font-semibold"
+			>Full Name</label>
+			<input
+				type="text"
+				class="block w-full px-3.5 py-2.5 border"
+				formControlName="full_name"
+				[value]="user.id"
+			>
+		</div>
+		<div class="input-group mb-4">
+			<label
+				for=""
+				class="block mb-2 font-semibold"
+			>Email</label>
+			<input
+				type="text"
+				class="block w-full px-3.5 py-2.5 border bg-gray-300"
+				readonly
+				[value]="user.email"
+			>
+		</div>
+		<div class="input-group mb-4">
+			<label
+				for=""
+				class="block mb-2 font-semibold"
+			>New Password</label>
+			<input
+				type="text"
+				class="block w-full px-3.5 py-2.5 border"
+				formControlName="password"
+			>
+		</div>
+		<div class="input-group mb-4">
+			<label
+				for=""
+				class="block mb-2 font-semibold"
+			>Confirm New Password</label>
+			<input
+				type="text"
+				class="block w-full px-3.5 py-2.5 border"
+				formControlName="passwordConfirmation"
+			>
+		</div>
+		<button
+			type="submit"
+			class="block px-5 py-2.5 bg-gray-800 text-white w-full"
+		>Save</button>
+	</form>
+	}
+</div>
