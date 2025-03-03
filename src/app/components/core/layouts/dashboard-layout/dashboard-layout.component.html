@@ -42,7 +42,7 @@
 	</aside>
 	<main class="w-full p-4 /p-8">
 		<div class="card bg-white mb-8">
-			<div class="topbar flex items-center justify-end px-8 py-2">
+			<div class="topbar hidden lg:flex items-center justify-end px-8 py-2">
 				@if (user$ | async; as user) {
 				<div class="profile flex justify-end items-center gap-8">
 					<span>Hi, {{user.full_name}}</span>

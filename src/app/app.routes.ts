@@ -1,15 +1,6 @@
 import { Routes } from '@angular/router';
-
-import { ProductsComponent as AdminProductsComponent } from './components/admin/products/products.component';
-
 import { ensureAuthenticatedGuard } from './guards/ensure-authenticated.guard';
-
 import { checkAuthenticationGuard } from './guards/check-authentication.guard';
-
-import { DashboardComponent as UserDashboardComponent } from './components/user/dashboard/dashboard.component';
-import { OrdersComponent as UserOrdersComponent } from './components/user/orders/orders.component';
-
-import { OrderDetailComponent as UserOrderDetailComponent } from './components/user/order-detail/order-detail.component';
 import { ensureUserIsAdminGuard } from './guards/ensure-user-is-admin.guard';
 
 export const routes: Routes = [
@@ -121,7 +112,7 @@ export const routes: Routes = [
           {
             path: 'products',
             loadComponent: () =>
-              import('./components/products/products.component').then(
+              import('./components/admin/products/products.component').then(
                 (m) => m.ProductsComponent,
               ),
           },
@@ -166,7 +157,7 @@ export const routes: Routes = [
           {
             path: 'orders',
             loadComponent: () =>
-              import('./components/admin/orders/orders.component').then(
+              import('./components/user/orders/orders.component').then(
                 (m) => m.OrdersComponent,
               ),
           },
@@ -174,7 +165,7 @@ export const routes: Routes = [
             path: 'orders/:orderId',
             loadComponent: () =>
               import(
-                './components/admin/order-detail/order-detail.component'
+                './components/user/order-detail/order-detail.component'
               ).then((m) => m.OrderDetailComponent),
           },
           {
