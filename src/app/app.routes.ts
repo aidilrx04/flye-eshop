@@ -1,30 +1,16 @@
 import { Routes } from '@angular/router';
 
-
-
-
-
-
 import { ProductsComponent as AdminProductsComponent } from './components/admin/products/products.component';
-
-
-
-
 
 import { ensureAuthenticatedGuard } from './guards/ensure-authenticated.guard';
 
 import { checkAuthenticationGuard } from './guards/check-authentication.guard';
 
-
-
 import { DashboardComponent as UserDashboardComponent } from './components/user/dashboard/dashboard.component';
 import { OrdersComponent as UserOrdersComponent } from './components/user/orders/orders.component';
 
-
-
 import { OrderDetailComponent as UserOrderDetailComponent } from './components/user/order-detail/order-detail.component';
 import { ensureUserIsAdminGuard } from './guards/ensure-user-is-admin.guard';
-
 
 export const routes: Routes = [
   {
@@ -33,101 +19,170 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./components/core/layouts/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
+        loadComponent: () =>
+          import(
+            './components/core/layouts/main-layout/main-layout.component'
+          ).then((m) => m.MainLayoutComponent),
         children: [
           {
             path: 'order/status',
-            loadComponent: () => import('./components/order-status/order-status.component').then(m => m.OrderStatusComponent),
+            loadComponent: () =>
+              import('./components/order-status/order-status.component').then(
+                (m) => m.OrderStatusComponent,
+              ),
           },
           {
             path: 'order/success',
-            loadComponent: () => import('./components/order-successful/order-successful.component').then(m => m.OrderSuccessfulComponent),
+            loadComponent: () =>
+              import(
+                './components/order-successful/order-successful.component'
+              ).then((m) => m.OrderSuccessfulComponent),
           },
           {
             path: 'cart',
-            loadComponent: () => import('./components/cart/cart.component').then(m => m.CartComponent),
+            loadComponent: () =>
+              import('./components/cart/cart.component').then(
+                (m) => m.CartComponent,
+              ),
           },
           {
             path: 'signin',
-            loadComponent: () => import('./components/signin/signin.component').then(m => m.SigninComponent),
+            loadComponent: () =>
+              import('./components/signin/signin.component').then(
+                (m) => m.SigninComponent,
+              ),
           },
           {
             path: 'signup',
-            loadComponent: () => import('./components/signup/signup.component').then(m => m.SignupComponent),
+            loadComponent: () =>
+              import('./components/signup/signup.component').then(
+                (m) => m.SignupComponent,
+              ),
           },
           {
             path: 'signout',
-            loadComponent: () => import('./components/signout/signout.component').then(m => m.SignoutComponent),
+            loadComponent: () =>
+              import('./components/signout/signout.component').then(
+                (m) => m.SignoutComponent,
+              ),
           },
           {
             path: 'products',
-            loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent),
+            loadComponent: () =>
+              import('./components/products/products.component').then(
+                (m) => m.ProductsComponent,
+              ),
           },
           {
             path: 'products/:productId',
-            loadComponent: () => import('./components/single-product/single-product.component').then(m => m.SingleProductComponent),
+            loadComponent: () =>
+              import(
+                './components/single-product/single-product.component'
+              ).then((m) => m.SingleProductComponent),
           },
           {
             path: '',
-            loadComponent: () => import('./components/landing/landing.component').then(m => m.LandingComponent),
+            loadComponent: () =>
+              import('./components/landing/landing.component').then(
+                (m) => m.LandingComponent,
+              ),
           },
         ],
       },
       {
         path: 'admin',
-        loadComponent: () => import('./components/core/layouts/admin-layout/admin-layout.component').then(m => m.AdminLayoutComponent),
+        loadComponent: () =>
+          import(
+            './components/core/layouts/admin-layout/admin-layout.component'
+          ).then((m) => m.AdminLayoutComponent),
         canActivate: [ensureAuthenticatedGuard, ensureUserIsAdminGuard],
         children: [
           {
             path: 'orders',
-            loadComponent: () => import('./components/admin/orders/orders.component').then(m => m.OrdersComponent),
+            loadComponent: () =>
+              import('./components/admin/orders/orders.component').then(
+                (m) => m.OrdersComponent,
+              ),
           },
           {
             path: 'orders/:orderId',
-            loadComponent: () => import('./components/admin/order-detail/order-detail.component').then(m => m.OrderDetailComponent),
+            loadComponent: () =>
+              import(
+                './components/admin/order-detail/order-detail.component'
+              ).then((m) => m.OrderDetailComponent),
           },
           {
             path: 'products/create',
-            loadComponent: () => import('./components/admin/create-product/create-product.component').then(m => m.CreateProductComponent),
+            loadComponent: () =>
+              import(
+                './components/admin/create-product/create-product.component'
+              ).then((m) => m.CreateProductComponent),
           },
           {
             path: 'products',
-            loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent),
+            loadComponent: () =>
+              import('./components/products/products.component').then(
+                (m) => m.ProductsComponent,
+              ),
           },
           {
             path: 'products/:productId/edit',
-            loadComponent: () => import('./components/admin/edit-product/edit-product.component').then(m => m.EditProductComponent),
+            loadComponent: () =>
+              import(
+                './components/admin/edit-product/edit-product.component'
+              ).then((m) => m.EditProductComponent),
           },
           {
             path: 'users',
-            loadComponent: () => import('./components/admin/users/users.component').then(m => m.UsersComponent),
+            loadComponent: () =>
+              import('./components/admin/users/users.component').then(
+                (m) => m.UsersComponent,
+              ),
           },
           {
             path: '',
-            loadComponent: () => import('./components/admin/dashboard/dashboard.component').then(m => m.DashboardComponent),
+            loadComponent: () =>
+              import('./components/admin/dashboard/dashboard.component').then(
+                (m) => m.DashboardComponent,
+              ),
           },
         ],
       },
       {
         path: 'profile',
-        loadComponent: () => import('./components/core/layouts/user-layout/user-layout.component').then(m => m.UserLayoutComponent),
+        loadComponent: () =>
+          import(
+            './components/core/layouts/user-layout/user-layout.component'
+          ).then((m) => m.UserLayoutComponent),
         canActivate: [ensureAuthenticatedGuard],
         children: [
           {
             path: 'setting',
-            loadComponent: () => import('./components/user/setting/setting.component').then(m => m.SettingComponent),
+            loadComponent: () =>
+              import('./components/user/setting/setting.component').then(
+                (m) => m.SettingComponent,
+              ),
           },
           {
             path: 'orders',
-            loadComponent: () => import('./components/admin/orders/orders.component').then(m => m.OrdersComponent),
+            loadComponent: () =>
+              import('./components/admin/orders/orders.component').then(
+                (m) => m.OrdersComponent,
+              ),
           },
           {
             path: 'orders/:orderId',
-            loadComponent: () => import('./components/admin/order-detail/order-detail.component').then(m => m.OrderDetailComponent),
+            loadComponent: () =>
+              import(
+                './components/admin/order-detail/order-detail.component'
+              ).then((m) => m.OrderDetailComponent),
           },
           {
             path: '',
-            loadComponent: () => import('./components/admin/dashboard/dashboard.component').then(m => m.DashboardComponent),
+            loadComponent: () =>
+              import('./components/user/dashboard/dashboard.component').then(
+                (m) => m.DashboardComponent,
+              ),
           },
         ],
       },
