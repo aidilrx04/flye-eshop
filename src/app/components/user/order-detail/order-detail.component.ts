@@ -4,13 +4,13 @@ import { OrderModel } from '../../../models/order.model';
 import { OrderService } from '../../../services/order.service';
 import { OrderBadgeComponent } from '../../core/order-badge/order-badge.component';
 import { OrderStatus } from '../../../enums/order-status';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { currency } from '../../../utils/currency';
 
 @Component({
   selector: 'app-order-detail',
-  imports: [OrderBadgeComponent, AsyncPipe],
+  imports: [OrderBadgeComponent, AsyncPipe, RouterLink],
   templateUrl: './order-detail.component.html',
   styleUrl: './order-detail.component.css',
 })

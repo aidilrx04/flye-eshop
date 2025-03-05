@@ -53,12 +53,12 @@
 				</button>
 				}
 				@case ("COMPLETED") {
-				<button
-					(click)="reviewOrder(order.id)"
-					class="block w-full px-3.5 py-2.5 uppercase text-sm bg-gray-700 text-white font-semibold"
+				<a
+					routerLink="/products"
+					class="block w-full px-3.5 py-2.5 uppercase text-sm bg-gray-700 text-white font-semibold text-center"
 				>
-					Rate
-				</button>
+					Buy More
+				</a>
 				}
 				}
 			</div>
