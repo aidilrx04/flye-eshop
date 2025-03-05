@@ -62,6 +62,10 @@ export class LandingComponent {
       ),
     );
 
+    this.men$.subscribe((val) => {
+      console.log(val);
+    });
+
     this.women$ = of({ type: ObsState.START }).pipe(
       switchMap(() =>
         this.productService

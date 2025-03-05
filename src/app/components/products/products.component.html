@@ -14,14 +14,14 @@
 		<app-product-card [product]="product"></app-product-card>
 		}
 		}
-		@if (state.loading) {
-		<div class="col-span-1 md:col-span-2 lg:col-span-3 h-36">
-			<app-loading></app-loading>
-		</div>
-		}
 		@if(state.error; as error) {
 		<div class="col-span-1 md:col-span-2 lg:col-span-3 h-36">
 			<app-error [message]="error.message"></app-error>
+		</div>
+		}
+		@if(state.loading) {
+		<div class="col-span-1 md:col-span-2 lg:col-span-3 h-36">
+			<app-loading></app-loading>
 		</div>
 		}
 		}

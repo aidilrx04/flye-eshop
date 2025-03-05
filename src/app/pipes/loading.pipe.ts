@@ -9,9 +9,9 @@ export interface ObsWithStatus<T> {
 }
 
 export enum ObsState {
-  START,
-  FINISH,
-  ERROR,
+  START = 'start',
+  FINISH = 'finish',
+  ERROR = 'error',
 }
 export interface ObsWithState<T> {
   type: ObsState;
@@ -34,7 +34,10 @@ export class LoadingPipe implements PipeTransform {
       map((value) => {
         return {
           loading: value.type === ObsState.START,
-          error: value.type === ObsState.ERROR ? value.error : DEFAULT_ERROR,
+          error:
+            value.type === ObsState.ERROR
+              ? (value.error ?? DEFAULT_ERROR)
+              : undefined,
           data: value.data,
         };
       }),

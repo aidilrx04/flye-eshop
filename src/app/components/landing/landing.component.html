@@ -163,7 +163,7 @@
 		@if (state.error; as error) {
 		<app-error [message]="error.message"></app-error>
 		}
-		@else {
+		@if(state.loading) {
 		<div class="h-36">
 			<app-loading></app-loading>
 		</div>
@@ -191,7 +191,7 @@
 		@if (state.error; as error) {
 		<app-error [message]="error.message"></app-error>
 		}
-		@else {
+		@if(state.loading) {
 		<div class="h-36">
 			<app-loading></app-loading>
 		</div>
@@ -218,7 +218,7 @@
 		@if (state.error; as error) {
 		<app-error [message]="error.message"></app-error>
 		}
-		@else {
+		@if(state.loading) {
 		<div class="h-36">
 			<app-loading></app-loading>
 		</div>

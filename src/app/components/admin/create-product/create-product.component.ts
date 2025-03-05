@@ -33,7 +33,11 @@ export class CreateProductComponent {
     name: 'Name',
     image_urls: [this.imagePlaceholder],
     price: 0.0,
-    rating: 5,
+    sum_rating: 5,
+    rating: {
+      total_rating: 0,
+      total_star: 0,
+    },
     tagline: '',
     category: ProductCategory.MEN,
   };
