@@ -27,8 +27,12 @@ export class MetaService {
             acc[key[0]!] = key[1];
             return acc;
           }, {}),
-        sort: (params.get('sort') ?? '').split(','),
-        include: (params.get('include') ?? '').split(','),
+        sort: (params.get('sort') ?? '')
+          .split(',')
+          .filter((sort) => sort.trim().length !== 0),
+        include: (params.get('include') ?? '')
+          .split(',')
+          .filter((include) => include.trim().length !== 0),
       });
     });
   }
