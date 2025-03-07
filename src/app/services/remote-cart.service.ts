@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CartService } from './cart.service';
 import { HttpClient } from '@angular/common/http';
 import { LocalCartItemModel } from '../models/local-cart-item.model';
-import { catchError, map, Observable, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import { ProductModel } from '../models/product.model';
 import { ApiResponseModel } from '../models/api-response.model';
 import { CartItemModel } from '../models/cart-item.model';
@@ -33,7 +33,7 @@ export class RemoteCartService extends CartService {
 
     request
       .pipe(
-        catchError(() => []),
+        catchError(() => of([] as CartItemModel[])),
         switchMap(() => this.getCartItems()),
       )
       .subscribe((value) => {
@@ -77,6 +77,7 @@ export class RemoteCartService extends CartService {
   }
 
   private getCartItems() {
+    console.log('geeting car items');
     return this.http
       .get<ApiResponseModel<CartItemModel[]>>(`${environment.apiUrl}/carts`)
       .pipe(map((value) => value.data));
