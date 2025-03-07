@@ -123,6 +123,7 @@ describe('AuthService', () => {
 
     service.updateCurrentUser(newData).subscribe((res) => {
       expect(res.data.full_name).toEqual(newData.full_name);
+      expect(service.getUser()?.full_name).toBe(mockUser.full_name);
     });
 
     const req = httpMock.expectOne(

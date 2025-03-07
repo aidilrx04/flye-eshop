@@ -16,17 +16,17 @@ describe('ProductCardComponent', () => {
 
     fixture = TestBed.createComponent(ProductCardComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('product', {
-      id: -1,
-      created_at: new Date(),
-      updated_at: new Date(),
-      description: '',
-      name: 'balls',
-      image_urls: ['https://loreflickr.com/123/123'],
-      price: 1,
-      rating: 1,
-      tagline: '',
-    } as ProductModel);
+    // fixture.componentRef.setInput('product', {
+    //   id: -1,
+    //   created_at: new Date(),
+    //   updated_at: new Date(),
+    //   description: '',
+    //   name: 'balls',
+    //   image_urls: ['https://loreflickr.com/123/123'],
+    //   price: 1,
+    //   rating: 1,
+    //   tagline: '',
+    // } as ProductModel);
     fixture.detectChanges();
   });
 
