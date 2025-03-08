@@ -23,18 +23,12 @@ export class OrderService {
 
   getOrders<M extends OrderModel = OrderModel>(query: QueryModel = {}) {
     const queryString = QueryBuilder.buildQueryParam(query);
+    const toAppendQuery =
+      queryString.trim().length > 0 ? `?${queryString}` : '';
 
     return this.http.get<APIResponsePaginateModel<M>>(
-      `${environment.apiUrl}/orders?${queryString}&per_page=20`,
+      `${environment.apiUrl}/orders${toAppendQuery}`,
     );
-  }
-
-  getOrderWithUsers() {
-    return this.http
-      .get<
-        ApiResponseModel<OrderWithUserModel[]>
-      >(`${environment.apiUrl}/orders?include=user`)
-      .pipe(map((value) => value.data));
   }
 
   getOrderWithUser(orderId: number) {
