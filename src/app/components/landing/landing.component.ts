@@ -5,7 +5,7 @@ import { ProductCardComponent } from '../core/product-card/product-card.componen
 import { ProductModel } from '../../models/product.model';
 import { ProductCategory } from '../../enums/product-category';
 import { RouterLink } from '@angular/router';
-import { catchError, map, Observable, of, switchMap, take } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, take, tap } from 'rxjs';
 import { ProductService } from '../../services/product.service';
 import { AsyncPipe } from '@angular/common';
 import { LoadingPipe, ObsState, ObsWithState } from '../../pipes/loading.pipe';
