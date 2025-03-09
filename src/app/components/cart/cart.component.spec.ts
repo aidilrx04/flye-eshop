@@ -140,6 +140,16 @@ describe('CartComponent', () => {
     const mockResponse = { payment: { url: 'http://test.com' } };
     orderServiceMock.createOrder.and.returnValue(of(mockResponse as any));
 
+    let windowStub = {
+      location: {
+        assign(url: string) {},
+      },
+    };
+
+    (component as any).window = windowStub;
+
+    spyOn(windowStub.location, 'assign');
+
     component.onCheckout();
 
     expect(orderServiceMock.createOrder).toHaveBeenCalledTimes(1);
@@ -149,8 +159,10 @@ describe('CartComponent', () => {
     });
 
     setTimeout(() => {
-      //TODO(aidil): fix external navigation detectionm
-      // expect(window.location.href).toEqual(mockResponse.payment.url);
+      expect(windowStub.location.assign).toHaveBeenCalled();
+      expect(windowStub.location.assign).toHaveBeenCalledWith(
+        mockResponse.payment.url,
+      );
       done();
     });
   });

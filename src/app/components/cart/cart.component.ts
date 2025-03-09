@@ -33,6 +33,7 @@ export class CartComponent {
   ) {}
 
   private form = inject(FormBuilder);
+  private window = window;
 
   items$!: Observable<LocalCartItemModel[]>;
   selected = signal<LocalCartItemModel[]>([]);
@@ -78,7 +79,7 @@ export class CartComponent {
         (this.cartService as RemoteCartService).refresh();
         // this.router.navigate(['/order/success']);
         // go to payment page
-        window.location.href = value.payment.url;
+        this.window.location.assign(value.payment.url);
       });
   }
 
