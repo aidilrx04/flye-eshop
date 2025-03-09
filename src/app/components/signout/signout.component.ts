@@ -17,6 +17,8 @@ export class SignoutComponent {
     private router: Router,
   ) {}
 
+  private window = window;
+
   ngOnInit() {
     this.authService
       .signOut()
@@ -24,7 +26,7 @@ export class SignoutComponent {
       .subscribe(() => {
         console.log('signed out');
         // this.router.navigate(['/signin']);
-        window.location.href = '/signin';
+        this.window.location.assign('/signin');
       });
   }
 }
