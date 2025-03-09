@@ -149,6 +149,7 @@ describe('CartComponent', () => {
     });
 
     setTimeout(() => {
+      //TODO(aidil): fix external navigation detectionm
       // expect(window.location.href).toEqual(mockResponse.payment.url);
       done();
     });
