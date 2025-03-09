@@ -5,6 +5,7 @@ import { map, Observable, tap } from 'rxjs';
 import { LoadingComponent } from '../core/loading/loading.component';
 import { SectionComponent } from '../core/section/section.component';
 import { OrderService } from '../../services/order.service';
+import { isNumberOr } from '../../utils/is-number-or';
 
 @Component({
   selector: 'app-order-status',
@@ -25,13 +26,13 @@ export class OrderStatusComponent {
       tap((params) => {
         const orderId = params.get('order_id');
         const statusId = params.get('status_id');
-
+        // debugger;
         if (orderId !== null && statusId !== null) {
           // TODO(aidil): disable this call on production mode
           this.updateOrderStatus(Number(statusId), Number(orderId));
         }
       }),
-      map((params) => (params.get('status_id') ?? '0') === '1'),
+      map((params) => isNumberOr(params.get('status_id') ?? '0', 0) === 1),
     );
 
     this.isSuccess$.subscribe((value) => {
