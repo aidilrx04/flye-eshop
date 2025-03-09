@@ -16,10 +16,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './signin.component.css',
 })
 export class SigninComponent {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {}
+  constructor(private authService: AuthService) {}
+  private window = window;
 
   signinForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -33,7 +31,7 @@ export class SigninComponent {
   }
 
   onSubmit() {
-    console.log(this.signinForm);
+    // console.log(this.signinForm);
 
     if (this.signinForm.invalid) return;
 
@@ -48,7 +46,7 @@ export class SigninComponent {
 
       complete: () => {
         console.log('signed in');
-        window.location.reload();
+        this.window.location.reload();
       },
     });
   }
