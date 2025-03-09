@@ -40,7 +40,16 @@ export class SignupComponent {
 
     if (!isFormValid) return;
 
-    const { email, fullName, password } = this.signupForm.value;
+    const { email, fullName, password, passwordConfirmation } =
+      this.signupForm.value;
+
+    if (
+      password !== null &&
+      passwordConfirmation !== null &&
+      password !== passwordConfirmation
+    ) {
+      return;
+    }
 
     this.authService.signUp(email!, fullName!, password!).subscribe({
       next: (value) => {
