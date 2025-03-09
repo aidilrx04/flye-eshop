@@ -79,6 +79,7 @@ export class CarouselComponent {
   @HostListener('window:resize', ['$event'])
   private onResize(e: Event) {
     for (const entry of Object.entries(this.pageConstraints)) {
+      console.log(window.screen.width);
       if (window.screen.width > Number(entry[0])) {
         this.itemPerPage.set(entry[1]);
       }
