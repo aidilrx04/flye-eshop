@@ -69,7 +69,7 @@ describe('DashboardLayoutComponent', () => {
 
     // Simulate click event
     const eventHandler = listenerSpy.calls.argsFor(0)[1];
-    console.log(eventHandler);
+    // console.log(eventHandler);
     component.isNavOpen.set(true);
 
     (eventHandler as any)();

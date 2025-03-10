@@ -67,7 +67,7 @@ describe('LocalCartService', () => {
     service.removeItem({ product: productMock, quantity: 2 });
 
     service.items$.subscribe((items) => {
-      console.log(items);
+      // console.log(items);
       expect(items.length === 1).toBeTruthy();
     });
   });
