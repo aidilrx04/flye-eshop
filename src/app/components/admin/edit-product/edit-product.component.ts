@@ -9,7 +9,7 @@ import {
 import { ProductCardComponent } from '../../core/product-card/product-card.component';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ProductModel } from '../../../models/product.model';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ImageFileModel } from '../../../models/image-file.model';
 import { ProductService } from '../../../services/product.service';
 import { AsyncPipe, Location } from '@angular/common';
@@ -48,10 +48,10 @@ export class EditProductComponent {
   product$!: Observable<ProductModel>;
 
   productGroup = this.form.group({
-    name: [''],
-    price: [''],
-    description: [''],
-    tagline: [''],
+    name: ['', Validators.required],
+    price: ['', Validators.required],
+    description: ['', Validators.required],
+    tagline: ['', Validators.required],
   });
 
   images = signal<MixExistImageFile[]>([]);

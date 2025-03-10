@@ -1,5 +1,5 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductModel } from '../../../models/product.model';
 import { ProductCardComponent } from '../../core/product-card/product-card.component';
 import { ProductService } from '../../../services/product.service';
@@ -16,10 +16,10 @@ export class CreateProductComponent {
   private form = inject(FormBuilder);
 
   productGroup = this.form.group({
-    name: [''],
-    price: [''],
-    description: [''],
-    tagline: [''],
+    name: ['', Validators.required],
+    price: ['', Validators.required],
+    description: ['', Validators.required],
+    tagline: ['', Validators.required],
   });
 
   images = signal<ImageFileModel[]>([]);
