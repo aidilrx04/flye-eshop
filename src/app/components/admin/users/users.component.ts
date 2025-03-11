@@ -57,6 +57,7 @@ export class UsersComponent {
 
     if (isCurrentUser) {
       alert('You cannot delete yourself!');
+      return;
     }
 
     this.userService.deleteUser(userId).subscribe(() => {
