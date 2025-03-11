@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderSuccessfulComponent } from './order-successful.component';
+import { provideRouter } from '@angular/router';
 
 describe('OrderSuccessfulComponent', () => {
   let component: OrderSuccessfulComponent;
@@ -8,9 +9,9 @@ describe('OrderSuccessfulComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OrderSuccessfulComponent]
-    })
-    .compileComponents();
+      imports: [OrderSuccessfulComponent],
+      providers: [provideRouter([])],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(OrderSuccessfulComponent);
     component = fixture.componentInstance;

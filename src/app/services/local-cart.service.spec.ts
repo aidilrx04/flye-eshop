@@ -8,67 +8,50 @@ import { ProductModel } from '../models/product.model';
 
 describe('LocalCartService', () => {
   let service: LocalCartService;
-  let data: LocalCartItemModel[];
-  let productMock: ProductModel;
 
   beforeEach(() => {
+    localStorage.clear();
     TestBed.configureTestingModule({});
     service = TestBed.inject(LocalCartService);
-
-    productMock = {
-      id: 1,
-      category: ProductCategory.MEN,
-      created_at: new Date(0),
-      updated_at: new Date(0),
-      description: '',
-      image_urls: [],
-      name: '',
-      price: 1,
-      rating: {
-        total_rating: 1,
-        total_star: 1,
-      },
-      sum_rating: 1,
-      tagline: '',
-    };
-    data = [
-      {
-        quantity: 1,
-        product: productMock,
-      },
-    ];
-
-    localStorage.setItem('flye-cart', JSON.stringify(data));
-  });
-
-  afterEach(() => {
-    localStorage.removeItem('flye-ecart');
-    TestBed.resetTestingModule();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be cart items stored in local storage', () => {
-    expect(localStorage.getItem('flye-cart')).toBeTruthy();
-  });
-  it('should retrieve store cart items', async () => {
-    expect((await firstValueFrom(service.items$)).length > 0).toBeTruthy();
-  });
-  it('should be able to add a new cart item', async () => {
-    service.addItem(productMock, 2);
+  it('should initialize with items from localStorage', (done) => {
+    const mockCart = [
+      { product: { id: 1, name: 'Test Product' }, quantity: 2 },
+    ] as any;
+    localStorage.setItem('flye-cart', JSON.stringify(mockCart));
 
-    const items = await firstValueFrom(service.items$);
-
-    expect(items).toContain({ quantity: 2, product: productMock });
-  });
-  it('should be able to remove existing cart item', async () => {
-    service.removeItem({ product: productMock, quantity: 2 });
-
-    service.items$.subscribe((items) => {
-      // console.log(items);
-      expect(items.length === 1).toBeTruthy();
+    const newService = new LocalCartService();
+    newService.items$.subscribe((val) => {
+      expect(val).toEqual(mockCart);
+      done();
     });
+  });
+
+  it('should add item to cart', (done) => {
+    const product: ProductModel = { id: 1, name: 'Product A' } as ProductModel;
+    service.addItem(product, 1);
+
+    service.items$.subscribe((value) => {
+      expect(value.length).toBe(1);
+      expect(value[0]).toEqual({ product, quantity: 1 });
+      expect(localStorage.getItem('flye-cart')).toContain('Product A');
+      done();
+    });
+  });
+
+  it('should remove item from cart', () => {
+    const product: ProductModel = { id: 1, name: 'Product A' } as ProductModel;
+    service.addItem(product, 1);
+
+    const item = (service as any).itemsSubject.value[0];
+    service.removeItem(item);
+
+    expect((service as any).itemsSubject.value.length).toBe(0);
+    expect(localStorage.getItem('flye-cart')).toBe('[]');
   });
 });
