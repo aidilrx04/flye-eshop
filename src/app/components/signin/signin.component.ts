@@ -44,6 +44,9 @@ export class SigninComponent {
         localStorage.setItem('token', token);
       },
 
+      error: () => {
+        alert('Error. Please try again');
+      },
       complete: () => {
         console.log('signed in');
         this.window.location.reload();
